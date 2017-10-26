@@ -16,9 +16,9 @@ public class Diskon {
 
 	@Column(name="id_diskon", nullable=false)
 	private int idDiskon;
-	
+	/*
 	@OneToOne(mappedBy="diskon")
-	private Barang idBarang;
+	private Barang idBarang;*/
 	private Double diskon;
 	@Column(name="harga_diskon")
 	private int hargaDiskon;
@@ -28,26 +28,24 @@ public class Diskon {
 	
 	public Diskon(){}
 	
-	public Diskon(int idDiskon, Barang idBarang, Double diskon, int hargaDiskon, Date tanggalBerakhir) {
+	
+	public Diskon(int idDiskon, Double diskon, int hargaDiskon, Date tanggalBerakhir) {
 		super();
 		this.idDiskon = idDiskon;
-		this.idBarang = idBarang;
 		this.diskon = diskon;
 		this.hargaDiskon = hargaDiskon;
 		this.tanggalBerakhir = tanggalBerakhir;
 	}
+
+
 	public int getIdDiskon() {
 		return idDiskon;
 	}
 	public void setIdDiskon(int idDiskon) {
 		this.idDiskon = idDiskon;
 	}
-	public Barang getIdBarang() {
-		return idBarang;
-	}
-	public void setIdBarang(Barang idBarang) {
-		this.idBarang = idBarang;
-	}
+	
+	
 	public Double getDiskon() {
 		return diskon;
 	}
