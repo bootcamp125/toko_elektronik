@@ -1,9 +1,12 @@
 package com.xsis.training125.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -11,9 +14,11 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 @Entity
 @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class Pelanggan {
-
-	@Column(name="id_pelanggan", nullable=false)
-	private int idPelanggan;
+	
+	
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="idPelanggan")
+	@Column(name="id_pelanggan")
+	private List<Penjualan> penjualan;
 	@Column(name="nama_pelanggan")
 	private String namaPelanggan;
 	@Column(name="tanggal_daftar")
@@ -25,7 +30,7 @@ public class Pelanggan {
 	
 	public Pelanggan(int idPelanggan, String namaPelanggan, Date tanggalDaftar, String alamat) {
 		super();
-		this.idPelanggan = idPelanggan;
+	
 		this.namaPelanggan = namaPelanggan;
 		this.tanggalDaftar = tanggalDaftar;
 		this.alamat = alamat;
@@ -33,12 +38,7 @@ public class Pelanggan {
 
 	
 	
-	public int getIdPelanggan() {
-		return idPelanggan;
-	}
-	public void setIdPelanggan(int idPelanggan) {
-		this.idPelanggan = idPelanggan;
-	}
+	
 	public String getNamaPelanggan() {
 		return namaPelanggan;
 	}

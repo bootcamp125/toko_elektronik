@@ -2,6 +2,9 @@ package com.xsis.training125.model;
 
 import java.util.Date;
 
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 public class Penjualan {
 
 	private int noNota;
@@ -10,6 +13,8 @@ public class Penjualan {
 	private int totalBarang;
 	private int totalHarga;
 	private Karyawan idKaryawan;
+	@ManyToOne
+	@JoinColumn(name="id_pelanggan")
 	private Pelanggan idPelanggan;
 	private Diskon diskon;
 	
