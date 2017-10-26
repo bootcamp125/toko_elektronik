@@ -4,6 +4,9 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
@@ -14,11 +17,10 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class Diskon {
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_diskon", nullable=false)
 	private int idDiskon;
-	/*
-	@OneToOne(mappedBy="diskon")
-	private Barang idBarang;*/
 	private Double diskon;
 	@Column(name="harga_diskon")
 	private int hargaDiskon;
