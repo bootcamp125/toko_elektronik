@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class Address {
 
-	private String name;
+	private String nama;
 	private String postalCode;
 	
 	public String getName() {
