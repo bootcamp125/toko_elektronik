@@ -43,12 +43,6 @@
 				<value>com.xsis.training125.model.Karyawan</value>
 				<value>com.xsis.training125.model.Pembelian</value>
 				 <!-- 
-				
-				
-				
-				
-				
-				
 				<value>com.xsis.training125.model.Penjualan</value>  -->
 			</list>
 		</property>
