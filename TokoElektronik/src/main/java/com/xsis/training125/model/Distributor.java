@@ -2,6 +2,9 @@ package com.xsis.training125.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -10,6 +13,8 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class Distributor {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_distributor", nullable=false)
 	private int idDistributor;
 	@Column(name="nama_distributor", nullable=false)
