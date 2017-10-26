@@ -11,12 +11,21 @@
 	<context:property-placeholder location="classpath:application.properties"/>
 	
 	<!-- sebagi penggati connection database -->
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+	<!-- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 	    <property name="driverClassName" value="${spring.datasource.driverClassName}" />
 	    <property name="url" value="${spring.datasource.url}" />
 	    <property name="username" value="${spring.datasource.username}"/>
 	    <property name="password" value="${spring.datasource.password}"/>
+	</bean> -->
+	
+	<!--  untuk ORACLE -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+	    <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+	    <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
+	    <property name="username" value="javacode"/>
+	    <property name="password" value="1234"/>
 	</bean>
+	
 	
 	<!-- untuk load session hibernate -->
 	<bean  class="org.springframework.orm.hibernate5.LocalSessionFactoryBean" 
