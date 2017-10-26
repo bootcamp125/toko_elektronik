@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -24,6 +26,9 @@ public class Barang {
 	private String merk;
 	@Column(name="harga_barang")
 	private int harga;
+	@OneToOne
+	@JoinColumn(name="id_diskon", unique=true)
+	private Diskon diskon;
 	
 	
 	public Barang(){}

@@ -43,7 +43,6 @@
 				<value>com.xsis.training125.model.Pelanggan</value>
 				<value>com.xsis.training125.model.Pembelian</value>
 				<value>com.xsis.training125.model.Penjualan</value>
-				
 			</list>
 		</property>
 		<property name="hibernateProperties">

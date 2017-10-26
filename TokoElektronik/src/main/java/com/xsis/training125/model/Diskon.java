@@ -16,7 +16,8 @@ public class Diskon {
 
 	@Column(name="id_diskon", nullable=false)
 	private int idDiskon;
-
+	
+	@OneToOne(mappedBy="diskon")
 	private Barang idBarang;
 	private Double diskon;
 	@Column(name="harga_diskon")
