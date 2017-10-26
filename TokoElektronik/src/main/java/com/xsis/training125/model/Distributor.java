@@ -11,10 +11,23 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 public class Distributor {
 	
 	@Column(name="id_distributor", nullable=false)
-	private int id;
+	private int idDistributor;
 	@Column(name="nama_distributor", nullable=false)
-	private String nama;
+	private String namaDistributor;
 	
+	public int getIdDistributor() {
+		return idDistributor;
+	}
+	public void setIdDistributor(int idDistributor) {
+		this.idDistributor = idDistributor;
+	}
+	public String getNamaDistributor() {
+		return namaDistributor;
+	}
+	public void setNamaDistributor(String namaDistributor) {
+		this.namaDistributor = namaDistributor;
+	}
+
 	
 	
 }
