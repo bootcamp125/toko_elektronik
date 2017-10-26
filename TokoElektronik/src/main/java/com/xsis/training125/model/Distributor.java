@@ -15,6 +15,16 @@ public class Distributor {
 	@Column(name="nama_distributor", nullable=false)
 	private String namaDistributor;
 	
+	
+	public Distributor(){}
+	
+	public Distributor(int idDistributor, String namaDistributor) {
+		super();
+		this.idDistributor = idDistributor;
+		this.namaDistributor = namaDistributor;
+	}
+	
+	
 	public int getIdDistributor() {
 		return idDistributor;
 	}
