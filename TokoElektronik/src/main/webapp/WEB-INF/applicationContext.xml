@@ -38,7 +38,8 @@
 				<value>com.xsis.training125.model.Diskon</value>
 				<value>com.xsis.training125.model.Pelanggan</value>
 				<value>com.xsis.training125.model.Distributor</value>
-				 <!-- <value>com.xsis.training125.model.Admin</value>
+				<value>com.xsis.training125.model.Admin</value>
+				 <!-- 
 				<value>com.xsis.training125.model.Barang</value>
 				
 				
