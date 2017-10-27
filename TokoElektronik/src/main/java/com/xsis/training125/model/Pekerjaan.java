@@ -24,7 +24,7 @@ public class Pekerjaan {
 	private String deskripsi;
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="pekerjaan")
 	private List<Karyawan> karyawan;
-	//SA
+	//SAp
 	
 	public List<Karyawan> getKaryawan() {
 		return karyawan;
