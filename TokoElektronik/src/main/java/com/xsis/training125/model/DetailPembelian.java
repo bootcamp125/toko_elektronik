@@ -11,39 +11,31 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
-public class DetailPenjualan {
-
+public class DetailPembelian {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="id_detail", nullable=false)
-	private int idDetailPen;
+	@Column(name="id_detail_pembelian", nullable=false)
+	private int idDetailPem;
 	private int jumlah;
 	
-	public DetailPenjualan(){}
-
 	
+	public DetailPembelian(){}
 	
-	public DetailPenjualan(int idDetailPen, int jumlah) {
+	public DetailPembelian(int idDetailPem, int jumlah) {
 		super();
-		this.idDetailPen = idDetailPen;
+		this.idDetailPem = idDetailPem;
 		this.jumlah = jumlah;
 	}
-
-
-
-	public int getIdDetailPen() {
-		return idDetailPen;
+	public int getIdDetailPem() {
+		return idDetailPem;
 	}
-
-	public void setIdDetailPen(int idDetailPen) {
-		this.idDetailPen = idDetailPen;
+	public void setIdDetailPem(int idDetailPem) {
+		this.idDetailPem = idDetailPem;
 	}
-
 	public int getJumlah() {
 		return jumlah;
 	}
-
 	public void setJumlah(int jumlah) {
 		this.jumlah = jumlah;
 	}
