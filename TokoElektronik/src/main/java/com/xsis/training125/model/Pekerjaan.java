@@ -1,12 +1,15 @@
 package com.xsis.training125.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -20,6 +23,8 @@ public class Pekerjaan {
 	@Column(name="id_pekerjaan")
 	private int idPekerjaan;
 	private String deskripsi;
+	
+	
 	
 	
 	public Pekerjaan(){}
