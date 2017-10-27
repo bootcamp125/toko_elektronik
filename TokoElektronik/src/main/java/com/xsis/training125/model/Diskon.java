@@ -21,6 +21,7 @@ public class Diskon {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_diskon", nullable=false)
 	private int idDiskon;
+	
 	private Double diskon;
 	@Column(name="harga_diskon")
 	private int hargaDiskon;
