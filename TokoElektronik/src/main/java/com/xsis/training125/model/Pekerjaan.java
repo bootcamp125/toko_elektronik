@@ -21,7 +21,6 @@ public class Pekerjaan {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
-	
 	private String deskripsi;
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="pekerjaan")
 	private List<Karyawan> karyawan;
@@ -29,6 +28,15 @@ public class Pekerjaan {
 	public List<Karyawan> getKaryawan() {
 		return karyawan;
 	}
+		
+	public Pekerjaan(){}
+		
+	public Pekerjaan(int idPekerjaan, String deskripsi) {
+		super();
+		this.id = idPekerjaan;
+		this.deskripsi = deskripsi;
+	}
+
 	public void setKaryawan(List<Karyawan> karyawan) {
 		this.karyawan = karyawan;
 	}
