@@ -41,10 +41,9 @@
 				<value>com.xsis.training125.model.DetailPenjualan</value>
 				<value>com.xsis.training125.model.Barang</value>
 				<value>com.xsis.training125.model.Karyawan</value>
+				<value>com.xsis.training125.model.Pekerjaan</value>
 				<value>com.xsis.training125.model.Pembelian</value>
 				<value>com.xsis.training125.model.Penjualan</value>
-				 <!-- 
-				  -->
 			</list>
 		</property>
 		<property name="hibernateProperties">

@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -15,8 +17,7 @@ public class Karyawan {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="id_karyawan")
-	private int idKaryawan;
+	private int id;
 	@Column(name="username_karyawan")
 	private String usernameK;
 	@Column(name="password_karyawan")
@@ -25,22 +26,33 @@ public class Karyawan {
 	private String namaK;
 	@Column(name="jenis_kelamin")
 	private String jk;
+	@ManyToOne
+	@JoinColumn(name="id_pekerjaan")
+	private Pekerjaan pekerjaan;
 	
+	public Pekerjaan getPekerjaan() {
+		return pekerjaan;
+	}
+
+	public void setPekerjaan(Pekerjaan pekerjaan) {
+		this.pekerjaan = pekerjaan;
+	}
+
 	public Karyawan(){}
 	
 	public Karyawan(int idKaryawan, String usernameK, String passwordK, String namaK, String jk) {
 		super();
-		this.idKaryawan = idKaryawan;
+		this.id = idKaryawan;
 		this.usernameK = usernameK;
 		this.passwordK = passwordK;
 		this.namaK = namaK;
 		this.jk = jk;
 	}
 	public int getIdKaryawan() {
-		return idKaryawan;
+		return id;
 	}
 	public void setIdKaryawan(int idKaryawan) {
-		this.idKaryawan = idKaryawan;
+		this.id = idKaryawan;
 	}
 	public String getUsernameK() {
 		return usernameK;
