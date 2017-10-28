@@ -19,7 +19,9 @@ public class Retur {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private int jumlah;
+	@Column(name="tanggal_retur")
 	private Date tanggalRetur;
+	@Column(name="total_harga_retur")
 	private int totalHargaRetur;
 
 	public Retur(int id, int jumlah, Date tanggalRetur, int totalHargaRetur) {
