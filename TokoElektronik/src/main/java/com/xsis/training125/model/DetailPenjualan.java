@@ -24,17 +24,21 @@ public class DetailPenjualan {
 	@ManyToOne
 	@JoinColumn(name="no_nota")
 	private Penjualan penjualan;
+	@ManyToOne
+	@JoinColumn(name = "id_barang")
+	private Barang barang;
 	@OneToOne
 	@JoinColumn(name="id_diskon", unique=true)
 	private Diskon diskon;
 
 	public DetailPenjualan(){}
 
-	public DetailPenjualan(int id, int jumlah, Penjualan penjualan, Diskon diskon) {
+	public DetailPenjualan(int id, int jumlah, Penjualan penjualan, Barang barang, Diskon diskon) {
 		super();
 		this.id = id;
 		this.jumlah = jumlah;
 		this.penjualan = penjualan;
+		this.barang = barang;
 		this.diskon = diskon;
 	}
 
@@ -71,5 +75,14 @@ public class DetailPenjualan {
 	public void setDiskon(Diskon diskon) {
 		this.diskon = diskon;
 	}
+
+	public Barang getBarang() {
+		return barang;
+	}
+
+	public void setBarang(Barang barang) {
+		this.barang = barang;
+	}
+	
 	
 }

@@ -42,12 +42,13 @@ public class Barang {
 	private Diskon diskon;
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="barang")
 	private List<DetailPembelian> detailPembelian;
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="barang")
+	private List<DetailPenjualan> detailPenjualan;
 	
 	public Barang(){}
 	
-
 	public Barang(int id, String namaBarang, Date tanggalMasuk, int stock, String merk, int harga, Diskon diskon,
-			List<DetailPembelian> detailPembelian) {
+			List<DetailPembelian> detailPembelian, List<DetailPenjualan> detailPenjualan) {
 		super();
 		this.id = id;
 		this.namaBarang = namaBarang;
@@ -57,9 +58,8 @@ public class Barang {
 		this.harga = harga;
 		this.diskon = diskon;
 		this.detailPembelian = detailPembelian;
+		this.detailPenjualan = detailPenjualan;
 	}
-
-
 
 	public int getId() {
 		return id;
@@ -116,7 +116,13 @@ public class Barang {
 		this.detailPembelian = detailPembelian;
 	}
 
-	
+	public List<DetailPenjualan> getDetailPenjualan() {
+		return detailPenjualan;
+	}
+
+	public void setDetailPenjualan(List<DetailPenjualan> detailPenjualan) {
+		this.detailPenjualan = detailPenjualan;
+	}
 		
 	
 }
