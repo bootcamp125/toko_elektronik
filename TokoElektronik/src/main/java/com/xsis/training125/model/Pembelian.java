@@ -27,8 +27,6 @@ public class Pembelian {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="no_faktur")
 	private int noFaktur;
-	@Column(name = "jumlah_barang")
-	private int jumlahBarang;
 	@Column(name = "total_harga")
 	private int totalHarga;
 	@Temporal(TemporalType.DATE)
@@ -47,11 +45,10 @@ public class Pembelian {
 	public Pembelian() {
 	}
 
-	public Pembelian(int noFaktur, int jumlahBarang, int totalHarga, Date tanggalPembelian, Distributor distributor,
-			Karyawan karyawan, List<DetailPembelian> detailPembelian) {
+	public Pembelian(int noFaktur, int totalHarga, Date tanggalPembelian, Distributor distributor, Karyawan karyawan,
+			List<DetailPembelian> detailPembelian) {
 		super();
 		this.noFaktur = noFaktur;
-		this.jumlahBarang = jumlahBarang;
 		this.totalHarga = totalHarga;
 		this.tanggalPembelian = tanggalPembelian;
 		this.distributor = distributor;
@@ -65,14 +62,6 @@ public class Pembelian {
 
 	public void setNoFaktur(int noFaktur) {
 		this.noFaktur = noFaktur;
-	}
-
-	public int getJumlahBarang() {
-		return jumlahBarang;
-	}
-
-	public void setJumlahBarang(int jumlahBarang) {
-		this.jumlahBarang = jumlahBarang;
 	}
 
 	public int getTotalHarga() {
