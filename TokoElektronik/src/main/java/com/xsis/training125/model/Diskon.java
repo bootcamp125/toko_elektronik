@@ -24,8 +24,7 @@ public class Diskon {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="id_diskon", nullable=false)
-	private int idDiskon;
+	private int id;
 	private Double diskon;
 	@Column(name="harga_diskon")
 	private int hargaDiskon;
@@ -40,10 +39,10 @@ public class Diskon {
 
 	public Diskon(){}
 
-	public Diskon(int idDiskon, Double diskon, int hargaDiskon, Date tanggalBerakhir, Barang barang,
+	public Diskon(int id, Double diskon, int hargaDiskon, Date tanggalBerakhir, Barang barang,
 			DetailPenjualan detailpenjualan) {
 		super();
-		this.idDiskon = idDiskon;
+		this.id = id;
 		this.diskon = diskon;
 		this.hargaDiskon = hargaDiskon;
 		this.tanggalBerakhir = tanggalBerakhir;
@@ -51,15 +50,14 @@ public class Diskon {
 		this.detailpenjualan = detailpenjualan;
 	}
 
+	public int getId() {
+		return id;
+	}
 
-	public int getIdDiskon() {
-		return idDiskon;
+	public void setId(int id) {
+		this.id = id;
 	}
-	public void setIdDiskon(int idDiskon) {
-		this.idDiskon = idDiskon;
-	}
-	
-	
+
 	public Double getDiskon() {
 		return diskon;
 	}

@@ -38,6 +38,7 @@
 				<value>com.xsis.training125.model.DetailPembelian</value>
 				<value>com.xsis.training125.model.DetailPenjualan</value>
 				<value>com.xsis.training125.model.Diskon</value>
+				<value>com.xsis.training125.model.Distributor</value>
 				<value>com.xsis.training125.model.Employee</value>
 				<value>com.xsis.training125.model.Karyawan</value>
 				<value>com.xsis.training125.model.Pekerjaan</value>

@@ -20,7 +20,7 @@ public class DetailPembelian {
 	private int jumlah;
 	@ManyToOne
 	@JoinColumn(name="no_faktur")
-	private Penjualan pembelian;
+	private Pembelian pembelian;
 	@ManyToOne
 	@JoinColumn(name = "id_barang")
 	private Barang barang;
@@ -28,8 +28,7 @@ public class DetailPembelian {
 	public DetailPembelian() {
 	}
 
-
-	public DetailPembelian(int id, int jumlah, Penjualan pembelian, Barang barang) {
+	public DetailPembelian(int id, int jumlah, Pembelian pembelian, Barang barang) {
 		super();
 		this.id = id;
 		this.jumlah = jumlah;
@@ -61,16 +60,12 @@ public class DetailPembelian {
 		this.barang = barang;
 	}
 
-
-	public Penjualan getPembelian() {
+	public Pembelian getPembelian() {
 		return pembelian;
 	}
 
-
-	public void setPembelian(Penjualan pembelian) {
+	public void setPembelian(Pembelian pembelian) {
 		this.pembelian = pembelian;
-	}
-
-	
+	}	
 
 }

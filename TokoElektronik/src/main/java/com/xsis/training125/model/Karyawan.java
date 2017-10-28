@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -26,23 +27,37 @@ public class Karyawan {
 	private String namaK;
 	@Column(name = "jenis_kelamin")
 	private String jk;
+	private String alamat;
 	@ManyToOne
 	@JoinColumn(name = "id_pekerjaan")
 	private Pekerjaan pekerjaan;
+	@OneToOne(mappedBy="karyawan")
+	private Pembelian pembelian;
 
-	public Karyawan(int id, String usernameK, String passwordK, String namaK, String jk, Pekerjaan pekerjaan) {
+	public Karyawan() {
+	}
+
+	public Karyawan(int id, String usernameK, String passwordK, String namaK, String jk, String alamat,
+			Pekerjaan pekerjaan, Pembelian pembelian) {
 		super();
 		this.id = id;
 		this.usernameK = usernameK;
 		this.passwordK = passwordK;
 		this.namaK = namaK;
 		this.jk = jk;
+		this.alamat = alamat;
 		this.pekerjaan = pekerjaan;
+		this.pembelian = pembelian;
 	}
 
-	public Karyawan() {
+	public int getId() {
+		return id;
 	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	public Pekerjaan getPekerjaan() {
 		return pekerjaan;
 	}
@@ -90,5 +105,22 @@ public class Karyawan {
 	public void setJk(String jk) {
 		this.jk = jk;
 	}
+
+	public String getAlamat() {
+		return alamat;
+	}
+
+	public void setAlamat(String alamat) {
+		this.alamat = alamat;
+	}
+
+	public Pembelian getPembelian() {
+		return pembelian;
+	}
+
+	public void setPembelian(Pembelian pembelian) {
+		this.pembelian = pembelian;
+	}
+
 
 }

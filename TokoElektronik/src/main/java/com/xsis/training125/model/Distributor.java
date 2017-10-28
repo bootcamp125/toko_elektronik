@@ -1,10 +1,14 @@
 package com.xsis.training125.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -22,17 +26,24 @@ public class Distributor {
 	private String alamat;
 	@Column(name="no_contact")
 	private int noContact;
-	
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="distributor")
+	private List<Pembelian> pembelian;
 	
 	public Distributor(){}
-	
-	public Distributor(int idDistributor, String namaDistributor) {
+		
+	public Distributor(int idDistributor, String namaDistributor, String alamat, int noContact,
+			List<Pembelian> pembelian) {
 		super();
 		this.idDistributor = idDistributor;
 		this.namaDistributor = namaDistributor;
+		this.alamat = alamat;
+		this.noContact = noContact;
+		this.pembelian = pembelian;
 	}
-	
-	
+
+
+
+
 	public int getIdDistributor() {
 		return idDistributor;
 	}
@@ -62,6 +73,12 @@ public class Distributor {
 		this.noContact = noContact;
 	}
 
-	
-	
+	public List<Pembelian> getPembelian() {
+		return pembelian;
+	}
+
+	public void setPembelian(List<Pembelian> pembelian) {
+		this.pembelian = pembelian;
+	}
+
 }
