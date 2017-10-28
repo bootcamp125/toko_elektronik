@@ -32,10 +32,11 @@ public class Pekerjaan {
 		
 	public Pekerjaan(){}
 		
-	public Pekerjaan(int idPekerjaan, String deskripsi) {
+	public Pekerjaan(int id, String deskripsi, List<Karyawan> karyawan) {
 		super();
-		this.id = idPekerjaan;
+		this.id = id;
 		this.deskripsi = deskripsi;
+		this.karyawan = karyawan;
 	}
 
 	public void setKaryawan(List<Karyawan> karyawan) {

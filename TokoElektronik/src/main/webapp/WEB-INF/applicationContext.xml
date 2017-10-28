@@ -33,17 +33,18 @@
 	 <property name="dataSource" ref="dataSource"></property>
 	 <property name="annotatedClasses">
 			<list>
-				<value>com.xsis.training125.model.Employee</value>
-				<value>com.xsis.training125.model.Department</value>
-				<value>com.xsis.training125.model.Diskon</value>
-				<value>com.xsis.training125.model.Pelanggan</value>
-				<value>com.xsis.training125.model.Distributor</value>
-				<value>com.xsis.training125.model.DetailPenjualan</value>
 				<value>com.xsis.training125.model.Barang</value>
+				<value>com.xsis.training125.model.Department</value>
+				<value>com.xsis.training125.model.DetailPembelian</value>
+				<value>com.xsis.training125.model.DetailPenjualan</value>
+				<value>com.xsis.training125.model.Diskon</value>
+				<value>com.xsis.training125.model.Employee</value>
 				<value>com.xsis.training125.model.Karyawan</value>
 				<value>com.xsis.training125.model.Pekerjaan</value>
+				<value>com.xsis.training125.model.Pelanggan</value>
 				<value>com.xsis.training125.model.Pembelian</value>
 				<value>com.xsis.training125.model.Penjualan</value>
+				<value>com.xsis.training125.model.Retur</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
