@@ -14,45 +14,50 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
-@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
 public class Distributor {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="id_distributor", nullable=false)
-	private int idDistributor;
-	@Column(name="nama_distributor")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
+	@Column(name = "nama_distributor")
 	private String namaDistributor;
 	private String alamat;
-	@Column(name="no_contact")
+	@Column(name = "no_contact")
 	private int noContact;
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="distributor")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "distributor")
 	private List<Pembelian> pembelian;
-	
-	public Distributor(){}
-		
-	public Distributor(int idDistributor, String namaDistributor, String alamat, int noContact,
-			List<Pembelian> pembelian) {
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "distributor")
+	private List<Retur> retur;
+
+	public Distributor() {
+	}
+
+	public Distributor(int id, String namaDistributor, String alamat, int noContact, List<Pembelian> pembelian,
+			List<Retur> retur) {
 		super();
-		this.idDistributor = idDistributor;
+		this.id = id;
 		this.namaDistributor = namaDistributor;
 		this.alamat = alamat;
 		this.noContact = noContact;
 		this.pembelian = pembelian;
+		this.retur = retur;
 	}
 
 
 
+	public int getId() {
+		return id;
+	}
 
-	public int getIdDistributor() {
-		return idDistributor;
+	public void setId(int id) {
+		this.id = id;
 	}
-	public void setIdDistributor(int idDistributor) {
-		this.idDistributor = idDistributor;
-	}
+
 	public String getNamaDistributor() {
 		return namaDistributor;
 	}
+
 	public void setNamaDistributor(String namaDistributor) {
 		this.namaDistributor = namaDistributor;
 	}
@@ -79,6 +84,14 @@ public class Distributor {
 
 	public void setPembelian(List<Pembelian> pembelian) {
 		this.pembelian = pembelian;
+	}
+
+	public List<Retur> getRetur() {
+		return retur;
+	}
+
+	public void setRetur(List<Retur> retur) {
+		this.retur = retur;
 	}
 
 }

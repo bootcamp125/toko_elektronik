@@ -41,12 +41,15 @@ public class Pembelian {
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="pembelian")
 	@Column(name="detail_pembelian")
 	private List<DetailPembelian> detailPembelian;
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="pembelian")
+	@Column(name="retur")
+	private List<Retur> retur;
 
 	public Pembelian() {
 	}
 
 	public Pembelian(int noFaktur, int totalHarga, Date tanggalPembelian, Distributor distributor, Karyawan karyawan,
-			List<DetailPembelian> detailPembelian) {
+			List<DetailPembelian> detailPembelian, List<Retur> retur) {
 		super();
 		this.noFaktur = noFaktur;
 		this.totalHarga = totalHarga;
@@ -54,6 +57,7 @@ public class Pembelian {
 		this.distributor = distributor;
 		this.karyawan = karyawan;
 		this.detailPembelian = detailPembelian;
+		this.retur = retur;
 	}
 
 	public int getNoFaktur() {
@@ -102,6 +106,14 @@ public class Pembelian {
 
 	public void setKaryawan(Karyawan karyawan) {
 		this.karyawan = karyawan;
+	}
+
+	public List<Retur> getRetur() {
+		return retur;
+	}
+
+	public void setRetur(List<Retur> retur) {
+		this.retur = retur;
 	}
 
 
