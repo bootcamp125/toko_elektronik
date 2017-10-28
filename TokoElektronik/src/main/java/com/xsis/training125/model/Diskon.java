@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -21,25 +23,27 @@ public class Diskon {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_diskon", nullable=false)
 	private int idDiskon;
-	
 	private Double diskon;
 	@Column(name="harga_diskon")
 	private int hargaDiskon;
 	@Column(name="tanggal_berakhir")
+	@Temporal(TemporalType.DATE)
 	private Date tanggalBerakhir;
-	
+	@OneToOne
+	@JoinColumn(name="id_barang", unique=true)
+	private Barang barang;
+
 	
 	public Diskon(){}
-	
-	
-	public Diskon(int idDiskon, Double diskon, int hargaDiskon, Date tanggalBerakhir) {
+
+	public Diskon(int idDiskon, Double diskon, int hargaDiskon, Date tanggalBerakhir, Barang barang) {
 		super();
 		this.idDiskon = idDiskon;
 		this.diskon = diskon;
 		this.hargaDiskon = hargaDiskon;
 		this.tanggalBerakhir = tanggalBerakhir;
+		this.barang = barang;
 	}
-
 
 	public int getIdDiskon() {
 		return idDiskon;

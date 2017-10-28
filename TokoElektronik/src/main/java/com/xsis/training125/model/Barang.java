@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -24,6 +26,7 @@ public class Barang {
 	@Column(name="nama_barang")
 	private String namaBarang;
 	@Column(name="tanggal_masuk")
+	@Temporal(TemporalType.DATE)
 	private Date tanggalMasuk;
 	@Column(name="stock_barang")
 	private int stock;
