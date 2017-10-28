@@ -50,7 +50,7 @@ public class EmployeeController {
 		 return result;
 	}
 	
-	@RequestMapping(value="/update?data=apa", method=RequestMethod.PUT)
+	@RequestMapping(value="/update", method=RequestMethod.PUT)
 	@ResponseStatus(HttpStatus.OK)
 	public void updateEmployee(@RequestBody Employee employee){
 		employeeService.update(employee);

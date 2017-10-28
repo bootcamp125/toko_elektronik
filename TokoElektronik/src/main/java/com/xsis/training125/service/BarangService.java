@@ -29,5 +29,22 @@ public class BarangService {
 		
 	}
 
+	public Barang getBarangById(int id) {
+		// TODO Auto-generated method stub
+		return barangDao.getBarangById(id);
+	}
+
+	public void update(Barang barang) {
+		// TODO Auto-generated method stub
+		barangDao.update(barang);
+	}
+
+	public void delete(int id) {
+		// TODO Auto-generated method stub
+		barangDao.delete(id);
+	}
+
+	
+
 
 }

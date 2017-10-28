@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.xsis.training125.model.Barang;
+import com.xsis.training125.model.Employee;
 
 
 @Repository
@@ -38,5 +39,33 @@ public class BarangDaoImpl implements BarangDao  {
 		session.save(barang);
 		session.flush();
 	}
+
+	@Override
+	public Barang getBarangById(int id) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		Barang barang = session.get(Barang.class, id);
+		return barang;
+	}
+
+	@Override
+	public void update(Barang barang) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		session.update(barang);
+		session.flush();
+	}
+
+	@Override
+	public void delete(int id) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		Barang barang = new Barang();
+		barang.setId(id);	
+		session.delete(id);
+		session.flush();
+	}
+
+	
 
 }

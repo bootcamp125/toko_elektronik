@@ -13,12 +13,6 @@
 </head>
 <body>
  	<div class="container" id="container">
- 	<% 
- 		/* List<Employee> employees = //(List)request.getAttribute("employees");		
- 		for(Employee employee: employees){
- 			out.println("name : "+ employee.getName());
- 		} */
- 	%>
  	<table class="table table-sm table-striped table-bordered table-hover">
 	 	<thead class="thead-dark">
 	 		<tr>
@@ -102,7 +96,7 @@
  				
  				$.ajax({
  					type: 'POST',
- 					url : 'employee/empid/'+id,
+ 					url : 'barang/barangid/'+id,
  					success : function(data){
  						//console.log(JSON.stringify(data));
  						_setFieldUpdateModal(data);
@@ -114,31 +108,32 @@
  			});
  			
  			function _setFieldUpdateModal(data){
- 				$('#textName').val(data.name);
-				$('#textAddress').val(data.address);
-				$('#textEmail').val(data.email);
+ 				$('#textNama').val(data.namaBarang);
+				$('#textHarga').val(data.harga);
+				$('#textMerk').val(data.merk);
+				$('#textTanggal').val(data.tanggalMasuk);
  			}
  			
  			//event submit data for update
  			$('#submit-update').click(function(){
  				
  				//Object ala js
- 				var Employee = {
+ 				var Barang = {
  					id : id,
- 					name : $('#textName').val(),
- 					address : $('#textAddress').val(),
- 					email : $('#textEmail').val(),
- 					salary : 0
+ 					namaBarang : $('#textNama').val(),
+ 					harga : $('#textHarga').val(),
+ 					merk : $('#textMerk').val(),
+ 					tanggalMasuk : $('#textTanggal').val()
  				};
  				
  				//ajax update
  				$.ajax({
  					type: 'PUT',
- 					url : 'employee/update',
+ 					url : 'barang/update',
  					contentType: "application/json",
- 					data: JSON.stringify(Employee),
+ 					data: JSON.stringify(Barang),
  					success: function(data){
- 						window.location = "/employee";
+ 						window.location = "/barang";
  					}
  				});
  			});
@@ -157,19 +152,20 @@
 	      <div class="modal-body">
 	        <form>
 			  <div class="form-group">
-			    <label for="textName">Name</label>
-			    <input type="text" class="form-control" id="textName" name="name" placeholder="Enter Name">
-			    <!-- <small id="nameHelp" class="form-text text-muted">Silahkan anda mengisi nama dengan benar</small> -->
+			    <label for="textNama">Nama Barang</label>
+			    <input type="text" class="form-control" id="textNama" name="namaBarang" >
 			  </div>
 			  <div class="form-group">
-			    <label for="textAddress">Address</label>
-			    <input type="text" class="form-control" id="textAddress" name="address" placeholder="Enter Address">
-			   <!--  <small id="emailHelp" class="form-text text-muted">Silahkan anda mengisi Email dengan benar</small> -->
+			    <label for="textHarga">Harga barang</label>
+			    <input type="text" class="form-control" id="textHarga" name="harga" >
 			  </div>
 			  <div class="form-group">
-			    <label for="textEmail">Email</label>
-			    <input type="text" class="form-control" name="textEmail" id="textEmail" placeholder="Enter Email">
-			   <!--  <small id="emailHelp" class="form-text text-muted">Silahkan anda mengisi Email dengan benar</small> -->
+			    <label for="textMerk">Merk Barang</label>
+			    <input type="text" class="form-control" id="textMerk" name="merk"  >
+			  </div>
+			  <div class="form-group">
+			    <label for="textTanggal">Tanggal Masuk</label>
+			    <input type="text" class="form-control" id="textTanggal" name="tanggalMasuk" >
 			  </div>
 			</form>
 	      </div>
