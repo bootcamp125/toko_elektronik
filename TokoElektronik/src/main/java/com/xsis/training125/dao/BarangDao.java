@@ -7,4 +7,6 @@ public interface BarangDao {
 
 	List<Barang> getAllBarang();
 
+	void save(Barang barang);
+
 }

@@ -24,7 +24,7 @@ public class Barang {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="id_barang",nullable=false)
+	@Column(name="id_barang")
 	private int id;
 	@Column(name="nama_barang")
 	private String namaBarang;
