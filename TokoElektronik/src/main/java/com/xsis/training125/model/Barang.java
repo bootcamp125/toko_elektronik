@@ -1,13 +1,16 @@
 package com.xsis.training125.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -37,11 +40,14 @@ public class Barang {
 	@OneToOne
 	@JoinColumn(name="id_diskon", unique=true)
 	private Diskon diskon;
-	
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="barang")
+	private List<DetailPembelian> detailPembelian;
 	
 	public Barang(){}
 	
-	public Barang(int id, String namaBarang, Date tanggalMasuk, int stock, String merk, int harga) {
+
+	public Barang(int id, String namaBarang, Date tanggalMasuk, int stock, String merk, int harga, Diskon diskon,
+			List<DetailPembelian> detailPembelian) {
 		super();
 		this.id = id;
 		this.namaBarang = namaBarang;
@@ -49,7 +55,12 @@ public class Barang {
 		this.stock = stock;
 		this.merk = merk;
 		this.harga = harga;
+		this.diskon = diskon;
+		this.detailPembelian = detailPembelian;
 	}
+
+
+
 	public int getId() {
 		return id;
 	}
@@ -86,10 +97,26 @@ public class Barang {
 	public void setHarga(int harga) {
 		this.harga = harga;
 	}
+
+	public Diskon getDiskon() {
+		return diskon;
+	}
+
+	public void setDiskon(Diskon diskon) {
+		this.diskon = diskon;
+	}
+
+
+	public List<DetailPembelian> getDetailPembelian() {
+		return detailPembelian;
+	}
+
+
+	public void setDetailPembelian(List<DetailPembelian> detailPembelian) {
+		this.detailPembelian = detailPembelian;
+	}
+
 	
-	
-	
-	
-	
+		
 	
 }

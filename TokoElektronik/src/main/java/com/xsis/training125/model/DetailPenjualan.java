@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -18,30 +19,33 @@ public class DetailPenjualan {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="id_detail", nullable=false)
-	private int idDetailPen;
+	private int id;
 	private int jumlah;
 	@ManyToOne
-	@JoinColumn(name="id_penjualan")
+	@JoinColumn(name="no_nota")
 	private Penjualan penjualan;
-	
+	@OneToOne
+	@JoinColumn(name="id_diskon", unique=true)
+	private Diskon diskon;
+
 	public DetailPenjualan(){}
 
-	public DetailPenjualan(int idDetailPen, int jumlah, Penjualan penjualan) {
+	public DetailPenjualan(int id, int jumlah, Penjualan penjualan, Diskon diskon) {
 		super();
-		this.idDetailPen = idDetailPen;
+		this.id = id;
 		this.jumlah = jumlah;
 		this.penjualan = penjualan;
+		this.diskon = diskon;
 	}
 
-	public int getIdDetailPen() {
-		return idDetailPen;
+	public int getId() {
+		return id;
 	}
 
-	public void setIdDetailPen(int idDetailPen) {
-		this.idDetailPen = idDetailPen;
+	public void setId(int id) {
+		this.id = id;
 	}
-
+	
 	public int getJumlah() {
 		return jumlah;
 	}
@@ -50,6 +54,22 @@ public class DetailPenjualan {
 		this.jumlah = jumlah;
 	}
 	
+	public Penjualan getPenjualan() {
+		return penjualan;
+	}
+
+
+	public void setPenjualan(Penjualan penjualan) {
+		this.penjualan = penjualan;
+	}
 	
+	public Diskon getDiskon() {
+		return diskon;
+	}
+
+
+	public void setDiskon(Diskon diskon) {
+		this.diskon = diskon;
+	}
 	
 }

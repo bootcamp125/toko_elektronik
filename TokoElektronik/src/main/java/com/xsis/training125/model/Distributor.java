@@ -17,8 +17,11 @@ public class Distributor {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_distributor", nullable=false)
 	private int idDistributor;
-	@Column(name="nama_distributor", nullable=false)
+	@Column(name="nama_distributor")
 	private String namaDistributor;
+	private String alamat;
+	@Column(name="no_contact")
+	private int noContact;
 	
 	
 	public Distributor(){}
@@ -41,6 +44,22 @@ public class Distributor {
 	}
 	public void setNamaDistributor(String namaDistributor) {
 		this.namaDistributor = namaDistributor;
+	}
+
+	public String getAlamat() {
+		return alamat;
+	}
+
+	public void setAlamat(String alamat) {
+		this.alamat = alamat;
+	}
+
+	public int getNoContact() {
+		return noContact;
+	}
+
+	public void setNoContact(int noContact) {
+		this.noContact = noContact;
 	}
 
 	

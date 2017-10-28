@@ -1,45 +1,76 @@
 package com.xsis.training125.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
-@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
 public class DetailPembelian {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="id_detail_pembelian", nullable=false)
-	private int idDetailPem;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
 	private int jumlah;
-	
-	
-	public DetailPembelian(){}
-	
-	public DetailPembelian(int idDetailPem, int jumlah) {
+	@ManyToOne
+	@JoinColumn(name="no_faktur")
+	private Penjualan pembelian;
+	@ManyToOne
+	@JoinColumn(name = "id_barang")
+	private Barang barang;
+
+	public DetailPembelian() {
+	}
+
+
+	public DetailPembelian(int id, int jumlah, Penjualan pembelian, Barang barang) {
 		super();
-		this.idDetailPem = idDetailPem;
+		this.id = id;
 		this.jumlah = jumlah;
+		this.pembelian = pembelian;
+		this.barang = barang;
 	}
-	public int getIdDetailPem() {
-		return idDetailPem;
+
+	public int getId() {
+		return id;
 	}
-	public void setIdDetailPem(int idDetailPem) {
-		this.idDetailPem = idDetailPem;
+
+	public void setId(int id) {
+		this.id = id;
 	}
+
 	public int getJumlah() {
 		return jumlah;
 	}
+
 	public void setJumlah(int jumlah) {
 		this.jumlah = jumlah;
 	}
+
+	public Barang getBarang() {
+		return barang;
+	}
+
+	public void setBarang(Barang barang) {
+		this.barang = barang;
+	}
+
+
+	public Penjualan getPembelian() {
+		return pembelian;
+	}
+
+
+	public void setPembelian(Penjualan pembelian) {
+		this.pembelian = pembelian;
+	}
+
 	
-	
-	
+
 }

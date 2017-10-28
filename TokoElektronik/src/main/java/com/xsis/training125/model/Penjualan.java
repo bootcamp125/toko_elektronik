@@ -31,7 +31,7 @@ public class Penjualan {
 	@Column(name="total_harga")
 	private int totalHarga;
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="penjualan")
-	@Column(name="detail_pennjualan")
+	@Column(name="detail_penjualan")
 	private List<DetailPenjualan> detailPenjualan;
 	
 	public Penjualan(){}

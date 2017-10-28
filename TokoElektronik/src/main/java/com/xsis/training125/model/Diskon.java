@@ -1,13 +1,16 @@
 package com.xsis.training125.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -32,18 +35,22 @@ public class Diskon {
 	@OneToOne
 	@JoinColumn(name="id_barang", unique=true)
 	private Barang barang;
+	@OneToOne(mappedBy="diskon")
+	private DetailPenjualan detailpenjualan;
 
-	
 	public Diskon(){}
 
-	public Diskon(int idDiskon, Double diskon, int hargaDiskon, Date tanggalBerakhir, Barang barang) {
+	public Diskon(int idDiskon, Double diskon, int hargaDiskon, Date tanggalBerakhir, Barang barang,
+			DetailPenjualan detailpenjualan) {
 		super();
 		this.idDiskon = idDiskon;
 		this.diskon = diskon;
 		this.hargaDiskon = hargaDiskon;
 		this.tanggalBerakhir = tanggalBerakhir;
 		this.barang = barang;
+		this.detailpenjualan = detailpenjualan;
 	}
+
 
 	public int getIdDiskon() {
 		return idDiskon;
@@ -72,7 +79,21 @@ public class Diskon {
 		this.tanggalBerakhir = tanggalBerakhir;
 	}
 	
-	
+	public Barang getBarang() {
+		return barang;
+	}
+
+	public void setBarang(Barang barang) {
+		this.barang = barang;
+	}
+
+	public DetailPenjualan getDetailpenjualan() {
+		return detailpenjualan;
+	}
+
+	public void setDetailpenjualan(DetailPenjualan detailpenjualan) {
+		this.detailpenjualan = detailpenjualan;
+	}
 	
 	
 }
