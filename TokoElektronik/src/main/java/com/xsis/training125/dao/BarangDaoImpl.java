@@ -62,7 +62,7 @@ public class BarangDaoImpl implements BarangDao  {
 		Session session = sessionFactory.getCurrentSession();
 		Barang barang = new Barang();
 		barang.setId(id);	
-		session.delete(id);
+		session.delete(barang);
 		session.flush();
 	}
 

@@ -33,7 +33,7 @@
 	 				<td>${barang.stock }</td>
 	 				<td>${barang.tanggalMasuk }</td>
 	 				<td>
-	 					<a class="btn btn-outline-danger delete-btn" href="#">Delete</a>
+	 					<a data-id="${barang.id }"class="btn btn-outline-danger delete-btn" href="#">Delete</a>
 	 					<a id="${barang.id }" class="btn btn-outline-warning update-btn" href="#">Update</a>
 	 				</td>
 	 			</tr>
@@ -113,6 +113,21 @@
 				$('#textMerk').val(data.merk);
 				$('#textTanggal').val(data.tanggalMasuk);
  			}
+ 			
+ 			$('.delete-btn').on('click', function() {
+
+				//ambil data dari server => ajax
+				id = $(this).attr('data-id');
+
+				$.ajax({
+					type : 'DELETE',
+					url : 'barang/delete/' + id,
+					success : function() {
+						window.location = "/barang";
+					}
+				});
+
+			});
  			
  			//event submit data for update
  			$('#submit-update').click(function(){
