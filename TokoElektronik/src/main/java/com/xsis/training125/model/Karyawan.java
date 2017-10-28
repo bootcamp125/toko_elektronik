@@ -33,12 +33,14 @@ public class Karyawan {
 	private Pekerjaan pekerjaan;
 	@OneToOne(mappedBy="karyawan")
 	private Pembelian pembelian;
+	@OneToOne(mappedBy="karyawan")
+	private Penjualan penjualan;
 
 	public Karyawan() {
 	}
 
 	public Karyawan(int id, String usernameK, String passwordK, String namaK, String jk, String alamat,
-			Pekerjaan pekerjaan, Pembelian pembelian) {
+			Pekerjaan pekerjaan, Pembelian pembelian, Penjualan penjualan) {
 		super();
 		this.id = id;
 		this.usernameK = usernameK;
@@ -48,6 +50,7 @@ public class Karyawan {
 		this.alamat = alamat;
 		this.pekerjaan = pekerjaan;
 		this.pembelian = pembelian;
+		this.penjualan = penjualan;
 	}
 
 	public int getId() {
@@ -120,6 +123,14 @@ public class Karyawan {
 
 	public void setPembelian(Pembelian pembelian) {
 		this.pembelian = pembelian;
+	}
+
+	public Penjualan getPenjualan() {
+		return penjualan;
+	}
+
+	public void setPenjualan(Penjualan penjualan) {
+		this.penjualan = penjualan;
 	}
 
 

@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -26,26 +27,26 @@ public class Penjualan {
 	private int noNota;
 	@Column(name="tangal_penjualan")
 	private Date tanggalPenjualan;	
-	@Column(name="total_barang")
-	private int totalBarang;
 	@Column(name="total_harga")
 	private int totalHarga;
+	@OneToOne
+	@JoinColumn(name="id_karyawan", unique=true)
+	private Karyawan karyawan;
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="penjualan")
 	@Column(name="detail_penjualan")
 	private List<DetailPenjualan> detailPenjualan;
 	
 	public Penjualan(){}
-	
-	public Penjualan(int noNota, Date tanggalPenjualan, int totalBarang, int totalHarga,
+
+	public Penjualan(int noNota, Date tanggalPenjualan, int totalHarga, Karyawan karyawan,
 			List<DetailPenjualan> detailPenjualan) {
 		super();
 		this.noNota = noNota;
 		this.tanggalPenjualan = tanggalPenjualan;
-		this.totalBarang = totalBarang;
 		this.totalHarga = totalHarga;
+		this.karyawan = karyawan;
 		this.detailPenjualan = detailPenjualan;
 	}
-
 
 	public int getNoNota() {
 		return noNota;
@@ -66,17 +67,6 @@ public class Penjualan {
 		this.tanggalPenjualan = tanggalPenjualan;
 	}
 
-
-	public int getTotalBarang() {
-		return totalBarang;
-	}
-
-
-	public void setTotalBarang(int totalBarang) {
-		this.totalBarang = totalBarang;
-	}
-
-
 	public int getTotalHarga() {
 		return totalHarga;
 	}
@@ -84,6 +74,22 @@ public class Penjualan {
 
 	public void setTotalHarga(int totalHarga) {
 		this.totalHarga = totalHarga;
+	}
+
+	public Karyawan getKaryawan() {
+		return karyawan;
+	}
+
+	public void setKaryawan(Karyawan karyawan) {
+		this.karyawan = karyawan;
+	}
+
+	public List<DetailPenjualan> getDetailPenjualan() {
+		return detailPenjualan;
+	}
+
+	public void setDetailPenjualan(List<DetailPenjualan> detailPenjualan) {
+		this.detailPenjualan = detailPenjualan;
 	}
 	
 	
