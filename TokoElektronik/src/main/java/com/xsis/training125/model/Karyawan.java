@@ -73,14 +73,6 @@ public class Karyawan {
 		this.pekerjaan = pekerjaan;
 	}
 
-	public int getIdKaryawan() {
-		return id;
-	}
-
-	public void setIdKaryawan(int idKaryawan) {
-		this.id = idKaryawan;
-	}
-
 	public String getUsernameK() {
 		return usernameK;
 	}
