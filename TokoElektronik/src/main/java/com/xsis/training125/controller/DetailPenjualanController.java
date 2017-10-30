@@ -49,8 +49,8 @@ public class DetailPenjualanController {
 	
 	@RequestMapping(value="/update", method=RequestMethod.PUT)
 	@ResponseStatus(HttpStatus.OK)
-	public void updateDetailPenjualan(@RequestBody DetailPenjualan retur){
-		detailPenjualanService.update(retur);
+	public void updateDetailPenjualan(@RequestBody DetailPenjualan detailPenjualan){
+		detailPenjualanService.update(detailPenjualan);
 	}
 	
 	@RequestMapping(value="/delete/{id}", method=RequestMethod.DELETE)
