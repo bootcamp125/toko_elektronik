@@ -21,7 +21,7 @@
 	 			<th>namaDistributor</th>
 	 			<th>alamat</th>
 	 			<th>noContact</th>
-	 			<th>pembelian</th>
+	 		
 	 			
 	 			
 	 		</tr>
@@ -32,7 +32,7 @@
 	 				<td>${distributor.deskripsi }</td>
 	 				<td>${distributor.alamat }</td>
 	 				<td>${distributor.noContact }</td>
-	 				<td>${distributor.pembelian }</td>
+	 				
 	 				
 	 				
 	 				<td>
@@ -43,7 +43,7 @@
 	 		</c:forEach>
 	 	</tbody>
  	</table>
- 		<form action="/pekerjaan/save" method="POST">
+ 		<form action="/distributor/save" method="POST">
  			<table>
  			
 		
@@ -68,13 +68,7 @@
  						<input type="text" name="noContact" placeholder="Masukkan Nama deskripsi" />
  					</td>
  				</tr>
- 				<tr>
- 					<td>pembelian</td>
- 					<td>:</td>
- 					<td>
- 						<input type="text" name="pembelian" placeholder="Masukkan Nama deskripsi" />
- 					</td>
- 				</tr>
+ 				
  				
  				<tr>
  					<td></td>
@@ -142,7 +136,7 @@
  					namaDistributor: $('#textnamaDistributor').val(),
  					alamat: $('#textalamat').val(),
  					noContact: $('#textnoContact').val(),
- 					pembelian: $('#textpembelian').val(),
+ 					
  					
  				};
  				
@@ -189,10 +183,7 @@
 			    <label for="textNama">noContact</label>
 			    <input type="text" class="form-control" id="textnoContact" name="noContact" >
 			  </div>
-			  <div class="form-group">
-			    <label for="textNama">pembelian</label>
-			    <input type="text" class="form-control" id="textpembelian" name="pembelian" >
-			  </div>
+			  
 			  
 			</form>
 	      </div>
