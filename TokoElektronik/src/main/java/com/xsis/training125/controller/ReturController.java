@@ -25,10 +25,12 @@ public class ReturController {
 	@Autowired
 	ReturService returService;
 	
+	
 	@RequestMapping(method=RequestMethod.GET)
 	public String index(Model model){
-		List<Retur> returs=returService.getAllRetur();
-		model.addAttribute("retur",returs);
+		
+		List<Retur> retur = returService.getAllRetur();
+		model.addAttribute("retur", retur);
 		return "retur";
 	}
 	
@@ -41,11 +43,10 @@ public class ReturController {
 	@RequestMapping(value="/returid/{id}")
 	@ResponseBody
 	public Retur getReturById(@PathVariable int id){
-		Retur retur = returService.getReturById(id);
-		return retur;
+		 Retur result = returService.getReturById(id);
+		 return result;
 	}
 	
-
 	@RequestMapping(value="/update", method=RequestMethod.PUT)
 	@ResponseStatus(HttpStatus.OK)
 	public void updateRetur(@RequestBody Retur retur){
@@ -57,4 +58,6 @@ public class ReturController {
 	public void delete(@PathVariable int id){
 		returService.delete(id);
 	}
+	
+	
 }

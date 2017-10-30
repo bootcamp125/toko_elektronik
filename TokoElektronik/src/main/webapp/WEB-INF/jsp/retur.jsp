@@ -114,7 +114,7 @@
  				
  				$.ajax({
  					type: 'POST',
- 					url : 'retur/barangid/'+id,
+ 					url : 'retur/returid/'+id,
  					success : function(data){
  						//console.log(JSON.stringify(data));
  						_setFieldUpdateModal(data);
@@ -162,11 +162,11 @@
  				//ajax update
  				$.ajax({
  					type: 'PUT',
- 					url : 'barang/update',
+ 					url : 'retur/update',
  					contentType: "application/json",
- 					data: JSON.stringify(Barang),
+ 					data: JSON.stringify(Retur),
  					success: function(data){
- 						window.location = "/barang";
+ 						window.location = "/retur";
  					}
  				});
  			});
