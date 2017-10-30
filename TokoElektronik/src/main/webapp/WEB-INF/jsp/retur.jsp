@@ -26,14 +26,14 @@
 	 		</tr>
 	 	</thead>
 	 	
-	 this.id = id;
+	<!--  this.id = id;
 		this.jumlah = jumlah;
 		this.keterangan = keterangan;
 		this.tanggalRetur = tanggalRetur;
 		this.totalHargaRetur = totalHargaRetur;
 		this.karyawan = karyawan;
 		this.distributor = distributor;
-		this.pembelian = pembelian;
+		this.pembelian = pembelian; -->
 	 	
 	 	<tbody>
 	 		<c:forEach var="retur" items="${retur }">
@@ -95,6 +95,13 @@
  					<td>:</td>
  					<td>
  						<input type="text" name="distributor" placeholder="Masukkan"/>
+ 					</td>
+ 				</tr>
+ 				<tr>
+ 					<td>pembelian</td>
+ 					<td>:</td>
+ 					<td>
+ 						<input type="text" name="pembelian" placeholder="Masukkan"/>
  					</td>
  				</tr>
  				<tr>
