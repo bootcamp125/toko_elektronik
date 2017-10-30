@@ -1,4 +1,4 @@
-<%@page import="com.xsis.training125.model.Barang"%>
+<%@page import="com.xsis.training125.model.Retur"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -22,10 +22,18 @@
 	 			<th>Total Harga Retur</th>
 	 			<th>ID Karyawan</th>
 	 			<th>ID Distributor</th>
+	 			<th>ID pembelian</th>
 	 		</tr>
 	 	</thead>
 	 	
-	 	
+	 this.id = id;
+		this.jumlah = jumlah;
+		this.keterangan = keterangan;
+		this.tanggalRetur = tanggalRetur;
+		this.totalHargaRetur = totalHargaRetur;
+		this.karyawan = karyawan;
+		this.distributor = distributor;
+		this.pembelian = pembelian;
 	 	
 	 	<tbody>
 	 		<c:forEach var="retur" items="${retur }">
@@ -36,6 +44,7 @@
 	 				<td>${retur.totalHargaRetur }</td>
 	 				<td>${retur.karyawan }</td>
 	 				<td>${retur.distributor }</td>
+	 				<td>${retur.pembelian }</td>
 	 				<td>
 	 					<a data-id="${retur.id }"class="btn btn-outline-danger delete-btn" href="#">Delete</a>
 	 					<a id="${retur.id }" class="btn btn-outline-warning update-btn" href="#">Update</a>
@@ -44,7 +53,7 @@
 	 		</c:forEach>
 	 	</tbody>
  	</table>
- 		<form action="/barang/save" method="POST">
+ 		<form action="/retur/save" method="POST">
  			<table>
  				<tr>
  					<td>jumlah</td>
@@ -130,6 +139,9 @@
 				$('#textKeterangan').val(data.keterangan);
 				$('#textTanggalRetur').val(data.tanggalRetur);
 				$('#textTotalHargaRetur').val(data.totalHargaRetur);
+				$('#textkaryawan').val(data.karyawan);
+				$('#textdistributor').val(data.distributor);
+				$('#textpembelian').val(data.pembelian);
  			}
  			
  			$('.delete-btn').on('click', function() {
@@ -141,7 +153,7 @@
 					type : 'DELETE',
 					url : 'retur/delete/' + id,
 					success : function() {
-						window.location = "/barang";
+						window.location = "/retur";
 					}
 				});
 
@@ -156,7 +168,10 @@
  					jumlah : $('#textJumlah').val(),
  					keterangan : $('#textKeterangan').val(),
  					tanggalRetur : $('#textTanggalRetur').val(),
- 					totalHargaRetur : $('#textTotalHargaRetur').val()
+ 					totalHargaRetur : $('#textTotalHargaRetur').val(),
+ 					karyawan : $('#textkaryawan').val(),
+ 					distributor : $('#textdistributor').val(),
+ 					pembelian : $('#textpembelian').val()
  				};
  				
  				//ajax update
@@ -185,29 +200,42 @@
 	      <div class="modal-body">
 	        <form>
 	        
-	        <!-- this.id = id;
+	        <!--  this.id = id;
 		this.jumlah = jumlah;
 		this.keterangan = keterangan;
 		this.tanggalRetur = tanggalRetur;
 		this.totalHargaRetur = totalHargaRetur;
 		this.karyawan = karyawan;
-		this.distributor = distributor; -->
+		this.distributor = distributor;
+		this.pembelian = pembelian; -->
 	    
 			  <div class="form-group">
 			    <label for="textJumlah">Jumlah</label>
-			    <input type="text" class="form-control" id="textJumlah" name="namaBarang" >
+			    <input type="text" class="form-control" id="textJumlah" name="jumlah" >
 			  </div>
 			  <div class="form-group">
 			    <label for="textKeterangan">Keterangan</label>
-			    <input type="text" class="form-control" id="textKeterangan" name="harga" >
+			    <input type="text" class="form-control" id="textKeterangan" name="keterangan" >
 			  </div>
 			  <div class="form-group">
 			    <label for="textTanggalRetur">TanggalRetur</label>
-			    <input type="text" class="form-control" id="textTanggalRetur" name="merk"  >
+			    <input type="text" class="form-control" id="textTanggalRetur" name="tanggalRetur"  >
 			  </div>
 			  <div class="form-group">
 			    <label for="textTotalHargaRetur">TotalHargaRetur</label>
-			    <input type="text" class="form-control" id="textTotalHargaRetur" name="tanggalMasuk" >
+			    <input type="text" class="form-control" id="textTotalHargaRetur" name="totalHargaRetur" >
+			  </div>
+			  <div class="form-group">
+			    <label for="textkaryawan">karyawan</label>
+			    <input type="text" class="form-control" id="textkaryawan" name="totalkaryawan" >
+			  </div>
+			  <div class="form-group">
+			    <label for="textdistributor">distributor</label>
+			    <input type="text" class="form-control" id="textdistributor" name="distributor" >
+			  </div>
+			  <div class="form-group">
+			    <label for="textpembelian">pembelian</label>
+			    <input type="text" class="form-control" id="textpembelian" name="pembelian" >
 			  </div>
 			</form>
 	      </div>

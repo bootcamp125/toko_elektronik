@@ -44,8 +44,19 @@ public class Retur {
 	public Retur() {
 	}
 
+
+	/**
+	 * @param id
+	 * @param jumlah
+	 * @param keterangan
+	 * @param tanggalRetur
+	 * @param totalHargaRetur
+	 * @param karyawan
+	 * @param distributor
+	 * @param pembelian
+	 */
 	public Retur(int id, int jumlah, String keterangan, Date tanggalRetur, int totalHargaRetur, Karyawan karyawan,
-			Distributor distributor) {
+			Distributor distributor, Pembelian pembelian) {
 		super();
 		this.id = id;
 		this.jumlah = jumlah;
@@ -54,62 +65,89 @@ public class Retur {
 		this.totalHargaRetur = totalHargaRetur;
 		this.karyawan = karyawan;
 		this.distributor = distributor;
+		this.pembelian = pembelian;
 	}
+
 
 	public int getId() {
 		return id;
 	}
 
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 
 	public int getJumlah() {
 		return jumlah;
 	}
 
+
 	public void setJumlah(int jumlah) {
 		this.jumlah = jumlah;
 	}
 
-	public Date getTanggalRetur() {
-		return tanggalRetur;
-	}
-
-	public void setTanggalRetur(Date tanggalRetur) {
-		this.tanggalRetur = tanggalRetur;
-	}
-
-	public int getTotalHargaRetur() {
-		return totalHargaRetur;
-	}
-
-	public void setTotalHargaRetur(int totalHargaRetur) {
-		this.totalHargaRetur = totalHargaRetur;
-	}
-
-	public Karyawan getKaryawan() {
-		return karyawan;
-	}
-
-	public void setKaryawan(Karyawan karyawan) {
-		this.karyawan = karyawan;
-	}
-
-	public Distributor getDistributor() {
-		return distributor;
-	}
-
-	public void setDistributor(Distributor distributor) {
-		this.distributor = distributor;
-	}
 
 	public String getKeterangan() {
 		return keterangan;
 	}
 
+
 	public void setKeterangan(String keterangan) {
 		this.keterangan = keterangan;
 	}
+
+
+	public Date getTanggalRetur() {
+		return tanggalRetur;
+	}
+
+
+	public void setTanggalRetur(Date tanggalRetur) {
+		this.tanggalRetur = tanggalRetur;
+	}
+
+
+	public int getTotalHargaRetur() {
+		return totalHargaRetur;
+	}
+
+
+	public void setTotalHargaRetur(int totalHargaRetur) {
+		this.totalHargaRetur = totalHargaRetur;
+	}
+
+
+	public Karyawan getKaryawan() {
+		return karyawan;
+	}
+
+
+	public void setKaryawan(Karyawan karyawan) {
+		this.karyawan = karyawan;
+	}
+
+
+	public Distributor getDistributor() {
+		return distributor;
+	}
+
+
+	public void setDistributor(Distributor distributor) {
+		this.distributor = distributor;
+	}
+
+
+	public Pembelian getPembelian() {
+		return pembelian;
+	}
+
+
+	public void setPembelian(Pembelian pembelian) {
+		this.pembelian = pembelian;
+	}
+
+	
 	
 }
