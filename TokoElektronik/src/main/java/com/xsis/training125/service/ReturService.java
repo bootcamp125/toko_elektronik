@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.xsis.training125.dao.ReturDao;
+import com.xsis.training125.model.Barang;
 import com.xsis.training125.model.Retur;
 
 @Transactional
@@ -23,4 +24,20 @@ public class ReturService {
 	public List<Retur> getAllRetur(){
 		return returDao.getAllRetur();
 	}
+	
+	public Retur getReturById(int id){
+		return returDao.getReturById(id);
+	}
+	
+
+	public void update(Retur retur) {
+		// TODO Auto-generated method stub
+		returDao.update(retur);
+	}
+
+	public void delete(int id) {
+		// TODO Auto-generated method stub
+		returDao.delete(id);
+	}
+
 }

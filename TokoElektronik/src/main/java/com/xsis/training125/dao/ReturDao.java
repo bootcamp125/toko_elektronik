@@ -11,4 +11,11 @@ public interface ReturDao {
 
 	List<Retur> getAllRetur();
 
+	
+	Retur getReturById(int id);
+
+	void update(Retur retur);
+
+	void delete(int id);
+
 }

@@ -16,22 +16,26 @@
  	<table class="table table-sm table-striped table-bordered table-hover">
 	 	<thead class="thead-dark">
 	 		<tr>
-	 			<th>Nama Barang</th>
-	 			<th>Harga Satuan</th>
-	 			<th>Merk </th>
-	 			<th>Jumlah Stock yang Tersedia</th>
-	 			<th>Tanggal Masuk</th>
-	 			<th>Tindakan</th>
+	 			<th>Jumlah</th>
+	 			<th>Keterangan</th>
+	 			<th>Tanggal Retur </th>
+	 			<th>Total Harga Retur</th>
+	 			<th>ID Karyawan</th>
+	 			<th>ID Distributor</th>
 	 		</tr>
 	 	</thead>
+	 	
+	 	
+	 	
 	 	<tbody>
 	 		<c:forEach var="retur" items="${retur }">
 	 			<tr>
-	 				<td>${barang.namaBarang }</td>
-	 				<td>${barang.harga }</td>
-	 				<td>${barang.merk }</td>
-	 				<td>${barang.stock }</td>
-	 				<td>${barang.tanggalMasuk }</td>
+	 				<td>${retur.jumlah }</td>
+	 				<td>${retur.keterangan }</td>
+	 				<td>${retur.tanggalRetur }</td>
+	 				<td>${retur.totalHargaRetur }</td>
+	 				<td>${retur.karyawan }</td>
+	 				<td>${retur.distributor }</td>
 	 				<td>
 	 					<a data-id="${retur.id }"class="btn btn-outline-danger delete-btn" href="#">Delete</a>
 	 					<a id="${retur.id }" class="btn btn-outline-warning update-btn" href="#">Update</a>
@@ -40,34 +44,48 @@
 	 		</c:forEach>
 	 	</tbody>
  	</table>
- 		<form action="/retur/save" method="POST">
+ 		<form action="/barang/save" method="POST">
  			<table>
  				<tr>
- 					<td>Nama Barang</td>
+ 					<td>jumlah</td>
  					<td>:</td>
  					<td>
- 						<input type="text" name="namaBarang" placeholder="Masukkan Nama Barang" />
+ 						<input type="text" name="jumlah" placeholder="Masukkan Nama Barang" />
  					</td>
  				</tr>
  				<tr>
- 					<td>Harga Satuan</td>
+ 					<td>keterangan</td>
  					<td>:</td>
  					<td>
- 						<input type="text" name="harga" placeholder="Masukkan Harga Satuan Barang" />
+ 						<input type="text" name="keterangan" placeholder="Masukkan Harga Satuan Barang" />
  					</td>
  				</tr>
  				<tr>
- 					<td>Merk</td>
+ 					<td>tanggalRetur</td>
  					<td>:</td>
  					<td>
- 						<input type="text" name="merk" placeholder="Masukkan Merk Barang" />
+ 						<input type="text" name="tanggalRetur" placeholder="DD/MM/YYYY" />
  					</td>
  				</tr>
  				<tr>
- 					<td>Tanggal Masuk</td>
+ 					<td>totalHargaRetur</td>
  					<td>:</td>
  					<td>
- 						<input type="text" name="tanggalMasuk" placeholder="DD/MM/YYYY"/>
+ 						<input type="text" name="totalHargaRetur" placeholder="Masukkan"/>
+ 					</td>
+ 				</tr>
+ 				<tr>
+ 					<td>karyawan</td>
+ 					<td>:</td>
+ 					<td>
+ 						<input type="text" name="karyawan" placeholder="Masukkan"/>
+ 					</td>
+ 				</tr>
+ 				<tr>
+ 					<td>distributor</td>
+ 					<td>:</td>
+ 					<td>
+ 						<input type="text" name="distributor" placeholder="Masukkan"/>
  					</td>
  				</tr>
  				<tr>
@@ -96,7 +114,7 @@
  				
  				$.ajax({
  					type: 'POST',
- 					url : 'barang/barangid/'+id,
+ 					url : 'retur/barangid/'+id,
  					success : function(data){
  						//console.log(JSON.stringify(data));
  						_setFieldUpdateModal(data);
@@ -108,10 +126,10 @@
  			});
  			
  			function _setFieldUpdateModal(data){
- 				$('#textNama').val(data.namaBarang);
-				$('#textHarga').val(data.harga);
-				$('#textMerk').val(data.merk);
-				$('#textTanggal').val(data.tanggalMasuk);
+ 				$('#textJumlah').val(data.jumlah);
+				$('#textKeterangan').val(data.keterangan);
+				$('#textTanggalRetur').val(data.tanggalRetur);
+				$('#textTotalHargaRetur').val(data.totalHargaRetur);
  			}
  			
  			$('.delete-btn').on('click', function() {
@@ -121,7 +139,7 @@
 
 				$.ajax({
 					type : 'DELETE',
-					url : 'barang/delete/' + id,
+					url : 'retur/delete/' + id,
 					success : function() {
 						window.location = "/barang";
 					}
@@ -133,12 +151,12 @@
  			$('#submit-update').click(function(){
  				
  				//Object ala js
- 				var Barang = {
+ 				var retur = {
  					id : id,
- 					namaBarang : $('#textNama').val(),
- 					harga : $('#textHarga').val(),
- 					merk : $('#textMerk').val(),
- 					tanggalMasuk : $('#textTanggal').val()
+ 					jumlah : $('#textJumlah').val(),
+ 					keterangan : $('#textKeterangan').val(),
+ 					tanggalRetur : $('#textTanggalRetur').val(),
+ 					totalHargaRetur : $('#textTotalHargaRetur').val()
  				};
  				
  				//ajax update
@@ -166,21 +184,30 @@
 	      </div>
 	      <div class="modal-body">
 	        <form>
+	        
+	        <!-- this.id = id;
+		this.jumlah = jumlah;
+		this.keterangan = keterangan;
+		this.tanggalRetur = tanggalRetur;
+		this.totalHargaRetur = totalHargaRetur;
+		this.karyawan = karyawan;
+		this.distributor = distributor; -->
+	    
 			  <div class="form-group">
-			    <label for="textNama">Nama Barang</label>
-			    <input type="text" class="form-control" id="textNama" name="namaBarang" >
+			    <label for="textJumlah">Jumlah</label>
+			    <input type="text" class="form-control" id="textJumlah" name="namaBarang" >
 			  </div>
 			  <div class="form-group">
-			    <label for="textHarga">Harga barang</label>
-			    <input type="text" class="form-control" id="textHarga" name="harga" >
+			    <label for="textKeterangan">Keterangan</label>
+			    <input type="text" class="form-control" id="textKeterangan" name="harga" >
 			  </div>
 			  <div class="form-group">
-			    <label for="textMerk">Merk Barang</label>
-			    <input type="text" class="form-control" id="textMerk" name="merk"  >
+			    <label for="textTanggalRetur">TanggalRetur</label>
+			    <input type="text" class="form-control" id="textTanggalRetur" name="merk"  >
 			  </div>
 			  <div class="form-group">
-			    <label for="textTanggal">Tanggal Masuk</label>
-			    <input type="text" class="form-control" id="textTanggal" name="tanggalMasuk" >
+			    <label for="textTotalHargaRetur">TotalHargaRetur</label>
+			    <input type="text" class="form-control" id="textTotalHargaRetur" name="tanggalMasuk" >
 			  </div>
 			</form>
 	      </div>
