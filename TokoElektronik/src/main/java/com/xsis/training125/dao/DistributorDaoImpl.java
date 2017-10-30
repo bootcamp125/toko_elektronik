@@ -1,5 +1,7 @@
 package com.xsis.training125.dao;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,34 @@ public class DistributorDaoImpl implements DistributorDao {
 		Session session = sessionFactory.getCurrentSession();
 		session.save(distributor);
 		session.flush();
+	}
+
+
+	@Override
+	public List<Distributor> getAllDistributor() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+	@Override
+	public Distributor getDistributorById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public void update(Distributor distributor) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+	@Override
+	public void delete(int id) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
