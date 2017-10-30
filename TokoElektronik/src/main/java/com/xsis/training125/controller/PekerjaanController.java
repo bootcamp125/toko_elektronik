@@ -38,7 +38,7 @@ public class PekerjaanController {
 		return "redirect:/pekerjaan";
 	}
 	
-	@RequestMapping(value="/barangid/{id}")
+	@RequestMapping(value="/pekerjaanid/{id}")
 	@ResponseBody
 	public Pekerjaan getBarangById(@PathVariable int id){
 		Pekerjaan result = pekerjaanService.getPekerjaanById(id);

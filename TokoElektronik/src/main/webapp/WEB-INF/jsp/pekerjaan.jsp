@@ -34,7 +34,7 @@
 	 		</c:forEach>
 	 	</tbody>
  	</table>
- 		<form action="/retur/save" method="POST">
+ 		<form action="/pekerjaan/save" method="POST">
  			<table>
  				<tr>
  					<td>deskripsi</td>
@@ -116,7 +116,7 @@
  					type: 'PUT',
  					url : 'pekerjaan/update',
  					contentType: "application/json",
- 					data: JSON.stringify(pekerjaan),
+ 					data: JSON.stringify(Pekerjaan),
  					success: function(data){
  						window.location = "/pekerjaan";
  					}

@@ -40,7 +40,7 @@
 	 		</c:forEach>
 	 	</tbody>
  	</table>
- 		<form action="/retur/save" method="POST">
+ 		<form action="/barang/save" method="POST">
  			<table>
  				<tr>
  					<td>Nama Barang</td>
