@@ -1,4 +1,4 @@
-<%@page import="com.xsis.training125.model.Pekerjaan"%>
+<%@page import="com.xsis.training125.model.Distributor"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -15,20 +15,29 @@
  	<div class="container" id="container">
  	<table class="table table-sm table-striped table-bordered table-hover">
 	 	<thead class="thead-dark">
+	 	
+	 	
 	 		<tr>
-	 			<th>deskripsi</th>
+	 			<th>namaDistributor</th>
+	 			<th>alamat</th>
+	 			<th>noContact</th>
+	 			<th>pembelian</th>
+	 			
 	 			
 	 		</tr>
 	 	</thead>
 	 	<tbody>
-	 		<c:forEach var="pekerjaan" items="${pekerjaan }">
+	 		<c:forEach var="distributor" items="${distributor }">
 	 			<tr>
-	 				<td>${pekerjaan.deskripsi }</td>
+	 				<td>${distributor.deskripsi }</td>
+	 				<td>${distributor.alamat }</td>
+	 				<td>${distributor.noContact }</td>
+	 				<td>${distributor.pembelian }</td>
 	 				
 	 				
 	 				<td>
-	 					<a data-id="${pekerjaan.id }"class="btn btn-outline-danger delete-btn" href="#">Delete</a>
-	 					<a id="${pekerjaan.id }" class="btn btn-outline-warning update-btn" href="#">Update</a>
+	 					<a data-id="${distributor.id }"class="btn btn-outline-danger delete-btn" href="#">Delete</a>
+	 					<a id="${distributor.id }" class="btn btn-outline-warning update-btn" href="#">Update</a>
 	 				</td>
 	 			</tr>
 	 		</c:forEach>
@@ -36,11 +45,34 @@
  	</table>
  		<form action="/pekerjaan/save" method="POST">
  			<table>
+ 			
+		
  				<tr>
- 					<td>deskripsi</td>
+ 					<td>namaDistributor</td>
  					<td>:</td>
  					<td>
- 						<input type="text" name="deskripsi" placeholder="Masukkan Nama deskripsi" />
+ 						<input type="text" name="namaDistributor" placeholder="Masukkan Nama deskripsi" />
+ 					</td>
+ 				</tr>
+ 				<tr>
+ 					<td>alamat</td>
+ 					<td>:</td>
+ 					<td>
+ 						<input type="text" name="alamat" placeholder="Masukkan Nama deskripsi" />
+ 					</td>
+ 				</tr>
+ 				<tr>
+ 					<td>noContact</td>
+ 					<td>:</td>
+ 					<td>
+ 						<input type="text" name="noContact" placeholder="Masukkan Nama deskripsi" />
+ 					</td>
+ 				</tr>
+ 				<tr>
+ 					<td>pembelian</td>
+ 					<td>:</td>
+ 					<td>
+ 						<input type="text" name="pembelian" placeholder="Masukkan Nama deskripsi" />
  					</td>
  				</tr>
  				
@@ -70,7 +102,7 @@
  				
  				$.ajax({
  					type: 'POST',
- 					url : 'pekerjaan/pekerjaanid/'+id,
+ 					url : 'distributor/distributorid/'+id,
  					success : function(data){
  						//console.log(JSON.stringify(data));
  						_setFieldUpdateModal(data);
@@ -93,9 +125,9 @@
 
 				$.ajax({
 					type : 'DELETE',
-					url : 'pekerjaan/delete/' + id,
+					url : 'distributor/delete/' + id,
 					success : function() {
-						window.location = "/pekerjaan";
+						window.location = "/distributor";
 					}
 				});
 
@@ -105,25 +137,34 @@
  			$('#submit-update').click(function(){
  				
  				//Object ala js
- 				var Pekerjaan = {
+ 				var Distributor = {
  					id : id,
- 					deskripsi: $('#textDeskripsi').val(),
+ 					namaDistributor: $('#textnamaDistributor').val(),
+ 					alamat: $('#textalamat').val(),
+ 					noContact: $('#textnoContact').val(),
+ 					pembelian: $('#textpembelian').val(),
  					
  				};
  				
  				//ajax update
  				$.ajax({
  					type: 'PUT',
- 					url : 'pekerjaan/update',
+ 					url : 'distributor/update',
  					contentType: "application/json",
  					data: JSON.stringify(Pekerjaan),
  					success: function(data){
- 						window.location = "/pekerjaan";
+ 						window.location = "/distributor";
  					}
  				});
  			});
  		});
  	</script>
+ 	
+<!--  	this.id = id;
+		this.namaDistributor = namaDistributor;
+		this.alamat = alamat;
+		this.noContact = noContact;
+		this.pembelian = pembelian; -->
  	
  	<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
@@ -137,8 +178,20 @@
 	      <div class="modal-body">
 	        <form>
 			  <div class="form-group">
-			    <label for="textNama">deksripsi</label>
-			    <input type="text" class="form-control" id="textDeskripsi" name="deskripsi" >
+			    <label for="textNama">namaDistributor</label>
+			    <input type="text" class="form-control" id="textnamaDistributor" name="namaDistributor" >
+			  </div>
+			  <div class="form-group">
+			    <label for="textNama">alamat</label>
+			    <input type="text" class="form-control" id="textalamat" name="alamat" >
+			  </div>
+			  <div class="form-group">
+			    <label for="textNama">noContact</label>
+			    <input type="text" class="form-control" id="textnoContact" name="noContact" >
+			  </div>
+			  <div class="form-group">
+			    <label for="textNama">pembelian</label>
+			    <input type="text" class="form-control" id="textpembelian" name="pembelian" >
 			  </div>
 			  
 			</form>
