@@ -26,7 +26,7 @@ public class LoginController {
 	@Autowired
 	BarangService barangService;
 
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping( method = RequestMethod.GET)
 	public String index() {
 		return "login";
 	}

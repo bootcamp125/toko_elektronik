@@ -1,5 +1,7 @@
 package com.xsis.training125.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -28,6 +32,10 @@ public class Karyawan {
 	@Column(name = "jenis_kelamin")
 	private String jk;
 	private String alamat;
+	@Temporal(TemporalType.DATE)
+	@Column(name = "tanggal_masuk")
+	private Date tanggalMasuk;
+	private int gaji;
 	@ManyToOne
 	@JoinColumn(name = "id_pekerjaan")
 	private Pekerjaan pekerjaan;
@@ -42,7 +50,7 @@ public class Karyawan {
 	}
 
 	public Karyawan(int id, String usernameK, String passwordK, String namaK, String jk, String alamat,
-			Pekerjaan pekerjaan, Pembelian pembelian, Penjualan penjualan, Retur retur) {
+			Date tanggalMasuk, int gaji, Pekerjaan pekerjaan, Pembelian pembelian, Penjualan penjualan, Retur retur) {
 		super();
 		this.id = id;
 		this.usernameK = usernameK;
@@ -50,12 +58,13 @@ public class Karyawan {
 		this.namaK = namaK;
 		this.jk = jk;
 		this.alamat = alamat;
+		this.tanggalMasuk = tanggalMasuk;
+		this.gaji = gaji;
 		this.pekerjaan = pekerjaan;
 		this.pembelian = pembelian;
 		this.penjualan = penjualan;
 		this.retur = retur;
 	}
-
 
 	public int getId() {
 		return id;
@@ -135,6 +144,22 @@ public class Karyawan {
 
 	public void setRetur(Retur retur) {
 		this.retur = retur;
+	}
+
+	public Date getTanggalMasuk() {
+		return tanggalMasuk;
+	}
+
+	public void setTanggalMasuk(Date tanggalMasuk) {
+		this.tanggalMasuk = tanggalMasuk;
+	}
+
+	public int getGaji() {
+		return gaji;
+	}
+
+	public void setGaji(int gaji) {
+		this.gaji = gaji;
 	}
 
 

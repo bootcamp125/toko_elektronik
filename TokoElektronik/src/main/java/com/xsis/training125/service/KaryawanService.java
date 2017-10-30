@@ -26,4 +26,32 @@ public class KaryawanService {
 		return karyawanDao.getKaryawanByUsername(username);
 	}
 
+	public List<Karyawan> getAllKaryawan() {
+		// TODO Auto-generated method stub
+		return karyawanDao.getAllKaryawan();
+
+	}
+
+	public void save(Karyawan karyawan) {
+		// TODO Auto-generated method stub
+		karyawanDao.save(karyawan);
+	}
+
+	public Karyawan getKaryawanById(int id) {
+		// TODO Auto-generated method stub
+		return karyawanDao.getKaryawanById(id);
+	}
+
+	public void update(Karyawan karyawan) {
+		// TODO Auto-generated method stub
+		karyawanDao.update(karyawan);
+	}
+
+	public void delete(int id) {
+		// TODO Auto-generated method stub
+		karyawanDao.delete(id);
+	}
+
+	
+
 }

@@ -10,4 +10,14 @@ public interface KaryawanDao {
 
 	public List<Karyawan> getKaryawanByUsername(String username);
 
+	public List<Karyawan> getAllKaryawan();
+
+	public void save(Karyawan karyawan);
+
+	public Karyawan getKaryawanById(int id);
+
+	public void update(Karyawan karyawan);
+
+	public void delete(int id);
+
 }

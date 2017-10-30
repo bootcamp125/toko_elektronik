@@ -1,4 +1,4 @@
-<%@page import="com.xsis.training125.model.Barang"%>
+<%@page import="com.xsis.training125.model.Karyawan"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -70,7 +70,7 @@
 				<div class="col-md-12 col-sm-12 col-xs-12">
 					<div class="x_panel">
 						<div class="x_title">
-							<h2>Tambah Barang</h2>
+							<h2>Tambah Data Karyawan</h2>
 							<ul class="nav navbar-right panel_toolbox">
 								<li><a class="collapse-link"><i
 										class="fa fa-chevron-up"></i></a></li>
@@ -87,33 +87,34 @@
 						</div>
 						<div class="x_content">
 							<br />
-							<form action="/barang/save" method="POST" id="demo-form2"
+							<form action="/karyawan/save" method="POST" id="demo-form2"
 								data-parsley-validate class="form-horizontal form-label-left">
 
 								<div class="form-group">
 									<label class="control-label col-md-3 col-sm-3 col-xs-12"
-										for="textNama">Nama Barang <span class="required">*</span>
+										for="textNama">Nama Karyawan <span class="required">*</span>
 									</label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
-										<input type="text" id="textNama" name="namaBarang"
+										<input type="text" id="textNama" name="namaK"
 											required="required" class="form-control col-md-7 col-xs-12">
 									</div>
 								</div>
+								
 								<div class="form-group">
-									<label class="control-label col-md-3 col-sm-3 col-xs-12"
-										for="textHarga">Harga Satuan <span class="required">*</span>
-									</label>
+									<label for="textJK"
+										class="control-label col-md-3 col-sm-3 col-xs-12">Jenis
+										Kelamin</label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
-										<input type="text" id="textHarga" name="harga"
-											required="required" class="form-control col-md-7 col-xs-12">
+										<input id="textJK" class="form-control col-md-7 col-xs-12"
+											type="text" name="jk">
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="textMerk"
-										class="control-label col-md-3 col-sm-3 col-xs-12">Merk</label>
+									<label for="textAlamat"
+										class="control-label col-md-3 col-sm-3 col-xs-12">Alamat</label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
-										<input id="textMerk" class="form-control col-md-7 col-xs-12"
-											type="text" name="merk">
+										<input id="textAlamat" class="form-control col-md-7 col-xs-12"
+											type="text" name="alamat">
 									</div>
 								</div>
 
@@ -126,6 +127,14 @@
 										<input id="textTanggal"
 											class="date-picker form-control col-md-7 col-xs-12"
 											required="required" type="text" name="tanggalMasuk">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="textGaji"
+										class="control-label col-md-3 col-sm-3 col-xs-12">Gaji</label>
+									<div class="col-md-6 col-sm-6 col-xs-12">
+										<input id="textGaji" class="form-control col-md-7 col-xs-12"
+											type="text" name="gaji">
 									</div>
 								</div>
 								<div class="ln_solid"></div>

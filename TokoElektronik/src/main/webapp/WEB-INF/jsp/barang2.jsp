@@ -1,4 +1,4 @@
-<%@page import="com.xsis.training125.model.Karyawan"%>
+<%@page import="com.xsis.training125.model.Barang"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -90,8 +90,9 @@
 										<th>Nama Barang</th>
 										<th>Harga Satuan</th>
 										<th>Merk</th>
-										<th>Jumlah Stock yang Tersedia</th>
+										<th>Stock Barang</th>
 										<th>Tanggal Masuk</th>
+										<th>Discount</th>
 										<th>Tindakan</th>
 									</tr>
 								</thead>
@@ -103,6 +104,7 @@
 											<td>${barang.merk }</td>
 											<td>${barang.stock }</td>
 											<td>${barang.tanggalMasuk }</td>
+											<td></td>
 											<td>
 												<button type="button" id="${barang.id }"
 													class="btn btn-info detail-btn">Detail</button>
@@ -236,6 +238,18 @@
 			  </div>
 			  <div class="form-group">
 			    <label for="textTanggal">Tanggal Masuk</label>
+			    <input type="text" class="form-control" id="textTanggal" name="tanggalMasuk" >
+			  </div>
+			  <div class="form-group">
+			    <label for="textTanggal">Discount</label>
+			    <input type="text" class="form-control" id="textTanggal" name="tanggalMasuk" >
+			  </div>
+			  <div class="form-group">
+			    <label for="textTanggal">Tanggal Mulai</label>
+			    <input type="text" class="form-control" id="textTanggal" name="tanggalMasuk" >
+			  </div>
+			  <div class="form-group">
+			    <label for="textTanggal">Tanggal Discount Berakhir</label>
 			    <input type="text" class="form-control" id="textTanggal" name="tanggalMasuk" >
 			  </div>
 			</form>
