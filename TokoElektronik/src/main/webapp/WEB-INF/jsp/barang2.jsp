@@ -6,7 +6,7 @@
 <!DOCTYPE html >
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -33,14 +33,16 @@
     <link href="/assets/gentelella-master/build/css/custom.min.css" rel="stylesheet">
 </head>
 <body class="nav-md">
-	<%@ include file="header.jsp"%>
-	<!-- page content -->
+ <%@ include file = "header.jsp" %>
+
+        <!-- page content -->
 	<div class="right_col" role="main">
 		<div class="">
 			<div class="page-title">
 				<div class="title_left">
 					<h3>
-						Transaksi 
+						Daftar Stock Barang 
+					</h3>
 				</div>
 
 				<div class="title_right">
@@ -81,6 +83,7 @@
 						<div class="x_content">
 							<p class="text-muted font-13 m-b-30">Cari barang untuk
 								menambahkan transaksi</p>
+								 <button type="button" id="tambah-barang-btn" class="btn btn-success btn-lg"><i class="fa fa-plus"></i> Tambah data Barang</button>
 							<table id="datatable" class="table table-striped table-bordered">
 								<thead>
 									<tr>
@@ -101,35 +104,150 @@
 											<td>${barang.stock }</td>
 											<td>${barang.tanggalMasuk }</td>
 											<td>
-												<button type="button" class="btn btn-info detail-btn">Detail
-													Barang</button>
-												<button type="button" class="btn btn-warning ">
-													<i class="fa fa-plus-square"></i> Tambah transaksi
-												</button>
+												<button type="button" id="${barang.id }"
+													class="btn btn-info detail-btn">Detail</button>
+												<button type="button" id="${barang.id }"
+													class="btn btn-warning update-btn">Update</button>
+												<button type="button" data-id="${barang.id }"
+													class="btn btn-danger delete-btn">Hapus</button>
 											</td>
 										</tr>
 									</c:forEach>
 
 								</tbody>
 							</table>
+							<script type="text/javascript"
+								src="/assets/js/jquery-3.2.1.min.js"></script>
+							<script type="text/javascript">
+						$(document).ready(function() {
+							$('#tambah-barang-btn').on('click', function() {
+								$.ajax({
+									success : function(data) {
+										//console.log(JSON.stringify(data));
+										window.location = "/barang/tambahbarang/";
+									}
+								});
 
+							});
+							
+							 var id = 0;
+					 			$('.update-btn').on('click', function(){
+					 				
+					 				//ambil data dari server => ajax
+					 				id = $(this).attr('id');
+					 				
+					 				$.ajax({
+					 					type: 'POST',
+					 					url : '/barang/barangid/'+id,
+					 					success : function(data){
+					 						//console.log(JSON.stringify(data));
+					 						_setFieldUpdateModal(data);
+					 					},
+					 					dataType: 'json'
+					 				});
+					 				
+					 				$('#updateModal').modal();
+					 			});
+					 			
+					 			function _setFieldUpdateModal(data){
+					 				$('#textNama').val(data.namaBarang);
+									$('#textHarga').val(data.harga);
+									$('#textMerk').val(data.merk);
+									$('#textTanggal').val(data.tanggalMasuk);
+					 			}
+					 			
+					 			$('.delete-btn').on('click', function() {
+
+									//ambil data dari server => ajax
+									id = $(this).attr('data-id');
+
+									$.ajax({
+										type : 'DELETE',
+										url : '/barang/delete/' + id,
+										success : function() {
+											window.location = "/barang";
+										}
+									});
+
+								});
+					 			
+					 			//event submit data for update
+					 			$('#submit-update').click(function(){
+					 				
+					 				//Object ala js
+					 				var Barang = {
+					 					id : id,
+					 					namaBarang : $('#textNama').val(),
+					 					harga : $('#textHarga').val(),
+					 					merk : $('#textMerk').val(),
+					 					tanggalMasuk : $('#textTanggal').val()
+					 				};
+					 				
+					 				//ajax update
+					 				$.ajax({
+					 					type: 'PUT',
+					 					url : '/barang/update',
+					 					contentType: "application/json",
+					 					data: JSON.stringify(Barang),
+					 					success: function(data){
+					 						window.location = "/barang";
+					 					}
+					 				});
+					 			});
+
+						});
+					</script>
 						</div>
 					</div>
 				</div>
+
 			</div>
 		</div>
 	</div>
-
+	
 
 	<!-- /page content -->
 
-	<!-- footer content -->
-	<%@ include file="footer.jsp"%>
-	<!-- /footer content -->
-
-
-	<!-- jQuery -->
-	<!-- jQuery -->
+        <!-- footer content -->
+       <%@ include file = "footer.jsp" %>
+        <!-- /footer content -->
+     <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <form>
+			  <div class="form-group">
+			    <label for="textNama">Nama Barang</label>
+			    <input type="text" class="form-control" id="textNama" name="namaBarang" >
+			  </div>
+			  <div class="form-group">
+			    <label for="textHarga">Harga barang</label>
+			    <input type="text" class="form-control" id="textHarga" name="harga" >
+			  </div>
+			  <div class="form-group">
+			    <label for="textMerk">Merk Barang</label>
+			    <input type="text" class="form-control" id="textMerk" name="merk"  >
+			  </div>
+			  <div class="form-group">
+			    <label for="textTanggal">Tanggal Masuk</label>
+			    <input type="text" class="form-control" id="textTanggal" name="tanggalMasuk" >
+			  </div>
+			</form>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        <button type="button" class="btn btn-primary" id="submit-update">Update</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+    <!-- jQuery -->
     <script src="/assets/gentelella-master/vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
     <script src="/assets/gentelella-master/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -158,7 +276,6 @@
 
     <!-- Custom Theme Scripts -->
     <script src="/assets/gentelella-master/build/js/custom.min.js"></script>
-	
 
-</body>
+  </body>
 </html>

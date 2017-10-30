@@ -16,12 +16,7 @@
  	<table class="table table-sm table-striped table-bordered table-hover">
 	 	<thead class="thead-dark">
 	 		<tr>
-	 			<th>Nama Barang</th>
-	 			<th>Harga Satuan</th>
-	 			<th>Merk </th>
-	 			<th>Jumlah Stock yang Tersedia</th>
-	 			<th>Tanggal Masuk</th>
-	 			<th>Tindakan</th>
+	 			
 	 		</tr>
 	 	</thead>
 	 	<tbody>
@@ -96,7 +91,7 @@
  				
  				$.ajax({
  					type: 'POST',
- 					url : 'barang/barangid/'+id,
+ 					url : '/barangid/'+id,
  					success : function(data){
  						//console.log(JSON.stringify(data));
  						_setFieldUpdateModal(data);
@@ -121,7 +116,7 @@
 
 				$.ajax({
 					type : 'DELETE',
-					url : 'barang/delete/' + id,
+					url : '/delete/' + id,
 					success : function() {
 						window.location = "/barang";
 					}
@@ -144,7 +139,7 @@
  				//ajax update
  				$.ajax({
  					type: 'PUT',
- 					url : 'barang/update',
+ 					url : '/update',
  					contentType: "application/json",
  					data: JSON.stringify(Barang),
  					success: function(data){
