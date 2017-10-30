@@ -25,7 +25,7 @@
 	 		</tr>
 	 	</thead>
 	 	<tbody>
-	 		<c:forEach var="retur" items="${retur }">
+	 		<c:forEach var="barang" items="${barang }">
 	 			<tr>
 	 				<td>${barang.namaBarang }</td>
 	 				<td>${barang.harga }</td>
