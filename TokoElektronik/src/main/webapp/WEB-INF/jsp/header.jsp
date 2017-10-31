@@ -179,7 +179,7 @@
 					$.ajax({
 						success : function(data) {
 							//console.log(JSON.stringify(data));
-							window.location = "/diskon";
+							window.location = "/barang";
 						}
 					});
 

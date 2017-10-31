@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.xsis.training125.model.Distributor;
+import com.xsis.training125.model.Karyawan;
 import com.xsis.training125.service.DistributorService;
 
 @Controller
@@ -30,6 +31,11 @@ public class DistributorController {
 		List<Distributor> distributor = distributorService.getAllDistributor();
 		model.addAttribute("distributor", distributor);
 		return "distributor";
+	}
+	
+	@RequestMapping(value = "/tambahdistributor", method=RequestMethod.GET)
+	public String tambahKaryawan(){
+		return "formDistributor";
 	}
 	
 	@RequestMapping(value="/save", method=RequestMethod.POST)
