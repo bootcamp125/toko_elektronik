@@ -42,9 +42,9 @@
 	 				<td>${retur.keterangan }</td>
 	 				<td>${retur.tanggalRetur }</td>
 	 				<td>${retur.totalHargaRetur }</td>
-	 				<td>${retur.karyawan.namaK }</td>
-	 				<td>${retur.distributor.namaDistributor }</td>
-	 				<td>${retur.pembelian.id }</td>
+	 				<td>${retur.karyawan }</td>
+	 				<td>${retur.distributor }</td>
+	 				<td>${retur.pembelian }</td>
 	 				<td>
 	 					<a data-id="${retur.id }"class="btn btn-outline-danger delete-btn" href="#">Delete</a>
 	 					<a id="${retur.id }" class="btn btn-outline-warning update-btn" href="#">Update</a>
@@ -170,7 +170,7 @@
  			$('#submit-update').click(function(){
  				
  				//Object ala js
- 				var Retur = {
+ 				var retur = {
  					id : id,
  					jumlah : $('#textJumlah').val(),
  					keterangan : $('#textKeterangan').val(),
@@ -234,7 +234,7 @@
 			  </div>
 			  <div class="form-group">
 			    <label for="textkaryawan">karyawan</label>
-			    <input type="text" class="form-control" id="textkaryawan" name="karyawan" >
+			    <input type="text" class="form-control" id="textkaryawan" name="totalkaryawan" >
 			  </div>
 			  <div class="form-group">
 			    <label for="textdistributor">distributor</label>

@@ -27,9 +27,9 @@
 	 		<c:forEach var="diskon" items="${diskon }">
 	 			<tr>
 	 				<td>
-	 				<c:forEach var="barang" items="${barang }">
+	 				
 	 				${diskon.barang.namaBarang }
-	 				</c:forEach>
+	 				
 	 				</td>
 	 				<td>${diskon.diskon }</td>
 	 				<td>${diskon.hargaDiskon }</td>
@@ -119,7 +119,7 @@
  			});
  			
  			function _setFieldUpdateModal(data){
- 				$('#textbarang').val(data.barang);
+ 				$('#textbarang').val(data.barang.namaBarang);
  				$('#textdiskon').val(data.diskon);
  				$('#texthargaDiskon').val(data.hargaDiskon);
  				$('#texttanggalBerakhir').val(data.tanggalBerakhir);
@@ -179,19 +179,19 @@
 	      <div class="modal-body">
 	        <form>
 			  <div class="form-group">
-			    <label for="textNama">barang</label>
+			    <label for="textBarang">barang</label>
 			    <input type="text" class="form-control" id="textbarang" name="barang" >
 			  </div>
 			  <div class="form-group">
-			    <label for="textNama">diskon</label>
+			    <label for="textDiskon">diskon</label>
 			    <input type="text" class="form-control" id="textdiskon" name="diskon" >
 			  </div>
 			  <div class="form-group">
-			    <label for="textNama">hargaDiskon</label>
+			    <label for="textHargaDiskon">hargaDiskon</label>
 			    <input type="text" class="form-control" id="texthargaDiskon" name="hargaDiskon" >
 			  </div>
 			  <div class="form-group">
-			    <label for="textNama">tanggalBerakhir</label>
+			    <label for="textTanggalBerakhir">tanggalBerakhir</label>
 			    <input type="text" class="form-control" id="texttanggalBerakhir" name="tanggalBerakhir" >
 			  </div>
 			</form>

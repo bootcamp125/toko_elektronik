@@ -15,7 +15,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.xsis.training125.model.Barang;
+import com.xsis.training125.model.Distributor;
+import com.xsis.training125.model.Karyawan;
+import com.xsis.training125.model.Pembelian;
 import com.xsis.training125.model.Retur;
+import com.xsis.training125.service.DistributorService;
+import com.xsis.training125.service.KaryawanService;
+import com.xsis.training125.service.PembelianService;
 import com.xsis.training125.service.ReturService;
 
 @Controller
@@ -24,6 +30,12 @@ public class ReturController {
 
 	@Autowired
 	ReturService returService;
+	@Autowired
+	KaryawanService karyawanService;
+	@Autowired
+	DistributorService distributorService;
+	@Autowired
+	PembelianService pembelianService;
 	
 	
 	@RequestMapping(method=RequestMethod.GET)
@@ -31,6 +43,12 @@ public class ReturController {
 		
 		List<Retur> retur = returService.getAllRetur();
 		model.addAttribute("retur", retur);
+		List<Karyawan> karyawan = karyawanService.getAllKaryawan();
+		model.addAttribute("karyawan", karyawan);
+		List<Distributor> distributor = distributorService.getAllDistributor();
+		model.addAttribute("distributor", distributor);
+		List<Pembelian> pembelian = pembelianService.getAllPembelian();
+		model.addAttribute("pembelian", pembelian);
 		return "retur";
 	}
 	
