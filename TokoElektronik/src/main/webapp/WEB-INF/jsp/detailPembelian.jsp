@@ -83,7 +83,7 @@
  		</form>
 
  	</div>
- 	<script type="text/javascript" src="/assets/js/jquery-3.2.1.min.js"></script>
+ 	<script type="text/javascrip" src="/assets/js/jquery-3.2.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="/assets/bootstrap-4.0.0-beta.2/dist/js/bootstrap.min.js"></script>
 	 	
@@ -98,7 +98,7 @@
  				
  				$.ajax({
  					type: 'POST',
- 					url : 'detailPembelian/detailPembelianid/'+id,
+ 					url : 'detailpembelian/detailPembelianid/'+id,
  					success : function(data){
  						//console.log(JSON.stringify(data));
  						_setFieldUpdateModal(data);
@@ -111,8 +111,8 @@
  			
  			function _setFieldUpdateModal(data){
  				$('#textJumlah').val(data.jumlah);
-				$('#textpembelian').val(data.pembelian);
-				$('#textbarang').val(data.barang);
+				$('#textpembelian').val(data.pembelian.id);
+				$('#textbarang').val(data.barang.namaBarang);
 				
  			}
  			
@@ -123,9 +123,9 @@
 
 				$.ajax({
 					type : 'DELETE',
-					url : 'detailPembelian/delete/' + id,
+					url : 'detailpembelian/delete/' + id,
 					success : function() {
-						window.location = "/detailPembelian";
+						window.location = "/detailpembelian";
 					}
 				});
 
