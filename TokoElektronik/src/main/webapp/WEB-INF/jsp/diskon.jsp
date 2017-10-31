@@ -147,7 +147,7 @@
  				//Object ala js
  				var Diskon = {
  					id : id,
- 					barang: $('#textbarang').val(),
+ 					tanggalBerakhir: $('#textbarang').val(),
  					diskon: $('#textdiskon').val(),
  					hargaDiskon: $('#texthargaDiskon').val(),
  					tanggalBerakhir: $('#texttanggalBerakhir').val(),

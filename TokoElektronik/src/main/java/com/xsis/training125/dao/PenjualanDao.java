@@ -6,6 +6,8 @@ import com.xsis.training125.model.Penjualan;
 
 public interface PenjualanDao {
 
+	List<Penjualan> getAllPekerjaan();
+
 	
 	
 

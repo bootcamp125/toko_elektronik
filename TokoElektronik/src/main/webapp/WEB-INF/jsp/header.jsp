@@ -36,7 +36,7 @@
 									Transaksi Barang </a></li>
 							<li><a id="barang-btn"><i class="fa fa-edit"></i> Barang
 							</a></li>
-							<li><a><i class="fa fa-desktop"></i> Pembelian Barang </a></li>
+							<li><a id="pembelian-btn"><i class="fa fa-desktop"></i> Pembelian Barang </a></li>
 
 							<li><a id="karyawan-btn"><i class="fa fa-users"></i>
 									Karyawan </a></li>
@@ -191,6 +191,15 @@
 						success : function(data) {
 							//console.log(JSON.stringify(data));
 							window.location = "/pekerjaan";
+						}
+					});
+
+				});
+				$('#pembelian-btn').on('click', function() {
+					$.ajax({
+						success : function(data) {
+							//console.log(JSON.stringify(data));
+							window.location = "/detailpembelian";
 						}
 					});
 

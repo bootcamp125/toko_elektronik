@@ -18,7 +18,7 @@ public class PenjualanService {
 
 	@Autowired
 	PenjualanDao penjualanDao;
-	
+/*	
 	public List<Penjualan> getAllPenjualan() {
 		// TODO Auto-generated method stub
 		return penjualanDao.getAllPekerjaan();
@@ -42,7 +42,11 @@ public class PenjualanService {
 	public void delete(int id) {
 		// TODO Auto-generated method stub
 		penjualanDao.delete(id);
-	}
+	}*/
 
+	public List<Penjualan> getAllPenjualan() {
+		// TODO Auto-generated method stub
+		return penjualanDao.getAllPekerjaan();
+	}
 	
 }

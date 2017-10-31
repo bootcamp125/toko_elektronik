@@ -1,6 +1,6 @@
 <%@page import="com.xsis.training125.model.Barang"%>
 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html >
 <html>
@@ -122,14 +122,14 @@
 											<td>${barang.merk }</td>
 											<td>${barang.stock }</td>
 											<td>${barang.tanggalMasuk }</td>
-											<td></td>
+											<td><a id="diskon-btn" href="#"> <span class="badge bg-red pull-left">${barang.diskon.diskon } %</span></a></td>
 											<td>
 												<button type="button" id="${barang.id }"
 													class="btn btn-info detail-btn">Detail</button>
 												<button type="button" id="${barang.id }"
 													class="btn btn-warning update-btn">Update</button>
 												<button type="button" data-id="${barang.id }"
-													class="btn btn-danger delete-btn">Hapus</button>
+													class="btn btn-primary delete-btn">Hapus</button>
 											</td>
 										</tr>
 									</c:forEach>
@@ -139,129 +139,86 @@
 							<script type="text/javascript"
 								src="/assets/js/jquery-3.2.1.min.js"></script>
 							<script type="text/javascript">
-								$(document)
-										.ready(
-												function() {
-													$('#tambah-barang-btn')
-															.on(
-																	'click',
-																	function() {
-																		$
-																				.ajax({
-																					success : function(
-																							data) {
-																						//console.log(JSON.stringify(data));
-																						window.location = "/barang/tambahbarang/";
-																					}
-																				});
+							$(document).ready( function() {
+							      $('#tambah-barang-btn').on('click', function() {
+							            $.ajax({
+							                success: function( data) {
+							                  //console.log(JSON.stringify(data));
+							                  window.location = "/barang/tambahbarang/";
+							                }
+							              });
 
-																	});
+							          });
 
-													var id = 0;
-													$('.update-btn')
-															.on(
-																	'click',
-																	function() {
+							      var id = 0;
+							      $('.update-btn').on('click', function() {
 
-																		//ambil data dari server => ajax
-																		id = $(
-																				this)
-																				.attr(
-																						'id');
+							            //ambil data dari server => ajax
+							            id = $( this)  .attr('id');
 
-																		$
-																				.ajax({
-																					type : 'POST',
-																					url : '/barang/barangid/'
-																							+ id,
-																					success : function(
-																							data) {
-																						//console.log(JSON.stringify(data));
-																						_setFieldUpdateModal(data);
-																					},
-																					dataType : 'json'
-																				});
+							            $.ajax({
+							                type: 'POST',
+							                url: '/barang/barangid/' + id,
+							                success: function( data) {
+							                  //console.log(JSON.stringify(data));
+							                  _setFieldUpdateModal(data);
+							                },
+							                dataType: 'json'
+							              });
 
-																		$(
-																				'#updateModal')
-																				.modal();
-																	});
+							            $('#updateModal').modal();
+							          });
+							      
+							      function _setFieldUpdateModal( data) {
+								        $('#textNama') .val( data.namaBarang);
+								        $('#textHarga').val( data.harga);
+								        $('#textMerk').val( data.merk);
+								        $('#textTanggal') .val( data.tanggalMasuk);
+								      }
 
-													function _setFieldUpdateModal(
-															data) {
-														$('#textNama')
-																.val(
-																		data.namaBarang);
-														$('#textHarga').val(
-																data.harga);
-														$('#textMerk').val(
-																data.merk);
-														$('#textTanggal')
-																.val(
-																		data.tanggalMasuk);
-													}
+							      $('.delete-btn') .on( 'click', function() {
 
-													$('.delete-btn')
-															.on(
-																	'click',
-																	function() {
+							            //ambil data dari server => ajax
+							            id = $( this) .attr('data-id');
 
-																		//ambil data dari server => ajax
-																		id = $(
-																				this)
-																				.attr(
-																						'data-id');
+							            $.ajax({
+							                type: 'DELETE',
+							                url: '/barang/delete/' + id,
+							                success: function() {
+							                  window.location = "/barang";
+							                }
+							              });
 
-																		$
-																				.ajax({
-																					type : 'DELETE',
-																					url : '/barang/delete/'
-																							+ id,
-																					success : function() {
-																						window.location = "/barang";
-																					}
-																				});
+							          });
 
-																	});
+							      //event submit data for update
+							      $('#submit-update').click( function() {
 
-													//event submit data for update
-													$('#submit-update')
-															.click(
-																	function() {
+							            //Object ala js
+							            var Barang = {
+							              id: id,
+							              namaBarang: $( '#textNama') .val(),
+							              harga: $('#textHarga').val(),
+							              merk: $( '#textMerk') .val(),
+							              tanggalMasuk: $( '#textTanggal').val()
+							            };
 
-																		//Object ala js
-																		var Barang = {
-																			id : id,
-																			namaBarang : $(
-																					'#textNama')
-																					.val(),
-																			harga : $(
-																					'#textHarga')
-																					.val(),
-																			merk : $(
-																					'#textMerk')
-																					.val(),
-																			tanggalMasuk : $(
-																					'#textTanggal')
-																					.val()
-																		};
+							            //ajax update
+							            $
+							              .ajax({
+							                type: 'PUT',
+							                url: '/barang/update',
+							                contentType: "application/json",
+							                data: JSON
+							                  .stringify(Barang),
+							                success: function(
+							                  data) {
+							                  window.location = "/barang";
+							                }
+							              });
+							          });
 
-																		//ajax update
-																		$
-																				.ajax({
-																					type : 'PUT',
-																					url : '/barang/update',
-																					contentType : "application/json",
-																					data : JSON
-																							.stringify(Barang),
-																					success : function(
-																							data) {
-																						window.location = "/barang";
-																					}
-																				});
-																	});
-
-												});
+							    });
 							</script>
 						</div>
 					</div>
@@ -307,35 +264,26 @@
 							<label for="textTanggal">Tanggal Masuk</label> <input type="text"
 								class="form-control" id="textTanggal" name="tanggalMasuk">
 						</div>
-						<div class="form-group">
+						<!-- <div class="form-group">
 							<label for="textTanggal">Discount</label> <input type="text"
-								class="form-control" id="textDiskon" name="tanggalMasuk">
-						</div>
-						<div class="form-group">
-							<label for="textTanggal">Tanggal Mulai</label> <input type="text"
-								class="form-control" id="textTanggalDAwal" name="tanggalMasuk">
+								class="form-control" id="textDiskon" name="diskon">
 						</div>
 						<div class="form-group">
 							<label for="textTanggal">Tanggal Discount Berakhir</label> <input
 								type="text" class="form-control" id="textTanggalDAkhir"
-								name="tanggalMasuk">
-						</div>
+								name="tanggalBerakhir">
+						</div> -->
 					</form>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary" id="submit-update" onclick="myFunction()">Update</button>
+					<button type="button" class="btn btn-primary" id="submit-update"
+						onclick="myFunction()">Update</button>
 				</div>
 			</div>
 		</div>
 	</div>
-
-	<script>
-		function myFunction() {
-			document.getElementById("textTanggal").value = "";
-		}
-	</script>
 	<!-- jQuery -->
 	<script
 		src="/assets/gentelella-master/vendors/jquery/dist/jquery.min.js"></script>
