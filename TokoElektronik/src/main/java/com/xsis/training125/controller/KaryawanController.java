@@ -17,20 +17,26 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import com.xsis.training125.model.Barang;
 import com.xsis.training125.model.Employee;
 import com.xsis.training125.model.Karyawan;
+import com.xsis.training125.model.Pekerjaan;
 import com.xsis.training125.service.EmployeeService;
 import com.xsis.training125.service.KaryawanService;
+import com.xsis.training125.service.PekerjaanService;
 
 @Controller
 @RequestMapping("/karyawan")
 public class KaryawanController {
 	@Autowired
 	KaryawanService karyawanService;
+	@Autowired
+	PekerjaanService pekerjaanService;
 
 	@RequestMapping(method=RequestMethod.GET)
 	public String index(Model model){
 		
 		List<Karyawan> karyawan = karyawanService.getAllKaryawan();
 		model.addAttribute("karyawan", karyawan);
+		List<Pekerjaan> pekerjaan = pekerjaanService.getAllPekerjaan();
+		model.addAttribute("pekerjaan", pekerjaan);
 		return "karyawan";
 	}
 	
