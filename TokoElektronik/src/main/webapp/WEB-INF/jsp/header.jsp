@@ -37,10 +37,11 @@
 							<li><a id="barang-btn"><i class="fa fa-edit"></i> Barang
 							</a></li>
 							<li><a><i class="fa fa-desktop"></i> Pembelian Barang </a></li>
+
 							<li><a id="karyawan-btn"><i class="fa fa-users"></i>
 									Karyawan </a></li>
-							<li><a id="supplier-btn"><i class="fa fa-truck"></i>
-									Distributor</a></li>
+							<li><a id="supplier-btn"><i class="fa fa-users"></i>
+									Distributor </a></li>
 						</ul>
 					</div>
 
