@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.xsis.training125.model.Distributor;
-import com.xsis.training125.model.Retur;
 import com.xsis.training125.service.DistributorService;
 
 @Controller
@@ -48,7 +47,7 @@ public class DistributorController {
 	
 	@RequestMapping(value="/update", method=RequestMethod.PUT)
 	@ResponseStatus(HttpStatus.OK)
-	public void updateRetur(@RequestBody Distributor distributor){
+	public void updateDistributor(@RequestBody Distributor distributor){
 		distributorService.update(distributor);
 	}
 	

@@ -18,18 +18,15 @@
 	 	
 	 	
 	 		<tr>
-	 			<th>namaDistributor</th>
+	 			<th>nama </th>
 	 			<th>alamat</th>
-	 			<th>noContact</th>
-	 		
-	 			
-	 			
+	 			<th>No Contact</th>
 	 		</tr>
 	 	</thead>
 	 	<tbody>
 	 		<c:forEach var="distributor" items="${distributor }">
 	 			<tr>
-	 				<td>${distributor.deskripsi }</td>
+	 				<td>${distributor.namaDistributor }</td>
 	 				<td>${distributor.alamat }</td>
 	 				<td>${distributor.noContact }</td>
 	 				
@@ -48,7 +45,7 @@
  			
 		
  				<tr>
- 					<td>namaDistributor</td>
+ 					<td>Nama Distributor</td>
  					<td>:</td>
  					<td>
  						<input type="text" name="namaDistributor" placeholder="Masukkan Nama deskripsi" />
@@ -62,7 +59,7 @@
  					</td>
  				</tr>
  				<tr>
- 					<td>noContact</td>
+ 					<td>no Contact</td>
  					<td>:</td>
  					<td>
  						<input type="text" name="noContact" placeholder="Masukkan Nama deskripsi" />
@@ -108,7 +105,9 @@
  			});
  			
  			function _setFieldUpdateModal(data){
- 				$('#textDeskripsi').val(data.deskripsi);
+ 				$('#textnamaDistributor').val(data.namaDistributor);
+ 				$('#textalamat').val(data.alamat);
+				$('#textnoContact').val(data.noContact);
 				
  			}
  			
@@ -145,7 +144,7 @@
  					type: 'PUT',
  					url : 'distributor/update',
  					contentType: "application/json",
- 					data: JSON.stringify(Pekerjaan),
+ 					data: JSON.stringify(Distributor),
  					success: function(data){
  						window.location = "/distributor";
  					}
@@ -154,11 +153,9 @@
  		});
  	</script>
  	
-<!--  	this.id = id;
-		this.namaDistributor = namaDistributor;
+<!--  	this.namaDistributor = namaDistributor;
 		this.alamat = alamat;
-		this.noContact = noContact;
-		this.pembelian = pembelian; -->
+		this.noContact = noContact; -->
  	
  	<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
@@ -180,7 +177,7 @@
 			    <input type="text" class="form-control" id="textalamat" name="alamat" >
 			  </div>
 			  <div class="form-group">
-			    <label for="textNama">noContact</label>
+			    <label for="textNama">no Contact</label>
 			    <input type="text" class="form-control" id="textnoContact" name="noContact" >
 			  </div>
 			  

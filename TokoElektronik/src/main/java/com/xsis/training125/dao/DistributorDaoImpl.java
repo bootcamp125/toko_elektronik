@@ -31,7 +31,7 @@ public class DistributorDaoImpl implements DistributorDao {
 		Session session = sessionFactory.getCurrentSession();
 		
 		// HQL (hibernate query language)
-		String myHql = "from distributor";
+		String myHql = "from Distributor";
 		List<Distributor> distributor = session.createQuery(myHql).list();
 		if(distributor.isEmpty()){
 			return null;
