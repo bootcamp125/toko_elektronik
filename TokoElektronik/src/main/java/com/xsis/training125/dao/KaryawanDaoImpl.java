@@ -40,4 +40,54 @@ public class KaryawanDaoImpl implements KaryawanDao {
 		return karyawan;
 	}
 
+	@Override
+	public List<Karyawan> getAllKaryawan() {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		
+		// HQL (hibernate query language)
+		String myHql = "from Karyawan";
+		List<Karyawan> karyawan = session.createQuery(myHql).list();
+		if(karyawan.isEmpty()){
+			return null;
+		}
+		return karyawan;
+	}
+
+	@Override
+	public void save(Karyawan karyawan) {
+		// TODO Auto-generated method stub
+
+		Session session = sessionFactory.getCurrentSession();
+		session.save(karyawan);
+		session.flush();
+	}
+
+	@Override
+	public Karyawan getKaryawanById(int id) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		
+		Karyawan karyawan = session.get(Karyawan.class, id);
+		return karyawan;
+	}
+
+	@Override
+	public void update(Karyawan karyawan) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		session.update(karyawan);
+		session.flush();
+	}
+
+	@Override
+	public void delete(int id) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		Karyawan karyawan = new Karyawan();
+		karyawan.setId(id);
+		session.delete(karyawan);
+		session.flush();
+	}
+
 }

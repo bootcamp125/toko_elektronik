@@ -37,8 +37,7 @@ public class Barang {
 	private String merk;
 	@Column(name="harga_barang")
 	private int harga;
-	@OneToOne
-	@JoinColumn(name="id_diskon", unique=true)
+	@OneToOne(mappedBy="barang")
 	private Diskon diskon;
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="barang")
 	private List<DetailPembelian> detailPembelian;

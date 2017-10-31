@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xsis.training125.model.Barang;
 import com.xsis.training125.model.Karyawan;
+import com.xsis.training125.service.BarangService;
 import com.xsis.training125.service.KaryawanService;
 
 @Controller
@@ -22,8 +23,10 @@ public class LoginController {
 
 	@Autowired
 	KaryawanService karyawanService;
+	@Autowired
+	BarangService barangService;
 
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping( method = RequestMethod.GET)
 	public String index() {
 		return "login";
 	}
@@ -36,10 +39,12 @@ public class LoginController {
 		return karyawan;
 	}
 
-	@RequestMapping(value = "/home/{username}")
-	public String getKaryawanById(@PathVariable String username, Model model) {
+	@RequestMapping(value = "/home/{username}", method = RequestMethod.GET)
+	public String getKaryawanByUsename(@PathVariable String username, Model model) {
 		List<Karyawan> karyawan = karyawanService.getKaryawanByUsername(username);
 		model.addAttribute("karyawan", karyawan);
+		List<Barang> barang = barangService.getAllBarang();
+		model.addAttribute("barang", barang);
 		return "home";
 	}
 }

@@ -16,6 +16,7 @@
 <title>Halaman Login |</title>
 
 <!-- Bootstrap -->
+<link rel="stylesheet" href="/assets/bootstrap-4.0.0-beta.2/dist/css/bootstrap.min.css" />
 <link
 	href="/assets/gentelella-master/vendors/bootstrap/dist/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -75,10 +76,13 @@
 					</form>
 					<script type="text/javascript" src="/assets/js/jquery-3.2.1.min.js"></script>
 					<script type="text/javascript">
+					var username = $('#textUsername').val();
+					var pass = $('#textPass').val();					
 						$(document).ready(function() {
+							
 							$('.login-btn').on('click', function() {
-								var username = $('#textUsername').val();
-								var pass = $('#textPass').val();
+								username = $('#textUsername').val();
+								pass = $('#textPass').val();
 								$.ajax({
 									type : 'GET',
 									url : '/login/' + username + '/' + pass,
@@ -96,5 +100,7 @@
 			</div>
 		</div>
 	</div>
+	
+	
 </body>
 </html>

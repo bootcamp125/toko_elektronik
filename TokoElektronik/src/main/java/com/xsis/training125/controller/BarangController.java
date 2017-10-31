@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.xsis.training125.model.Barang;
 import com.xsis.training125.model.Employee;
+import com.xsis.training125.model.Karyawan;
 import com.xsis.training125.service.BarangService;
+import com.xsis.training125.service.KaryawanService;
 
 
 @Controller
@@ -25,13 +27,20 @@ public class BarangController {
 
 	@Autowired
 	BarangService barangService;
-
-	@RequestMapping(method=RequestMethod.GET)
+	
+	
+	@RequestMapping(value = " ", method=RequestMethod.GET)
 	public String index(Model model){
-		
 		List<Barang> barang = barangService.getAllBarang();
 		model.addAttribute("barang", barang);
-		return "barang";
+		return "barang2";
+	}
+	
+	@RequestMapping(value = "/tambahbarang", method=RequestMethod.GET)
+	public String tambahBarang( Model model){
+		List<Barang> barang = barangService.getAllBarang();
+		model.addAttribute("barang", barang);
+		return "formBarang";
 	}
 	
 	@RequestMapping(value="/save", method=RequestMethod.POST)
