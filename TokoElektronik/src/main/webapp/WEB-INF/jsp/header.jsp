@@ -38,10 +38,14 @@
 							<li><a><i class="fa fa-desktop"></i> Pembelian Barang </a></li>
 							<li><a id="karyawan-btn"><i class="fa fa-users"></i> Karyawan </a>
 								</li>
+<<<<<<< HEAD
 							<li><a><i class="fa fa-truck"></i> Supplier</a>
 								</li>
 							<li><a id="diskon-btn"><i class="fa fa-truck"></i> Diskon</a>
 								</li>
+=======
+							<li><a id="supplier-btn"><i class="fa fa-truck"></i> Distributor </a></li>
+>>>>>>> branch 'master' of https://github.com/bootcamp125/toko_elektronik.git
 						</ul>
 					</div>
 
