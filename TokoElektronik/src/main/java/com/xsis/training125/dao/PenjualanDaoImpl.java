@@ -6,7 +6,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.xsis.training125.model.Diskon;
 import com.xsis.training125.model.Penjualan;
 
 public class PenjualanDaoImpl implements PenjualanDao{
