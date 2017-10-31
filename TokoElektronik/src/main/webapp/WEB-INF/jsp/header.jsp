@@ -13,7 +13,8 @@
 				<!-- menu profile quick info -->
 				<div class="profile clearfix">
 					<div class="profile_pic">
-						<img src="/assets/gentelella-master/production/images/img.jpg" alt="..." class="img-circle profile_img">
+						<img src="/assets/gentelella-master/production/images/img.jpg"
+							alt="..." class="img-circle profile_img">
 					</div>
 					<div class="profile_info">
 						<span>Welcome,</span>
@@ -36,9 +37,10 @@
 							<li><a id="barang-btn"><i class="fa fa-edit"></i> Barang
 							</a></li>
 							<li><a><i class="fa fa-desktop"></i> Pembelian Barang </a></li>
-							<li><a id="karyawan-btn"><i class="fa fa-users"></i> Karyawan </a>
-								</li>
-							<li><a id="supplier-btn"><i class="fa fa-truck"></i> Distributor  </a></li>
+							<li><a id="karyawan-btn"><i class="fa fa-users"></i>
+									Karyawan </a></li>
+							<li><a id="supplier-btn"><i class="fa fa-truck"></i>
+									Distributor</a></li>
 						</ul>
 					</div>
 
@@ -73,7 +75,8 @@
 					<ul class="nav navbar-nav navbar-right">
 						<li class=""><a href="javascript:;"
 							class="user-profile dropdown-toggle" data-toggle="dropdown"
-							aria-expanded="false"> <img src="/assets/gentelella-master/production/images/img.jpg" alt="">
+							aria-expanded="false"> <img
+								src="/assets/gentelella-master/production/images/img.jpg" alt="">
 								<c:forEach var="karyawan" items="${karyawan }">
 						${karyawan.namaK }
 					</c:forEach> <span class=" fa fa-angle-down"></span>
@@ -132,9 +135,8 @@
 			</div>
 		</div>
 		<!-- /top navigation aa-->
-		 <script type="text/javascript" src="/assets/js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="/assets/js/jquery-3.2.1.min.js"></script>
 		<script type="text/javascript">
-		
 			$(document).ready(function() {
 				$('#barang-btn').on('click', function() {
 					$.ajax({
