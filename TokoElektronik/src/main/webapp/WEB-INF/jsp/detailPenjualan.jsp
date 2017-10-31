@@ -16,44 +16,39 @@
  	<table class="table table-sm table-striped table-bordered table-hover">
 	 	<thead class="thead-dark">
 	 		<tr>
+	 		
+	 		
+	 		
 	 			<th>Jumlah</th>
-	 			<th>Keterangan</th>
-	 			<th>Tanggal Retur </th>
-	 			<th>Total Harga Retur</th>
-	 			<th>ID Karyawan</th>
-	 			<th>ID Distributor</th>
-	 			<th>ID pembelian</th>
+	 			<th>penjualan</th>
+	 			<th>barang </th>
+	 			<th>diskon</th>
+	 			
 	 		</tr>
 	 	</thead>
 	 	
-	<!--  this.id = id;
-		this.jumlah = jumlah;
-		this.keterangan = keterangan;
-		this.tanggalRetur = tanggalRetur;
-		this.totalHargaRetur = totalHargaRetur;
-		this.karyawan = karyawan;
-		this.distributor = distributor;
-		this.pembelian = pembelian; -->
+	<!--  this.jumlah = jumlah;
+		this.penjualan = penjualan;
+		this.barang = barang;
+		this.diskon = diskon; -->
 	 	
 	 	<tbody>
-	 		<c:forEach var="retur" items="${retur }">
+	 		<c:forEach var="detailPenjualan" items="${detailPenjualan }">
 	 			<tr>
-	 				<td>${retur.jumlah }</td>
-	 				<td>${retur.keterangan }</td>
-	 				<td>${retur.tanggalRetur }</td>
-	 				<td>${retur.totalHargaRetur }</td>
-	 				<td>${retur.karyawan }</td>
-	 				<td>${retur.distributor }</td>
-	 				<td>${retur.pembelian }</td>
+	 				<td>${detailPenjualan.jumlah }</td>
+	 				<td>${detailPenjualan.penjualan.id }</td>
+	 				<td>${detailPenjualan.barang.namaBarang }</td>
+	 				<td>${detailPenjualan.diskon.diskon }</td>
+	 				
 	 				<td>
-	 					<a data-id="${retur.id }"class="btn btn-outline-danger delete-btn" href="#">Delete</a>
-	 					<a id="${retur.id }" class="btn btn-outline-warning update-btn" href="#">Update</a>
+	 					<a data-id="${detailPenjualan.id }"class="btn btn-outline-danger delete-btn" href="#">Delete</a>
+	 					<a id="${detailPenjualan.id }" class="btn btn-outline-warning update-btn" href="#">Update</a>
 	 				</td>
 	 			</tr>
 	 		</c:forEach>
 	 	</tbody>
  	</table>
- 		<form action="/retur/save" method="POST">
+ 		<form action="/detailPenjualan/save" method="POST">
  			<table>
  				<tr>
  					<td>jumlah</td>
@@ -63,47 +58,27 @@
  					</td>
  				</tr>
  				<tr>
- 					<td>keterangan</td>
+ 					<td>Nota Penjualan</td>
  					<td>:</td>
  					<td>
- 						<input type="text" name="keterangan" placeholder="Masukkan Harga Satuan Barang" />
+ 						<input type="text" name="penjualan" placeholder="Masukkan Harga Satuan Barang" />
  					</td>
  				</tr>
  				<tr>
- 					<td>tanggalRetur</td>
+ 					<td>Nama Barang</td>
  					<td>:</td>
  					<td>
- 						<input type="text" name="tanggalRetur" placeholder="DD/MM/YYYY" />
+ 						<input type="text" name="barang" placeholder="DD/MM/YYYY" />
  					</td>
  				</tr>
  				<tr>
- 					<td>totalHargaRetur</td>
+ 					<td>Diskon</td>
  					<td>:</td>
  					<td>
- 						<input type="text" name="totalHargaRetur" placeholder="Masukkan"/>
+ 						<input type="text" name="diskon" placeholder="Masukkan"/>
  					</td>
  				</tr>
- 				<tr>
- 					<td>karyawan</td>
- 					<td>:</td>
- 					<td>
- 						<input type="text" name="karyawan" placeholder="Masukkan"/>
- 					</td>
- 				</tr>
- 				<tr>
- 					<td>distributor</td>
- 					<td>:</td>
- 					<td>
- 						<input type="text" name="distributor" placeholder="Masukkan"/>
- 					</td>
- 				</tr>
- 				<tr>
- 					<td>pembelian</td>
- 					<td>:</td>
- 					<td>
- 						<input type="text" name="pembelian" placeholder="Masukkan"/>
- 					</td>
- 				</tr>
+ 				
  				<tr>
  					<td></td>
  					<td></td>
@@ -130,7 +105,7 @@
  				
  				$.ajax({
  					type: 'POST',
- 					url : 'retur/returid/'+id,
+ 					url : 'detailPenjualan/detailPenjualanid/'+id,
  					success : function(data){
  						//console.log(JSON.stringify(data));
  						_setFieldUpdateModal(data);
@@ -146,9 +121,7 @@
 				$('#textKeterangan').val(data.keterangan);
 				$('#textTanggalRetur').val(data.tanggalRetur);
 				$('#textTotalHargaRetur').val(data.totalHargaRetur);
-				$('#textkaryawan').val(data.karyawan);
-				$('#textdistributor').val(data.distributor);
-				$('#textpembelian').val(data.pembelian);
+				
  			}
  			
  			$('.delete-btn').on('click', function() {
@@ -158,9 +131,9 @@
 
 				$.ajax({
 					type : 'DELETE',
-					url : 'retur/delete/' + id,
+					url : 'detailPenjualan/delete/' + id,
 					success : function() {
-						window.location = "/retur";
+						window.location = "/detailPenjualan";
 					}
 				});
 
@@ -176,19 +149,17 @@
  					keterangan : $('#textKeterangan').val(),
  					tanggalRetur : $('#textTanggalRetur').val(),
  					totalHargaRetur : $('#textTotalHargaRetur').val(),
- 					karyawan : $('#textkaryawan').val(),
- 					distributor : $('#textdistributor').val(),
- 					pembelian : $('#textpembelian').val()
+ 					
  				};
  				
  				//ajax update
  				$.ajax({
  					type: 'PUT',
- 					url : 'retur/update',
+ 					url : 'detailPenjualan/update',
  					contentType: "application/json",
- 					data: JSON.stringify(Retur),
+ 					data: JSON.stringify(DetailPenjualan),
  					success: function(data){
- 						window.location = "/retur";
+ 						window.location = "/detailPenjualan";
  					}
  				});
  			});

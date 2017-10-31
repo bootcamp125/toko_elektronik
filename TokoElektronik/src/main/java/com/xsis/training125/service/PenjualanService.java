@@ -14,5 +14,13 @@ import com.xsis.training125.model.Penjualan;
 @Service
 public class PenjualanService {
 
+	/**
+	 * @return
+	 */
+	public List<Penjualan> getAllPenjualan() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }

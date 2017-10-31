@@ -14,8 +14,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import com.xsis.training125.model.Barang;
 import com.xsis.training125.model.DetailPenjualan;
+import com.xsis.training125.model.Diskon;
+import com.xsis.training125.model.Penjualan;
+import com.xsis.training125.service.BarangService;
 import com.xsis.training125.service.DetailPenjualanService;
+import com.xsis.training125.service.DiskonService;
+import com.xsis.training125.service.PenjualanService;
 
 
 @Controller
@@ -24,6 +30,12 @@ public class DetailPenjualanController {
 
 	@Autowired
 	DetailPenjualanService detailPenjualanService;
+	@Autowired
+	PenjualanService penjualanService;
+	@Autowired
+	BarangService barangService;
+	@Autowired
+	DiskonService diskonService;
 	
 	
 	@RequestMapping(method=RequestMethod.GET)
@@ -31,6 +43,12 @@ public class DetailPenjualanController {
 		
 		List<DetailPenjualan> detailPenjualan = detailPenjualanService.getAllDetailPenjualan();
 		model.addAttribute("detailPenjualan", detailPenjualan);
+		List<Penjualan> penjualan = penjualanService.getAllPenjualan();
+		model.addAttribute("penjualan", penjualan);
+		List<Barang> barang = barangService.getAllBarang();
+		model.addAttribute("barang", barang);
+		List<Diskon> diskon = diskonService.getAllDiskon();
+		model.addAttribute("diskon", diskon);
 		return "detailPenjualan";
 	}
 	
