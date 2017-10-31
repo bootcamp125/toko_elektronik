@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import com.xsis.training125.model.Barang;
 import com.xsis.training125.model.Pekerjaan;
 import com.xsis.training125.service.PekerjaanService;
 
@@ -30,6 +31,12 @@ public class PekerjaanController {
 		List<Pekerjaan> pekerjaan = pekerjaanService.getAllPekerjaan();
 		model.addAttribute("pekerjaan", pekerjaan);
 		return "pekerjaan";
+	}
+	
+	@RequestMapping(value = "/tambahpekerjaan", method=RequestMethod.GET)
+	public String tambahPekerjaan( ){
+		
+		return "formPekerjaan";
 	}
 	
 	@RequestMapping(value="/save", method=RequestMethod.POST)

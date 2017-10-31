@@ -40,8 +40,10 @@
 
 							<li><a id="karyawan-btn"><i class="fa fa-users"></i>
 									Karyawan </a></li>
-							<li><a id="supplier-btn"><i class="fa fa-users"></i>
+							<li><a id="supplier-btn"><i class="fa fa-truck"></i>
 									Distributor </a></li>
+									<li><a id="pekerjaan-btn"><i class="fa fa-briefcase"></i>
+									Pekerjaan </a></li>
 						</ul>
 					</div>
 
@@ -180,6 +182,15 @@
 						success : function(data) {
 							//console.log(JSON.stringify(data));
 							window.location = "/distributor";
+						}
+					});
+
+				});
+				$('#pekerjaan-btn').on('click', function() {
+					$.ajax({
+						success : function(data) {
+							//console.log(JSON.stringify(data));
+							window.location = "/pekerjaan";
 						}
 					});
 
