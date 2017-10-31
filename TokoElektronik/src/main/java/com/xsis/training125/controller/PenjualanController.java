@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import com.xsis.training125.model.Employee;
 import com.xsis.training125.model.Penjualan;
 import com.xsis.training125.service.PenjualanService;
 
@@ -24,5 +25,45 @@ public class PenjualanController {
 	@Autowired
 	PenjualanService penjualanService;
 
+	@RequestMapping(method=RequestMethod.GET)
+	public String index(Model model){
+		
+		List<Penjualan> penjualan = penjualanService.getAllPenjualan();
+		model.addAttribute("penjualan", penjualan);
+		return "penjualan";
+	}
 	
+	@RequestMapping(value="/save", method=RequestMethod.POST)
+	public String savingData(@ModelAttribute Penjualan penjualan){
+		penjualanService.save(penjualan);
+		return "redirect:/penjualan";
+	}
+	
+	
+	@RequestMapping(value="/penjualanid/{id}")
+	@ResponseBody
+	public Penjualan getPenjualanById(@PathVariable int id){
+		 Penjualan result = penjualanService.getPenjualanById(id);
+		 return result;
+	}
+	
+	@RequestMapping(value="/update", method=RequestMethod.PUT)
+	@ResponseStatus(HttpStatus.OK)
+	public void updatePenjualan(@RequestBody Penjualan penjualan){
+		penjualanService.update(penjualan);
+	}
+	
+	@RequestMapping(value="/delete/{id}", method=RequestMethod.DELETE)
+	@ResponseStatus(HttpStatus.OK)
+	public void delete(@PathVariable int id){
+		penjualanService.delete(id);
+	}
+
+	@RequestMapping(value="/allemp", method=RequestMethod.GET)
+	@ResponseBody
+	public List<Penjualan> getAllPenjualan(){
+		List<Penjualan> penjualan = penjualanService.getAllPenjualan();
+		
+		return penjualan;
+	}
 }
