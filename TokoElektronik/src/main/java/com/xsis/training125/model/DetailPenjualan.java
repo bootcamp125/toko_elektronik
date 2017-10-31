@@ -22,7 +22,7 @@ public class DetailPenjualan {
 	private int id;
 	private int jumlah;
 	@ManyToOne
-	@JoinColumn(name="no_nota")
+	@JoinColumn(name="id_penjualan")
 	private Penjualan penjualan;
 	@ManyToOne
 	@JoinColumn(name = "id_barang")

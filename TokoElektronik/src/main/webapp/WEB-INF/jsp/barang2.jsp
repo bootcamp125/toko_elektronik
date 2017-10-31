@@ -336,7 +336,7 @@
 
 	<script>
 		function myFunction() {
-			document.getElementById("textTanggal").value = "<fmt:formatDate value="${date}" pattern="'yyyy-MM-dd'";
+			document.getElementById("textTanggal").value = "<fmt:formatDate value="${date}" pattern="yyyy-MM-dd";
 		}
 	</script>
 	<!-- jQuery -->
