@@ -82,7 +82,7 @@
 						</div>
 						<div class="x_content">
 							<p class="text-muted font-13 m-b-30"></p>
-								 <button type="button" id="tambah-distributor-btn" class="btn btn-success btn-lg"><i class="fa fa-plus"></i> Tambah Data Dsitributor</button>
+								 <button type="button" id="tambah-distributor-btn" class="btn btn-success btn-lg"><i class="fa fa-plus"></i> Tambah Data Distributor</button>
 							<table id="datatable" class="table table-striped table-bordered">
 								<thead>
 									<tr>
