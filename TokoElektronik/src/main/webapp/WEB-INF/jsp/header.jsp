@@ -37,15 +37,9 @@
 							</a></li>
 							<li><a><i class="fa fa-desktop"></i> Pembelian Barang </a></li>
 							<li><a id="karyawan-btn"><i class="fa fa-users"></i> Karyawan </a>
-								</li>
-<<<<<<< HEAD
-							<li><a><i class="fa fa-truck"></i> Supplier</a>
-								</li>
-							<li><a id="diskon-btn"><i class="fa fa-truck"></i> Diskon</a>
-								</li>
-=======
-							<li><a id="supplier-btn"><i class="fa fa-truck"></i> Distributor </a></li>
->>>>>>> branch 'master' of https://github.com/bootcamp125/toko_elektronik.git
+							</li>
+							<li><a id="supplier-btn"><i class="fa fa-users"></i> Distributor </a>
+							</li>
 						</ul>
 					</div>
 
@@ -179,11 +173,11 @@
 					});
 
 				});
-				$('#diskon-btn').on('click', function() {
+				$('#supplier-btn').on('click', function() {
 					$.ajax({
 						success : function(data) {
 							//console.log(JSON.stringify(data));
-							window.location = "/barang";
+							window.location = "/distributor";
 						}
 					});
 
