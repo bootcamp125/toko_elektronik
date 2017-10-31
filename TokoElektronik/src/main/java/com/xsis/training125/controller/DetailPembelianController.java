@@ -14,8 +14,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import com.xsis.training125.model.Barang;
 import com.xsis.training125.model.DetailPembelian;
+import com.xsis.training125.model.Pembelian;
+import com.xsis.training125.service.BarangService;
 import com.xsis.training125.service.DetailPembelianService;
+import com.xsis.training125.service.PembelianService;
 
 @Controller
 @RequestMapping("/detailpembelian")
@@ -23,6 +27,10 @@ public class DetailPembelianController {
 
 	@Autowired
 	DetailPembelianService detailPembelianService;
+	@Autowired
+	PembelianService pembelianService;
+	@Autowired
+	BarangService barangService;
 	
 	
 	@RequestMapping(method=RequestMethod.GET)
@@ -30,16 +38,20 @@ public class DetailPembelianController {
 		
 		List<DetailPembelian> detailPembelian = detailPembelianService.getAllDetailPembelian();
 		model.addAttribute("detailPembelian", detailPembelian);
+		List<Pembelian> pembelian = pembelianService.getAllPembelian();
+		model.addAttribute("pembelian",  pembelian);
+		List<Barang> barang = barangService.getAllBarang();
+		model.addAttribute("barang", barang);
 		return "detailPembelian";
 	}
 	
 	@RequestMapping(value="/save", method=RequestMethod.POST)
-	public String savingData(@ModelAttribute DetailPembelian detailPenjualan){
-		detailPembelianService.save(detailPenjualan);
-		return "redirect:/detaildpenjualan";
+	public String savingData(@ModelAttribute DetailPembelian detailPembelian){
+		detailPembelianService.save(detailPembelian);
+		return "redirect:/detailPembelian";
 	}
 	
-	@RequestMapping(value="/detailpenjualanid/{id}")
+	@RequestMapping(value="/detailPembelianid/{id}")
 	@ResponseBody
 	public DetailPembelian getReturById(@PathVariable int id){
 		DetailPembelian result = detailPembelianService.getDetailPembelianById(id);
