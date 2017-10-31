@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import com.xsis.training125.model.Barang;
 import com.xsis.training125.model.Diskon;
+import com.xsis.training125.service.BarangService;
 import com.xsis.training125.service.DiskonService;
 
 @Controller
@@ -23,6 +25,8 @@ public class DiskonController {
 
 	@Autowired
 	DiskonService diskonService;
+	@Autowired
+	BarangService barangService;
 
 	
 	@RequestMapping(method=RequestMethod.GET)
@@ -30,6 +34,8 @@ public class DiskonController {
 		
 		List<Diskon> diskon = diskonService.getAllDiskon();
 		model.addAttribute("diskon", diskon);
+		List<Barang> barang = barangService.getAllBarang();
+		model.addAttribute("barang", barang);
 		return "diskon";
 	}
 	

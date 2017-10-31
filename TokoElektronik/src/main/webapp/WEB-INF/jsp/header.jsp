@@ -40,6 +40,8 @@
 								</li>
 							<li><a><i class="fa fa-truck"></i> Supplier</a>
 								</li>
+							<li><a id="diskon-btn"><i class="fa fa-truck"></i> Diskon</a>
+								</li>
 						</ul>
 					</div>
 
@@ -169,6 +171,15 @@
 						success : function(data) {
 							//console.log(JSON.stringify(data));
 							window.location = "/.";
+						}
+					});
+
+				});
+				$('#diskon-btn').on('click', function() {
+					$.ajax({
+						success : function(data) {
+							//console.log(JSON.stringify(data));
+							window.location = "/diskon";
 						}
 					});
 
