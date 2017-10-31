@@ -1,10 +1,7 @@
 <%@page import="com.xsis.training125.model.Barang"%>
-<%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<jsp:useBean id="date" class="java.util.Date" />
 <!DOCTYPE html >
 <html>
 <head>
@@ -336,7 +333,7 @@
 
 	<script>
 		function myFunction() {
-			document.getElementById("textTanggal").value = "<fmt:formatDate value="${date}" pattern="yyyy-MM-dd";
+			document.getElementById("textTanggal").value = "";
 		}
 	</script>
 	<!-- jQuery -->
