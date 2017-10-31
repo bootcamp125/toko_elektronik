@@ -23,8 +23,7 @@ public class Penjualan {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="no_nota")
-	private int noNota;
+	private int id;
 	@Column(name="tangal_penjualan")
 	private Date tanggalPenjualan;	
 	@Column(name="total_harga")
@@ -37,31 +36,33 @@ public class Penjualan {
 	private List<DetailPenjualan> detailPenjualan;
 	
 	public Penjualan(){}
+	
+	
 
-	public Penjualan(int noNota, Date tanggalPenjualan, int totalHarga, Karyawan karyawan,
+	
+	public Penjualan(int id, Date tanggalPenjualan, int totalHarga, Karyawan karyawan,
 			List<DetailPenjualan> detailPenjualan) {
 		super();
-		this.noNota = noNota;
+		this.id = id;
 		this.tanggalPenjualan = tanggalPenjualan;
 		this.totalHarga = totalHarga;
 		this.karyawan = karyawan;
 		this.detailPenjualan = detailPenjualan;
 	}
 
-	public int getNoNota() {
-		return noNota;
+
+
+	public int getId() {
+		return id;
 	}
 
-
-	public void setNoNota(int noNota) {
-		this.noNota = noNota;
+	public void setId(int id) {
+		this.id = id;
 	}
-
 
 	public Date getTanggalPenjualan() {
 		return tanggalPenjualan;
 	}
-
 
 	public void setTanggalPenjualan(Date tanggalPenjualan) {
 		this.tanggalPenjualan = tanggalPenjualan;
@@ -70,7 +71,6 @@ public class Penjualan {
 	public int getTotalHarga() {
 		return totalHarga;
 	}
-
 
 	public void setTotalHarga(int totalHarga) {
 		this.totalHarga = totalHarga;
@@ -91,6 +91,8 @@ public class Penjualan {
 	public void setDetailPenjualan(List<DetailPenjualan> detailPenjualan) {
 		this.detailPenjualan = detailPenjualan;
 	}
+
+	
 	
 	
 }
