@@ -170,11 +170,11 @@
 								<tbody>
 									<c:forEach var="detailPenjualan" items="${detailPenjualan }">
 										<tr>
-											<td>${detailPenjualan.penjualan.noNota }</td>
+											<td>SAP${detailPenjualan.penjualan.noNota }</td>
 											<td>${detailPenjualan.barang.namaBarang }</td>
 											<td>${detailPenjualan.jumlah }</td>
 											<td>${detailPenjualan.diskon.diskon }</td>
-											<td>${detailPenjualan.barang.harga }</td>
+											<td>${detailPenjualan.harga }</td>
 											<td>
 												<button type="button" id="${detailPenjualan.id }"
 													class="btn btn-info detail-btn">Detail</button>

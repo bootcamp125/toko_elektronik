@@ -183,6 +183,7 @@
 											<td>SAP${detailPembelian.pembelian.id }</td>
 											<td>${detailPembelian.barang.namaBarang }</td>
 											<td>${detailPembelian.jumlah }</td>
+											<td>${detailPembelian.harga }</td>
 											<td>${detailPembelian.distributor.namaDistributor }</td>
 											<td>
 												<button type="button" id="${detailPembelian.id }"

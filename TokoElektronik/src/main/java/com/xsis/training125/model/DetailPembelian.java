@@ -21,6 +21,7 @@ public class DetailPembelian {
 	@ManyToOne
 	@JoinColumn(name="no_faktur")
 	private Pembelian pembelian;
+	private int harga;
 	@ManyToOne
 	@JoinColumn(name = "id_barang")
 	private Barang barang;
@@ -31,27 +32,19 @@ public class DetailPembelian {
 	public DetailPembelian() {
 	}
 
-	
-
-	
-	public DetailPembelian(int id, int jumlah, Pembelian pembelian, Barang barang, Distributor distributor) {
+	public DetailPembelian(int id, int jumlah, Pembelian pembelian, int harga, Barang barang, Distributor distributor) {
 		super();
 		this.id = id;
 		this.jumlah = jumlah;
 		this.pembelian = pembelian;
+		this.harga = harga;
 		this.barang = barang;
 		this.distributor = distributor;
 	}
 
-
-
-
 	public int getId() {
 		return id;
 	}
-
-
-
 
 	public void setId(int id) {
 		this.id = id;
@@ -111,6 +104,14 @@ public class DetailPembelian {
 
 	public void setDistributor(Distributor distributor) {
 		this.distributor = distributor;
+	}
+
+	public int getHarga() {
+		return harga;
+	}
+
+	public void setHarga(int harga) {
+		this.harga = harga;
 	}
 
 
