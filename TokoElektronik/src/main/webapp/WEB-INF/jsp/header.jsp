@@ -186,7 +186,7 @@
 						}
 					});
 
-				});
+				});//a
 				$('#pekerjaan-btn').on('click', function() {
 					$.ajax({
 						success : function(data) {
