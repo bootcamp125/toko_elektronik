@@ -169,10 +169,11 @@
 							<table id="datatable" class="table table-striped table-bordered">
 								<thead>
 									<tr>
-										<th>No Pembelian</th>
-										<th>Tanggal Pembelian</th>
-										<th>Total Harga</th>
-										<th>Nama Karyawan</th>
+										<th>No faktur</th>
+										<th>Nama Barang</th>
+										<th>Jumlah </th>
+										<th>Harga</th>
+										<th>Distributor</th>
 										<th>Tindakan</th>
 									</tr>
 								</thead>
@@ -180,9 +181,9 @@
 									<c:forEach var="pembelian" items="${pembelian }">
 										<tr>
 											<td>SAP${pembelian.id }</td>
-											<td>${pembelian.tanggalPembelian }</td>
-											<td>${pembelian.totalHarga }</td>
-											<td>${pembelian.karyawan.namaK }</td>
+											<td>${pembelian.detailPembelian.barang.namaBarang }</td>
+											<td>${pembelian.detailPembelian.jumlah }</td>
+											<td>${pembelian.detailPembelian.distributor.namaDistributor }</td>
 											<td>
 												<button type="button" id="${pembelian.id }"
 													class="btn btn-info detail-btn">Detail</button>
@@ -201,21 +202,6 @@
 							<script type="text/javascript">
 								$(document)
 										.ready(
-												function() {
-													$('#tambah-pembelian-btn')
-															.on(
-																	'click',
-																	function() {
-																		$
-																				.ajax({
-																					success : function(
-																							data) {
-																						//console.log(JSON.stringify(data));
-																						window.location = "/pembelian/tambahdetailpembelian/";
-																					}
-																				});
-
-																	});
 
 													var id = 0;
 													$('.update-btn')
