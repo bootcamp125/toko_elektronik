@@ -119,7 +119,7 @@
 											<td>${pembelian.distributor.namaDistributor }</td>
 											<td>${pembelian.karyawan.namaK }</td>
 											<td>
-												<button type="button" id="${pemebelian.id }"
+												<button type="button" id="${pembelian.id }"
 													class="btn btn-info detail-btn">Detail</button>
 												<button type="button" id="${pembelian.id }"
 													class="btn btn-warning update-btn">Update</button>
