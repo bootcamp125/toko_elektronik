@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.xsis.training125.model.Employee;
 import com.xsis.training125.model.Karyawan;
+import com.xsis.training125.model.Pekerjaan;
 
 @Repository
 public class KaryawanDaoImpl implements KaryawanDao {
@@ -57,8 +58,15 @@ public class KaryawanDaoImpl implements KaryawanDao {
 	@Override
 	public void save(Karyawan karyawan) {
 		// TODO Auto-generated method stub
-
+		
 		Session session = sessionFactory.getCurrentSession();
+		/*int id = (int) session.save(karyawan);
+		karyawan.setId(id);
+		
+		Pekerjaan pekerjaan = new Pekerjaan();
+		pekerjaan.setId(id);
+		pekerjaan.setDeskripsi(karyawan.getPekerjaan().getDeskripsi());*/
+		
 		session.save(karyawan);
 		session.flush();
 	}

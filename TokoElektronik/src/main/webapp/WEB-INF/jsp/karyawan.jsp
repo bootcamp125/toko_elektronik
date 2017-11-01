@@ -100,11 +100,7 @@
 									
 										<tr>
 											<td>${karyawan.namaK }</td>
-											<td>
-											<c:forEach var="pekerjaan" items="${pekerjaan }">
-											${karyawan.pekerjaan.deskripsi }
-											</c:forEach>
-											</td>
+											<td>${karyawan.pekerjaan.deskripsi }</td>
 											<td>${karyawan.jk}</td>
 											<td>${karyawan.alamat }</td>
 											<td>${karyawan.tanggalMasuk }</td>
@@ -161,6 +157,7 @@
 									$('#textAlamat').val(data.alamat);
 									$('#textTanggal').val(data.tanggalMasuk);
 									$('#textGaji').val(data.gaji);
+									$('#textPekerjaan').val(data.pekerjaan.deskripsi);
 					 			}
 					 			
 					 			$('.delete-btn').on('click', function() {
@@ -188,7 +185,8 @@
 					 					jk : $('#textJK').val(),
 					 					alamat : $('#textAlamat').val(),
 					 					tanggalMasuk : $('#textTanggal').val(),
-					 					gaji : $('#textGaji').val()
+					 					gaji : $('#textGaji').val(),
+					 					pekerjaan : $('#pekerjaan').val(),
 					 				};
 					 				
 					 				//ajax update
@@ -250,6 +248,10 @@
 			  <div class="form-group">
 			    <label for="textGaji">Gaji</label>
 			    <input type="text" class="form-control" id="textGaji" name="gaji" >
+			  </div>
+			   <div class="form-group">
+			    <label for="textPekerjaan">Pekerjaan</label>
+			    <input type="text" class="form-control" id="textPekerjaan" name="pekerjaan" >
 			  </div>
 			</form>
 	      </div>

@@ -146,9 +146,9 @@
 				$('#textKeterangan').val(data.keterangan);
 				$('#textTanggalRetur').val(data.tanggalRetur);
 				$('#textTotalHargaRetur').val(data.totalHargaRetur);
-				$('#textkaryawan').val(data.karyawan);
-				$('#textdistributor').val(data.distributor);
-				$('#textpembelian').val(data.pembelian);
+				$('#textkaryawan').val(data.karyawan.namaK);
+				$('#textdistributor').val(data.distributor.namaDistributor);
+				$('#textpembelian').val(data.pembelian.id);
  			}
  			
  			$('.delete-btn').on('click', function() {
