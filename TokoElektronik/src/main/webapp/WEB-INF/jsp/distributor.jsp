@@ -181,7 +181,7 @@
 					 					type: 'PUT',
 					 					url : '/distributor/update',
 					 					contentType: "application/json",
-					 					data: JSON.stringify(Karyawan),
+					 					data: JSON.stringify(Distributor),
 					 					success: function(data){
 					 						window.location = "/distributor";
 					 					}
