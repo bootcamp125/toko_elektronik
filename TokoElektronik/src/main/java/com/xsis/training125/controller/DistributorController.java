@@ -31,7 +31,7 @@ public class DistributorController {
 		model.addAttribute("distributor", distributor);
 		return "distributor";
 	}
-	
+	 
 	@RequestMapping(value = "/tambahdistributor", method=RequestMethod.GET)
 	public String tambahDistributor(){
 		return "formDistributor";
