@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import com.xsis.training125.model.Barang;
 import com.xsis.training125.model.Pembelian;
+import com.xsis.training125.service.BarangService;
 import com.xsis.training125.service.PembelianService;
 
 @Controller
@@ -23,12 +25,21 @@ public class PembelianController {
 
 	@Autowired
 	PembelianService pembelianService;
+	@Autowired
+	BarangService barangService;
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public String index(Model model){
 		List<Pembelian> pembelian = pembelianService.getAllPembelian();
 		model.addAttribute("pembelian",pembelian);
-		return "pembelian";
+		return "pembelian2";
+	}
+	
+	@RequestMapping(value = "/tambahpembelian", method=RequestMethod.GET)
+	public String tambahBarang( Model model){
+		List<Barang> barang = barangService.getAllBarang();
+		model.addAttribute("barang",barang);
+		return "formPembelian";
 	}
 	
 

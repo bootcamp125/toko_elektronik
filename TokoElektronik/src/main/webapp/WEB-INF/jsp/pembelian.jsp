@@ -21,10 +21,9 @@
 	 		
 	 			<th>Tanggal Pembelian</th>
 	 			<th>Total Harga</th>
-	 			<th>Nama Dsitributor </th>
+	 			<th>Nama Distributor </th>
 	 			<th>Nama Karyawan</th>
-	 			
-	 			
+	 		 			
 	 		</tr>
 	 	</thead>
 	 	
