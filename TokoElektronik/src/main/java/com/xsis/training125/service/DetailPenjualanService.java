@@ -7,9 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.xsis.training125.dao.DetailPenjualanDao;
-import com.xsis.training125.dao.ReturDao;
 import com.xsis.training125.model.DetailPenjualan;
-import com.xsis.training125.model.Retur;
 
 @Transactional
 @Service

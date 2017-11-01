@@ -1,4 +1,4 @@
-<%@page import="com.xsis.training125.model.Retur"%>
+<%@page import="com.xsis.training125.model.DetailPenjualan"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -17,29 +17,26 @@
 	 	<thead class="thead-dark">
 	 		<tr>
 	 		
-	 		
-	 		
-	 			<th>Jumlah</th>
-	 			<th>penjualan</th>
-	 			<th>barang </th>
+	 			<th>No Nota </th>
+	 			<th>Nama Barang</th>
 	 			<th>diskon</th>
+	 			<th>Jumlah</th>
 	 			
 	 		</tr>
 	 	</thead>
 	 	
-	<!--  this.jumlah = jumlah;
-		this.penjualan = penjualan;
-		this.barang = barang;
-		this.diskon = diskon; -->
+	<!-- 4 this.jumlah = jumlah;
+	1	this.penjualan = penjualan;
+	2	this.barang = barang;
+	3	this.diskon = diskon; -->
 	 	
 	 	<tbody>
 	 		<c:forEach var="detailPenjualan" items="${detailPenjualan }">
 	 			<tr>
-	 				<td>${detailPenjualan.jumlah }</td>
-	 				<td>${detailPenjualan.penjualan.id }</td>
+	 				<td>${detailPenjualan.penjualan.noNota }</td>
 	 				<td>${detailPenjualan.barang.namaBarang }</td>
 	 				<td>${detailPenjualan.diskon.diskon }</td>
-	 				
+	 				<td>${detailPenjualan.jumlah }</td>
 	 				<td>
 	 					<a data-id="${detailPenjualan.id }"class="btn btn-outline-danger delete-btn" href="#">Delete</a>
 	 					<a id="${detailPenjualan.id }" class="btn btn-outline-warning update-btn" href="#">Update</a>
@@ -50,13 +47,7 @@
  	</table>
  		<form action="/detailPenjualan/save" method="POST">
  			<table>
- 				<tr>
- 					<td>jumlah</td>
- 					<td>:</td>
- 					<td>
- 						<input type="text" name="jumlah" placeholder="Masukkan Nama Barang" />
- 					</td>
- 				</tr>
+ 				
  				<tr>
  					<td>Nota Penjualan</td>
  					<td>:</td>
@@ -78,7 +69,13 @@
  						<input type="text" name="diskon" placeholder="Masukkan"/>
  					</td>
  				</tr>
- 				
+ 				<tr>
+ 					<td>jumlah</td>
+ 					<td>:</td>
+ 					<td>
+ 						<input type="text" name="jumlah" placeholder="Masukkan Nama Barang" />
+ 					</td>
+ 				</tr>
  				<tr>
  					<td></td>
  					<td></td>
@@ -117,10 +114,10 @@
  			});
  			
  			function _setFieldUpdateModal(data){
- 				$('#textJumlah').val(data.jumlah);
-				$('#textKeterangan').val(data.keterangan);
-				$('#textTanggalRetur').val(data.tanggalRetur);
-				$('#textTotalHargaRetur').val(data.totalHargaRetur);
+				$('#textpenjualan').val(data.penjualan);
+				$('#textbarang').val(data.barang);
+				$('#textdiskon').val(data.diskon);
+				$('#textjumlah').val(data.jumlah);
 				
  			}
  			
@@ -143,12 +140,13 @@
  			$('#submit-update').click(function(){
  				
  				//Object ala js
- 				var retur = {
+ 				var DetailPenjualan = {
  					id : id,
- 					jumlah : $('#textJumlah').val(),
- 					keterangan : $('#textKeterangan').val(),
- 					tanggalRetur : $('#textTanggalRetur').val(),
- 					totalHargaRetur : $('#textTotalHargaRetur').val(),
+ 				
+ 					penjualan : $('#textpenjualan').val(),
+ 					barang : $('#textbarang').val(),
+ 					diskon : $('#textdiskon').val(),
+ 					jumlah : $('#textjumlah').val(),
  					
  				};
  				
@@ -178,42 +176,26 @@
 	      <div class="modal-body">
 	        <form>
 	        
-	        <!--  this.id = id;
-		this.jumlah = jumlah;
-		this.keterangan = keterangan;
-		this.tanggalRetur = tanggalRetur;
-		this.totalHargaRetur = totalHargaRetur;
-		this.karyawan = karyawan;
-		this.distributor = distributor;
-		this.pembelian = pembelian; -->
+	        <!--  4 this.jumlah = jumlah;
+				1	this.penjualan = penjualan;
+				2	this.barang = barang;
+				3	this.diskon = diskon; -->
 	    
 			  <div class="form-group">
-			    <label for="textJumlah">Jumlah</label>
-			    <input type="text" class="form-control" id="textJumlah" name="jumlah" >
+			    <label for="textpenjualan1">No Nota</label>
+			    <input type="text" class="form-control" id="textpenjualan" name="penjualan" >
 			  </div>
 			  <div class="form-group">
-			    <label for="textKeterangan">Keterangan</label>
-			    <input type="text" class="form-control" id="textKeterangan" name="keterangan" >
+			    <label for="textbarang1">Nama Barang</label>
+			    <input type="text" class="form-control" id="textbarang" name="barang"  >
 			  </div>
 			  <div class="form-group">
-			    <label for="textTanggalRetur">TanggalRetur</label>
-			    <input type="text" class="form-control" id="textTanggalRetur" name="tanggalRetur"  >
+			    <label for="textdiskon1">Diskon</label>
+			    <input type="text" class="form-control" id="textdiskon" name="diskon" >
 			  </div>
-			  <div class="form-group">
-			    <label for="textTotalHargaRetur">TotalHargaRetur</label>
-			    <input type="text" class="form-control" id="textTotalHargaRetur" name="totalHargaRetur" >
-			  </div>
-			  <div class="form-group">
-			    <label for="textkaryawan">karyawan</label>
-			    <input type="text" class="form-control" id="textkaryawan" name="totalkaryawan" >
-			  </div>
-			  <div class="form-group">
-			    <label for="textdistributor">distributor</label>
-			    <input type="text" class="form-control" id="textdistributor" name="distributor" >
-			  </div>
-			  <div class="form-group">
-			    <label for="textpembelian">pembelian</label>
-			    <input type="text" class="form-control" id="textpembelian" name="pembelian" >
+			   <div class="form-group">
+			    <label for="textJumlah1">Jumlah</label>
+			    <input type="text" class="form-control" id="textjumlah" name="jumlah" >
 			  </div>
 			</form>
 	      </div>
