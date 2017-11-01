@@ -50,7 +50,7 @@ public class DetailPembelianController {
 	}
 	
 	@RequestMapping(value = "/tambahdetailpembelian", method=RequestMethod.GET)
-	public String tambahBarang( Model model){
+	public String tambahPembelian( Model model){
 		List<Distributor> distributor= distributorService.getAllDistributor();
 		model.addAttribute("distributor",distributor);
 		List<Barang> barang = barangService.getAllBarang();
