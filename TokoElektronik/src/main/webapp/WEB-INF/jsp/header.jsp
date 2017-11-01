@@ -36,13 +36,14 @@
 									Transaksi Barang </a></li>
 							<li><a id="barang-btn"><i class="fa fa-edit"></i> Barang
 							</a></li>
-							<li><a id="pembelian-btn"><i class="fa fa-desktop"></i> Pembelian Barang </a></li>
+							<li><a id="pembelian-btn"><i class="fa fa-desktop"></i>
+									Pembelian Barang </a></li>
 
 							<li><a id="karyawan-btn"><i class="fa fa-users"></i>
 									Karyawan </a></li>
 							<li><a id="supplier-btn"><i class="fa fa-truck"></i>
 									Distributor </a></li>
-									<li><a id="pekerjaan-btn"><i class="fa fa-briefcase"></i>
+							<li><a id="pekerjaan-btn"><i class="fa fa-briefcase"></i>
 									Pekerjaan </a></li>
 						</ul>
 					</div>
