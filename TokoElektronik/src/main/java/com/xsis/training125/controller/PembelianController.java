@@ -25,8 +25,6 @@ public class PembelianController {
 
 	@Autowired
 	PembelianService pembelianService;
-	@Autowired
-	BarangService barangService;
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public String index(Model model){
@@ -35,14 +33,6 @@ public class PembelianController {
 		return "pembelian2";
 	}
 	
-	@RequestMapping(value = "/tambahpembelian", method=RequestMethod.GET)
-	public String tambahBarang( Model model){
-		List<Barang> barang = barangService.getAllBarang();
-		model.addAttribute("barang",barang);
-		return "formPembelian";
-	}
-	
-
 	@RequestMapping(value="/save", method=RequestMethod.POST)
 	public String savingData(@ModelAttribute Pembelian pembelian){
 		pembelianService.save(pembelian);

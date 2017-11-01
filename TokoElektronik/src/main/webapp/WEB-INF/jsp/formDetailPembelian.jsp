@@ -89,27 +89,46 @@
 							<br />
 							<form action="/pembelian/save" method="POST" id="demo-form2"
 								data-parsley-validate class="form-horizontal form-label-left">
-								<c:forEach var="barang" items="${barang }">
+
 								<div class="form-group">
-									<label for="textBarang"
-										class="control-label col-md-3 col-sm-3 col-xs-12">Nama
-										Barang</label>
+									<label class="control-label col-md-3 col-sm-3 col-xs-12">Nama
+										Barang<span class="required">*</span>
+									</label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
-										<input id="textBarang" class="form-control col-md-7 col-xs-12"
-											type="text" name="barang">
+										<select class="select2_single form-control" name="detailPembelian.barang.id"
+											tabindex="-1">
+											<c:forEach var="barang" items="${barang }">
+												<option value="${ barang.id}">${ barang.namaBarang}</option>
+											</c:forEach>
+										</select>
 									</div>
 								</div>
-								</c:forEach>
+
 								<div class="form-group">
 									<label class="control-label col-md-3 col-sm-3 col-xs-12"
 										for="textJumlah">Jumlah Pembelian <span
 										class="required">*</span>
 									</label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
-										<input type="text" id="textJumlah" name="jumlah"
+										<input type="text" id="textJumlah" name="detailpembelian.jumlah"
 											required="required" class="form-control col-md-7 col-xs-12">
 									</div>
 								</div>
+								
+								<div class="form-group">
+									<label class="control-label col-md-3 col-sm-3 col-xs-12">Nama
+										Distributor<span class="required">*</span>
+									</label>
+									<div class="col-md-6 col-sm-6 col-xs-12">
+										<select class="select2_single form-control" name="distributor.id"
+											tabindex="-1">
+											<c:forEach var="distributor" items="${distributor }">
+												<option value="${ distributor.id}">${ distributor.namaDistributor}</option>
+											</c:forEach>
+										</select>
+									</div>
+								</div>
+								
 
 								<div class="ln_solid"></div>
 								<div class="form-group">
