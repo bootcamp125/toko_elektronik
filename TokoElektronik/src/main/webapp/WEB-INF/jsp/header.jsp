@@ -155,7 +155,7 @@
 					$.ajax({
 						success : function(data) {
 							//console.log(JSON.stringify(data));
-							window.location = "/home/" + this.username;
+							window.location = "/penjualan";
 						}
 					});
 
@@ -200,7 +200,7 @@
 					$.ajax({
 						success : function(data) {
 							//console.log(JSON.stringify(data));
-							window.location = "/detailpembelian";
+							window.location = "/pembelian";
 						}
 					});
 

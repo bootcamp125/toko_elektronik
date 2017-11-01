@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import com.xsis.training125.model.Barang;
 import com.xsis.training125.model.DetailPenjualan;
 import com.xsis.training125.model.Diskon;
+import com.xsis.training125.model.Distributor;
 import com.xsis.training125.model.Penjualan;
 import com.xsis.training125.service.BarangService;
 import com.xsis.training125.service.DetailPenjualanService;
@@ -50,6 +51,12 @@ public class DetailPenjualanController {
 		List<Diskon> diskon = diskonService.getAllDiskon();
 		model.addAttribute("diskon", diskon);
 		return "detailPenjualan";
+	}
+	
+	@RequestMapping(value = "/tambahpenjualan", method=RequestMethod.GET)
+	public String tambahPenjualan( Model model){
+
+		return "formDetailPenjualan";
 	}
 	
 	@RequestMapping(value="/save", method=RequestMethod.POST)
