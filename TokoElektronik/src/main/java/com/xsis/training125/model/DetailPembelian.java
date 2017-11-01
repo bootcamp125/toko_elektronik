@@ -24,48 +24,95 @@ public class DetailPembelian {
 	@ManyToOne
 	@JoinColumn(name = "id_barang")
 	private Barang barang;
-
+	@ManyToOne
+	@JoinColumn(name = "id_distributor")
+	private Distributor distributor;
+	
 	public DetailPembelian() {
 	}
 
-	public DetailPembelian(int id, int jumlah, Pembelian pembelian, Barang barang) {
+	
+
+	
+	public DetailPembelian(int id, int jumlah, Pembelian pembelian, Barang barang, Distributor distributor) {
 		super();
 		this.id = id;
 		this.jumlah = jumlah;
 		this.pembelian = pembelian;
 		this.barang = barang;
+		this.distributor = distributor;
 	}
+
+
+
 
 	public int getId() {
 		return id;
 	}
 
+
+
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
+
+
 
 	public int getJumlah() {
 		return jumlah;
 	}
 
+
+
+
 	public void setJumlah(int jumlah) {
 		this.jumlah = jumlah;
 	}
 
-	public Barang getBarang() {
-		return barang;
-	}
 
-	public void setBarang(Barang barang) {
-		this.barang = barang;
-	}
+
 
 	public Pembelian getPembelian() {
 		return pembelian;
 	}
 
+
+
+
 	public void setPembelian(Pembelian pembelian) {
 		this.pembelian = pembelian;
-	}	
+	}
+
+
+
+
+	public Barang getBarang() {
+		return barang;
+	}
+
+
+
+
+	public void setBarang(Barang barang) {
+		this.barang = barang;
+	}
+
+
+
+
+	public Distributor getDistributor() {
+		return distributor;
+	}
+
+
+
+
+	public void setDistributor(Distributor distributor) {
+		this.distributor = distributor;
+	}
+
+
 
 }

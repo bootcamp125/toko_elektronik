@@ -33,9 +33,6 @@ public class Pembelian {
 	@Column(name = "tanggal_pembelian")
 	private Date tanggalPembelian;
 	@ManyToOne
-	@JoinColumn(name="id_distributor")
-	private Distributor distributor;
-	@ManyToOne
 	@JoinColumn(name="id_karyawan")
 	private Karyawan karyawan;
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="pembelian")
@@ -54,7 +51,6 @@ public class Pembelian {
 		this.id = noFaktur;
 		this.totalHarga = totalHarga;
 		this.tanggalPembelian = tanggalPembelian;
-		this.distributor = distributor;
 		this.karyawan = karyawan;
 		this.detailPembelian = detailPembelian;
 		this.retur = retur;
@@ -86,13 +82,6 @@ public class Pembelian {
 		this.tanggalPembelian = tanggalPembelian;
 	}
 
-	public Distributor getDistributor() {
-		return distributor;
-	}
-
-	public void setDistributor(Distributor distributor) {
-		this.distributor = distributor;
-	}
 
 	public List<DetailPembelian> getDetailPembelian() {
 		return detailPembelian;
