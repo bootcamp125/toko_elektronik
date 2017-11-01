@@ -112,7 +112,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach var="barang" items="${barang }">
+									<c:forEach var="pembelian" items="${pembelian }">
 										<tr>
 											<td>${pembelian.tanggalPembelian }</td>
 											<td>${pembelian.totalHarga }</td>
@@ -146,7 +146,7 @@
 																					success : function(
 																							data) {
 																						//console.log(JSON.stringify(data));
-																						window.location = "/detailpembelian/tambahdetailpembelian/";
+																						window.location = "/pembelian/tambahdetailpembelian/";
 																					}
 																				});
 

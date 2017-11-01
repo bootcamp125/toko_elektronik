@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.xsis.training125.model.Barang;
+import com.xsis.training125.model.Distributor;
 import com.xsis.training125.model.Pembelian;
 import com.xsis.training125.service.BarangService;
+import com.xsis.training125.service.DistributorService;
 import com.xsis.training125.service.PembelianService;
 
 @Controller
@@ -25,12 +27,25 @@ public class PembelianController {
 
 	@Autowired
 	PembelianService pembelianService;
+	@Autowired
+	BarangService barangService;
+	@Autowired
+	DistributorService distributorService;
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public String index(Model model){
 		List<Pembelian> pembelian = pembelianService.getAllPembelian();
 		model.addAttribute("pembelian",pembelian);
 		return "pembelian2";
+	}
+	
+	@RequestMapping(value = "/tambahdetailpembelian", method=RequestMethod.GET)
+	public String tambahPembelian( Model model){
+		List<Distributor> distributor= distributorService.getAllDistributor();
+		model.addAttribute("distributor",distributor);
+		List<Barang> barang = barangService.getAllBarang();
+		model.addAttribute("barang", barang);
+		return "formDetailPembelian";
 	}
 	
 	@RequestMapping(value="/save", method=RequestMethod.POST)

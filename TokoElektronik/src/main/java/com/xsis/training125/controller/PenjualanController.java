@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import com.xsis.training125.model.Barang;
+import com.xsis.training125.model.Distributor;
 import com.xsis.training125.model.Penjualan;
 import com.xsis.training125.service.PenjualanService;
 
@@ -29,6 +31,11 @@ public class PenjualanController {
 		List<Penjualan> penjualan = penjualanService.getAllPenjualan();
 		model.addAttribute("penjualan",penjualan);
 		return "penjualan";
+	}
+	@RequestMapping(value = "/tambahdetailpenjualan", method=RequestMethod.GET)
+	public String tambahPembelian( Model model){
+		
+		return "formPenjualan";
 	}
 	
 	@RequestMapping(value="/save", method=RequestMethod.POST)

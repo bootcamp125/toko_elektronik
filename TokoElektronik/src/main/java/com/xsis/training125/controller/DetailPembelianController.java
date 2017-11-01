@@ -49,14 +49,6 @@ public class DetailPembelianController {
 		return "detailPembelian";
 	}
 	
-	@RequestMapping(value = "/tambahdetailpembelian", method=RequestMethod.GET)
-	public String tambahPembelian( Model model){
-		List<Distributor> distributor= distributorService.getAllDistributor();
-		model.addAttribute("distributor",distributor);
-		List<Barang> barang = barangService.getAllBarang();
-		model.addAttribute("barang", barang);
-		return "formDetailPembelian";
-	}
 	
 	@RequestMapping(value="/save", method=RequestMethod.POST)
 	public String savingData(@ModelAttribute DetailPembelian detailPembelian){
