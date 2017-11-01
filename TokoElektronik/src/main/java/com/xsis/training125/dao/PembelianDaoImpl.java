@@ -27,7 +27,16 @@ public class PembelianDaoImpl implements PembelianDao{
 	@Override
 	public List<Pembelian> getAllPembelian() {
 		// TODO Auto-generated method stub
-		return null;
+		Session session = sessionFactory.getCurrentSession();
+		
+		// HQL (hibernate query language)
+		String myHql = "from Pembelian";
+		List<Pembelian> pembelian = session.createQuery(myHql).list();
+		if(pembelian.isEmpty()){
+			return null;
+		}
+		
+		return pembelian;
 	}
 
 	

@@ -1,4 +1,4 @@
-<%@page import="com.xsis.training125.model.Retur"%>
+<%@page import="com.xsis.training125.model.Pembelian"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -19,35 +19,40 @@
 	 		
 	 		
 	 		
-	 			<th>Jumlah</th>
-	 			<th>No Faktur</th>
-	 			<th>barang </th>
+	 			<th>Tanggal Pembelian</th>
+	 			<th>Total Harga</th>
+	 			<th>Nama Dsitributor </th>
+	 			<th>Nama Karyawan</th>
 	 			
 	 			
 	 		</tr>
 	 	</thead>
 	 	
-	<!--  this.jumlah = jumlah;
-		this.pembelian = pembelian;
-		this.barang = barang; -->
+	<!--  
+		this.tanggalPembelian = tanggalPembelian;
+		this.totalHarga = totalHarga;
+		this.distributor = distributor;
+		this.karyawan = karyawan;
+		-->
 	 	
 	 	<tbody>
-	 		<c:forEach var="detailPembelian" items="${detailPembelian }">
+	 		<c:forEach var="pembelian" items="${pembelian }">
 	 			<tr>
-	 				<td>${detailPembelian.jumlah }</td>
-	 				<td>${detailPembelian.pembelian.id }</td>
-	 				<td>${detailPembelian.barang.namaBarang }</td>
+	 				<td>${pembelian.tanggalPembelian }</td>
+	 				<td>${pembelian.totalHarga }</td>
+	 				<td>${pembelian.distributor.namaDistributor }</td>
+	 				<td>${pembelian.karyawan.namaK }</td>
 	 				
 	 				
 	 				<td>
-	 					<a data-id="${detailPembelian.id }"class="btn btn-outline-danger delete-btn" href="#">Delete</a>
-	 					<a id="${detailPembelian.id }" class="btn btn-outline-warning update-btn" href="#">Update</a>
+	 					<a data-id="${pembelian.id }"class="btn btn-outline-danger delete-btn" href="#">Delete</a>
+	 					<a id="${pembelian.id }" class="btn btn-outline-warning update-btn" href="#">Update</a>
 	 				</td>
 	 			</tr>
 	 		</c:forEach>
 	 	</tbody>
  	</table>
- 		<form action="/detailPembelian/save" method="POST">
+ 		<form action="/pembelian/save" method="POST">
  			<table>
  				<tr>
  					<td>jumlah</td>
@@ -98,7 +103,7 @@
  				
  				$.ajax({
  					type: 'POST',
- 					url : 'detailpembelian/detailPembelianid/'+id,
+ 					url : 'pembelian/pembelianid/'+id,
  					success : function(data){
  						//console.log(JSON.stringify(data));
  						_setFieldUpdateModal(data);
@@ -110,11 +115,13 @@
  			});
  			
  			function _setFieldUpdateModal(data){
- 				$('#textJumlah').val(data.jumlah);
-				$('#textpembelian').val(data.pembelian.id);
-				$('#textbarang').val(data.barang.namaBarang);
+ 				$('#texttanggalPembelian').val(data.tanggalPembelian);
+				$('#texttotalHarga').val(data.totalHarga);
+				$('#textdistributor').val(data.distributor);
+				$('#textkaryawan').val(data.karyawan);
 				
  			}
+ 			
  			
  			$('.delete-btn').on('click', function() {
 
@@ -123,9 +130,9 @@
 
 				$.ajax({
 					type : 'DELETE',
-					url : 'detailpembelian/delete/' + id,
+					url : 'pembelian/delete/' + id,
 					success : function() {
-						window.location = "/detailpembelian";
+						window.location = "/pembelian";
 					}
 				});
 
@@ -135,28 +142,32 @@
  			$('#submit-update').click(function(){
  				
  				//Object ala js
- 				var DetailPembelian = {
+ 				var Pembelian = {
  					id : id,
- 					jumlah : $('#textJumlah').val(),
- 					pembelian : $('#textpembelian').val(),
- 					barang : $('#textbarang').val(),
+ 					tanggalPembelian : $('#texttanggalPembelian').val(),
+ 					totalHarga : $('#texttotalHarga').val(),
+ 					distributor : $('#textdistributor').val(),
+ 					karyawan : $('#textkaryawan').val(),
  					
  				};
- 				
+ 				  
  				//ajax update
  				$.ajax({
  					type: 'PUT',
- 					url : 'detailPembelian/update',
+ 					url : 'pembelian/update',
  					contentType: "application/json",
- 					data: JSON.stringify(detailPembelian),
+ 					data: JSON.stringify(Pembelian),
  					success: function(data){
- 						window.location = "/detailPembelian";
+ 						window.location = "/pembelian";
  					}
  				});
  			});
  		});
  	</script>
- 	
+ 	<!-- this.tanggalPembelian = tanggalPembelian;
+				this.totalHarga = totalHarga;
+				this.distributor = distributor;
+				this.karyawan = karyawan; -->
  	<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
@@ -169,21 +180,23 @@
 	      <div class="modal-body">
 	        <form>
 	        
-	        <!-- this.jumlah = jumlah;
-		this.pembelian = pembelian;
-		this.barang = barang; -->
+	      
 	    
 			  <div class="form-group">
-			    <label for="textJumlah">Jumlah</label>
-			    <input type="text" class="form-control" id="textJumlah" name="jumlah" >
+			    <label for="textJumlah">Tanggal Pembelian</label>
+			    <input type="text" class="form-control" id="texttanggalPembelian" name="tanggalPembelian" >
 			  </div>
 			  <div class="form-group">
-			    <label for="textpembelian">No Nota</label>
-			    <input type="text" class="form-control" id="textpembelian" name="pembelian" >
+			    <label for="textKeterangan">Total Harga</label>
+			    <input type="text" class="form-control" id="texttotalHarga" name="totalHarga" >
 			  </div>
 			  <div class="form-group">
-			    <label for="textbarang">Nama barang</label>
-			    <input type="text" class="form-control" id="textbarang" name="barang"  >
+			    <label for="textTanggalRetur">Distributor</label>
+			    <input type="text" class="form-control" id="textdistributor" name="distributor"  >
+			  </div>
+			  <div class="form-group">
+			    <label for="textTanggalRetur">Karyawan</label>
+			    <input type="text" class="form-control" id="textkaryawan" name="karyawan"  >
 			  </div>
 			</form>
 	      </div>
