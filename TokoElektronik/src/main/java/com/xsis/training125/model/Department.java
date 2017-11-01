@@ -1,5 +1,5 @@
 package com.xsis.training125.model;
-
+//a
 import java.util.List;
 
 import javax.persistence.Column;
