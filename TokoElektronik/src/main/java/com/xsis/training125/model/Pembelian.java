@@ -35,8 +35,8 @@ public class Pembelian {
 	@ManyToOne
 	@JoinColumn(name="id_distributor")
 	private Distributor distributor;
-	@OneToOne
-	@JoinColumn(name="id_karyawan", unique=true)
+	@ManyToOne
+	@JoinColumn(name="id_karyawan")
 	private Karyawan karyawan;
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="pembelian")
 	@Column(name="detail_pembelian")

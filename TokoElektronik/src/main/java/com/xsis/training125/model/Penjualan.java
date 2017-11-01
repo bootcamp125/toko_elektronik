@@ -29,8 +29,8 @@ public class Penjualan {
 	private Date tanggalPenjualan;	
 	@Column(name="total_harga")
 	private int totalHarga;
-	@OneToOne
-	@JoinColumn(name="id_karyawan", unique=true)
+	@ManyToOne
+	@JoinColumn(name="id_karyawan")
 	private Karyawan karyawan;
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="penjualan")
 	@Column(name="detail_penjualan")

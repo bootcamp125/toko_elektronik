@@ -21,6 +21,7 @@ public class DetailPenjualan {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	private int jumlah;
+	private int harga;
 	@ManyToOne
 	@JoinColumn(name="id_penjualan")
 	private Penjualan penjualan;
@@ -33,14 +34,28 @@ public class DetailPenjualan {
 
 	public DetailPenjualan(){}
 
-	public DetailPenjualan(int id, int jumlah, Penjualan penjualan, Barang barang, Diskon diskon) {
+	
+	public DetailPenjualan(int id, int jumlah, int harga, Penjualan penjualan, Barang barang, Diskon diskon) {
 		super();
 		this.id = id;
 		this.jumlah = jumlah;
+		this.harga = harga;
 		this.penjualan = penjualan;
 		this.barang = barang;
 		this.diskon = diskon;
 	}
+
+
+
+	public int getHarga() {
+		return harga;
+	}
+
+
+	public void setHarga(int harga) {
+		this.harga = harga;
+	}
+
 
 	public int getId() {
 		return id;
