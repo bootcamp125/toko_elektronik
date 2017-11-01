@@ -40,6 +40,8 @@ public class PembelianController {
 	public String index(Model model){
 		List<Pembelian> pembelian = pembelianService.getAllPembelian();
 		model.addAttribute("pembelian",pembelian);
+		List<Barang> barang = barangService.getAllBarang();
+		model.addAttribute("barang", barang);
 		return "pembelian2";
 	}
 	

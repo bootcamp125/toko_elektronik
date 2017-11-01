@@ -117,6 +117,7 @@
 											<td>SAP${pembelian.id }</td>
 											<td>${pembelian.tanggalPembelian }</td>
 											<td>${pembelian.totalHarga }</td>
+
 											<td>${pembelian.karyawan.namaK }</td>
 											<td>
 												<button type="button" id="${pembelian.id }"
