@@ -232,7 +232,6 @@
 			    <label for="textNama">Nama Karyawan</label>
 			    <input type="text" class="form-control" id="textNama" name="namaK" >
 			  </div>
-			 
 			  <div class="form-group">
 			    <label for="textJK">Jenis Kelamin</label>
 			    <input type="text" class="form-control" id="textJK" name="jk"  >
