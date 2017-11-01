@@ -176,11 +176,11 @@
 											<td>${detailPenjualan.diskon.diskon }</td>
 											<td>${detailPenjualan.barang.harga }</td>
 											<td>
-												<button type="button" id="${detailPenjualan.penjualan.noNota }"
+												<button type="button" id="${detailPenjualan.id }"
 													class="btn btn-info detail-btn">Detail</button>
-												<button type="button" id="${detailPenjualan.penjualan.noNota }"
+												<button type="button" id="${detailPenjualan.id }"
 													class="btn btn-warning update-btn">Updatea</button>
-												<button type="button" data-id="${detailPenjualan.penjualan.noNota }"
+												<button type="button" data-id="${detailPenjualan.id }"
 													class="btn btn-primary delete-btn">Hapus</button>
 											</td>
 										</tr>

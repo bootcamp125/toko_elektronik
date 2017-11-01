@@ -178,18 +178,18 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach var="pembelian" items="${pembelian }">
+									<c:forEach var="detailPembelian" items="${detailPembelian }">
 										<tr>
-											<td>SAP${pembelian.id }</td>
-											<td>${pembelian.detailPembelian.barang.namaBarang }</td>
-											<td>${pembelian.detailPembelian.jumlah }</td>
-											<td>${pembelian.detailPembelian.distributor.namaDistributor }</td>
+											<td>SAP${detailPembelian.pembelian.id }</td>
+											<td>${detailPembelian.barang.namaBarang }</td>
+											<td>${detailPembelian.jumlah }</td>
+											<td>${detailPembelian.distributor.namaDistributor }</td>
 											<td>
-												<button type="button" id="${pembelian.id }"
+												<button type="button" id="${detailPembelian.id }"
 													class="btn btn-info detail-btn">Detail</button>
-												<button type="button" id="${pembelian.id }"
+												<button type="button" id="${detailPembelian.id }"
 													class="btn btn-warning update-btn">Update</button>
-												<button type="button" data-id="${pembelian.id }"
+												<button type="button" data-id="${detailPembelian.id }"
 													class="btn btn-primary delete-btn">Hapus</button>
 											</td>
 										</tr>

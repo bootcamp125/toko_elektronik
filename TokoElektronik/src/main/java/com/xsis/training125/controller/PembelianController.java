@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.xsis.training125.model.Barang;
+import com.xsis.training125.model.DetailPembelian;
 import com.xsis.training125.model.Distributor;
 import com.xsis.training125.model.Pembelian;
 import com.xsis.training125.service.BarangService;
+import com.xsis.training125.service.DetailPembelianService;
 import com.xsis.training125.service.DistributorService;
 import com.xsis.training125.service.PembelianService;
 
@@ -27,6 +29,8 @@ public class PembelianController {
 
 	@Autowired
 	PembelianService pembelianService;
+	@Autowired
+	DetailPembelianService detailPembelianService;
 	@Autowired
 	BarangService barangService;
 	@Autowired
@@ -47,6 +51,8 @@ public class PembelianController {
 		model.addAttribute("barang", barang);
 		List<Pembelian> pembelian = pembelianService.getAllPembelian();
 		model.addAttribute("pembelian",pembelian);
+		List<DetailPembelian> detailPembelian = detailPembelianService.getAllDetailPembelian();
+		model.addAttribute("detailPembelian",detailPembelian);
 		return "formDetailPembelian";
 	}
 	
