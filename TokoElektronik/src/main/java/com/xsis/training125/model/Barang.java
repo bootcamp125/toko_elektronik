@@ -28,6 +28,8 @@ public class Barang {
 	private int id;
 	@Column(name="nama_barang")
 	private String namaBarang;
+	private String kategori;
+	private String deskripsi;
 	@Column(name="tanggal_masuk")
 	@Temporal(TemporalType.DATE)
 	private Date tanggalMasuk;
@@ -46,11 +48,15 @@ public class Barang {
 	
 	public Barang(){}
 	
-	public Barang(int id, String namaBarang, Date tanggalMasuk, int stock, String merk, int harga, Diskon diskon,
-			List<DetailPembelian> detailPembelian, List<DetailPenjualan> detailPenjualan) {
+	
+	public Barang(int id, String namaBarang, String kategori, String deskripsi, Date tanggalMasuk, int stock,
+			String merk, int harga, Diskon diskon, List<DetailPembelian> detailPembelian,
+			List<DetailPenjualan> detailPenjualan) {
 		super();
 		this.id = id;
 		this.namaBarang = namaBarang;
+		this.kategori = kategori;
+		this.deskripsi = deskripsi;
 		this.tanggalMasuk = tanggalMasuk;
 		this.stock = stock;
 		this.merk = merk;
@@ -59,6 +65,28 @@ public class Barang {
 		this.detailPembelian = detailPembelian;
 		this.detailPenjualan = detailPenjualan;
 	}
+
+
+
+	public String getKategori() {
+		return kategori;
+	}
+
+
+	public void setKategori(String kategori) {
+		this.kategori = kategori;
+	}
+
+
+	public String getDeskripsi() {
+		return deskripsi;
+	}
+
+
+	public void setDeskripsi(String deskripsi) {
+		this.deskripsi = deskripsi;
+	}
+
 
 	public int getId() {
 		return id;

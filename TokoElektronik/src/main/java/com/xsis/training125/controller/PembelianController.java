@@ -42,7 +42,9 @@ public class PembelianController {
 		model.addAttribute("pembelian",pembelian);
 		List<Barang> barang = barangService.getAllBarang();
 		model.addAttribute("barang", barang);
-		return "pembelian2";
+		List<Distributor> distributor = distributorService.getAllDistributor();
+		model.addAttribute("distributor", distributor);
+		return "pembelian3";
 	}
 	
 	@RequestMapping(value = "/tambahdetailpembelian", method=RequestMethod.GET)
