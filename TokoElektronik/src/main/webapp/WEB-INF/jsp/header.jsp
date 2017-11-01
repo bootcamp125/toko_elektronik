@@ -177,7 +177,7 @@
 						}
 					});
 
-				});
+				});//a
 				$('#supplier-btn').on('click', function() {
 					$.ajax({
 						success : function(data) {
