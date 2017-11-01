@@ -21,7 +21,7 @@ import com.xsis.training125.service.PenjualanService;
 @Controller
 @RequestMapping("/penjualan")
 public class PenjualanController {
-	
+	//a
 	@Autowired
 	PenjualanService penjualanService;
 }

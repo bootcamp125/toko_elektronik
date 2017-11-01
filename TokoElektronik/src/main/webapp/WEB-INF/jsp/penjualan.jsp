@@ -145,7 +145,7 @@
 																					success : function(
 																							data) {
 																						//console.log(JSON.stringify(data));
-																						window.location = "/penjualan/tambahdetailpembelian/";
+																						window.location = "/penjualan/tambahpembelian/";
 																					}
 																				});
 
