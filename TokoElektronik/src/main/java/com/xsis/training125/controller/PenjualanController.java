@@ -18,6 +18,7 @@ import com.xsis.training125.model.Barang;
 import com.xsis.training125.model.DetailPenjualan;
 import com.xsis.training125.model.Distributor;
 import com.xsis.training125.model.Penjualan;
+import com.xsis.training125.service.BarangService;
 import com.xsis.training125.service.DetailPenjualanService;
 import com.xsis.training125.service.PenjualanService;
 
@@ -29,11 +30,15 @@ public class PenjualanController {
 	PenjualanService penjualanService;
 	@Autowired
 	DetailPenjualanService detailPenjualanService;
+	@Autowired
+	BarangService barangService;
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public String index(Model model){
 		List<Penjualan> penjualan = penjualanService.getAllPenjualan();
 		model.addAttribute("penjualan",penjualan);
+		List<Barang> barang = barangService.getAllBarang();
+		model.addAttribute("barang", barang);
 		return "penjualan";
 	}
 	@RequestMapping(value = "/tambahdetailpenjualan", method=RequestMethod.GET)

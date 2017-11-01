@@ -42,8 +42,8 @@ public class KaryawanController {
 	
 	@RequestMapping(value = "/tambahkaryawan", method=RequestMethod.GET)
 	public String tambahKaryawan( Model model){
-		List<Karyawan> karyawan = karyawanService.getAllKaryawan();
-		model.addAttribute("karyawan", karyawan);
+		List<Pekerjaan> pekerjaan = pekerjaanService.getAllPekerjaan();
+		model.addAttribute("pekerjaan", pekerjaan);
 		return "formKaryawan";
 	}
 	
