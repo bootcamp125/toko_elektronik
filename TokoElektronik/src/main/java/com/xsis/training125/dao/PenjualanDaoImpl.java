@@ -16,10 +16,55 @@ public class PenjualanDaoImpl implements PenjualanDao{
 	SessionFactory sessionFactory;
 
 	@Override
-	public List<Penjualan> getAllPekerjaan() {
+	public List<Penjualan> getAllPenjualan() {
 		// TODO Auto-generated method stub
-		return null;
+		Session session = sessionFactory.getCurrentSession();
+		String myHql = "from Penjualan";
+		List<Penjualan> penjualan = session.createQuery(myHql).list();
+		if(penjualan.isEmpty()){
+			return null;
+		}
+		return penjualan;
 	}
+
+
+	@Override
+	public Penjualan getPenjualanById(int id) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		
+		Penjualan penjualan = session.get(Penjualan.class, id);
+		return penjualan;
+	}
+
+	@Override
+	public void save(Penjualan penjualan) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		session.save(penjualan);
+		session.flush();
+	}
+
+	@Override
+	public void update(Penjualan penjualan) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		session.update(penjualan);
+		session.flush();
+	}
+
+	@Override
+	public void delete(int id) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		Penjualan penjualan = new Penjualan();
+		penjualan.setNoNota(id);
+		
+		session.delete(penjualan);
+		session.flush();
+	}
+
+	
 	
 	
 

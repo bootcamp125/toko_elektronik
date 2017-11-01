@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.xsis.training125.model.DetailPenjualan;
-import com.xsis.training125.model.Retur;
 
 @Repository
 public class DetailPenjualanDaoImpl implements DetailPenjualanDao {
