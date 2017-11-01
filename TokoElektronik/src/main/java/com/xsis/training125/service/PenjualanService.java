@@ -18,20 +18,20 @@ public class PenjualanService {
 
 	@Autowired
 	PenjualanDao penjualanDao;
-/*	
+
 	public List<Penjualan> getAllPenjualan() {
 		// TODO Auto-generated method stub
-		return penjualanDao.getAllPekerjaan();
+		return penjualanDao.getAllPenjualan();
 	}
 
 	public void save(Penjualan penjualan) {
 		// TODO Auto-generated method stub
-		
+		penjualanDao.save(penjualan);
 	}
 
 	public Penjualan getPenjualanById(int id) {
 		// TODO Auto-generated method stub
-		return penjualanDao.getPekerjaanById(id);
+		return penjualanDao.getPenjualanById(id);
 	}
 
 	public void update(Penjualan penjualan) {
@@ -42,11 +42,8 @@ public class PenjualanService {
 	public void delete(int id) {
 		// TODO Auto-generated method stub
 		penjualanDao.delete(id);
-	}*/
-
-	public List<Penjualan> getAllPenjualan() {
-		// TODO Auto-generated method stub
-		return penjualanDao.getAllPekerjaan();
 	}
+
+	
 	
 }
