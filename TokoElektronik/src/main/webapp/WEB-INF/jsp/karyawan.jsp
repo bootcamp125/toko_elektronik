@@ -251,7 +251,7 @@
 			  </div>
 			   <div class="form-group">
 			    <label for="textPekerjaan">Pekerjaan</label>
-			    <input type="text" class="form-control" id="textPekerjaan" name="pekerjaan" > 
+			    <input type="text" class="form-control" id="textPekerjaan" name="pekerjaan" >  
 			  </div>
 			</form>
 	      </div>
