@@ -179,7 +179,7 @@
 												<button type="button" id="${detailPenjualan.penjualan.noNota }"
 													class="btn btn-info detail-btn">Detail</button>
 												<button type="button" id="${detailPenjualan.penjualan.noNota }"
-													class="btn btn-warning update-btn">Update</button>
+													class="btn btn-warning update-btn">Updatea</button>
 												<button type="button" data-id="${detailPenjualan.penjualan.noNota }"
 													class="btn btn-primary delete-btn">Hapus</button>
 											</td>
