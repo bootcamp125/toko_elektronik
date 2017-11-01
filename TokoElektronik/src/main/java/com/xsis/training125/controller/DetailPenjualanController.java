@@ -56,7 +56,7 @@ public class DetailPenjualanController {
 	@RequestMapping(value = "/tambahpenjualan", method=RequestMethod.GET)
 	public String tambahPenjualan( Model model){
 
-		return "formDetailPembelian";
+		return "formDetailPenjualan";
 	}
 	
 	@RequestMapping(value="/save", method=RequestMethod.POST)
