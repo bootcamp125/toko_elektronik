@@ -26,21 +26,23 @@ public class Distributor {
 	@Column(name = "no_contact")
 	private int noContact;
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "distributor")
-	private List<Pembelian> pembelian;
+	private List<DetailPembelian> detailPembelian;
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "distributor")
 	private List<Retur> retur;
 
 	public Distributor() {
 	}
 
-	public Distributor(int id, String namaDistributor, String alamat, int noContact, List<Pembelian> pembelian,
-			List<Retur> retur) {
+	
+
+	public Distributor(int id, String namaDistributor, String alamat, int noContact,
+			List<DetailPembelian> detailPembelian, List<Retur> retur) {
 		super();
 		this.id = id;
 		this.namaDistributor = namaDistributor;
 		this.alamat = alamat;
 		this.noContact = noContact;
-		this.pembelian = pembelian;
+		this.detailPembelian = detailPembelian;
 		this.retur = retur;
 	}
 
@@ -78,13 +80,15 @@ public class Distributor {
 		this.noContact = noContact;
 	}
 
-	public List<Pembelian> getPembelian() {
-		return pembelian;
+	public List<DetailPembelian> getDetailPembelian() {
+		return detailPembelian;
 	}
 
-	public void setPembelian(List<Pembelian> pembelian) {
-		this.pembelian = pembelian;
+	public void setDetailPembelian(List<DetailPembelian> detailPembelian) {
+		this.detailPembelian = detailPembelian;
 	}
+
+
 
 	public List<Retur> getRetur() {
 		return retur;
