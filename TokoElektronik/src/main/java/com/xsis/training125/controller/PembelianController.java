@@ -45,6 +45,8 @@ public class PembelianController {
 		model.addAttribute("distributor",distributor);
 		List<Barang> barang = barangService.getAllBarang();
 		model.addAttribute("barang", barang);
+		List<Pembelian> pembelian = pembelianService.getAllPembelian();
+		model.addAttribute("pembelian",pembelian);
 		return "formDetailPembelian";
 	}
 	

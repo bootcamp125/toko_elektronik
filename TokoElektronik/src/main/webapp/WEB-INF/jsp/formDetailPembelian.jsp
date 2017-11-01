@@ -144,6 +144,195 @@
 					</div>
 				</div>
 			</div>
+			<div class="row">
+				<div class="col-md-12 col-sm-12 col-xs-12">
+					<div class="x_panel">
+						<div class="x_title">
+							<h2>Daftar Pembelian Barang</h2>
+							<ul class="nav navbar-right panel_toolbox">
+								<li><a class="collapse-link"><i
+										class="fa fa-chevron-up"></i></a></li>
+								<li class="dropdown"><a href="#" class="dropdown-toggle"
+									data-toggle="dropdown" role="button" aria-expanded="false"><i
+										class="fa fa-wrench"></i></a>
+									<ul class="dropdown-menu" role="menu">
+										<li><a href="#">Settings 1</a></li>
+										<li><a href="#">Settings 2</a></li>
+									</ul></li>
+								<li><a class="close-link"><i class="fa fa-close"></i></a></li>
+							</ul>
+							<div class="clearfix"></div>
+						</div>
+						<div class="x_content">
+							<p class="text-muted font-13 m-b-30">text here</p>
+							
+							<table id="datatable" class="table table-striped table-bordered">
+								<thead>
+									<tr>
+										<th>No Pembelian</th>
+										<th>Tanggal Pembelian</th>
+										<th>Total Harga</th>
+										<th>Nama Karyawan</th>
+										<th>Tindakan</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach var="pembelian" items="${pembelian }">
+										<tr>
+											<td>SAP${pembelian.id }</td>
+											<td>${pembelian.tanggalPembelian }</td>
+											<td>${pembelian.totalHarga }</td>
+											<td>${pembelian.karyawan.namaK }</td>
+											<td>
+												<button type="button" id="${pembelian.id }"
+													class="btn btn-info detail-btn">Detail</button>
+												<button type="button" id="${pembelian.id }"
+													class="btn btn-warning update-btn">Update</button>
+												<button type="button" data-id="${pembelian.id }"
+													class="btn btn-primary delete-btn">Hapus</button>
+											</td>
+										</tr>
+									</c:forEach>
+
+								</tbody>
+							</table>
+							<script type="text/javascript"
+								src="/assets/js/jquery-3.2.1.min.js"></script>
+							<script type="text/javascript">
+								$(document)
+										.ready(
+												function() {
+													$('#tambah-pembelian-btn')
+															.on(
+																	'click',
+																	function() {
+																		$
+																				.ajax({
+																					success : function(
+																							data) {
+																						//console.log(JSON.stringify(data));
+																						window.location = "/pembelian/tambahdetailpembelian/";
+																					}
+																				});
+
+																	});
+
+													var id = 0;
+													$('.update-btn')
+															.on(
+																	'click',
+																	function() {
+
+																		//ambil data dari server => ajax
+																		id = $(
+																				this)
+																				.attr(
+																						'id');
+
+																		$
+																				.ajax({
+																					type : 'POST',
+																					url : 'pembelian/pembelianid/'
+																							+ id,
+																					success : function(
+																							data) {
+																						//console.log(JSON.stringify(data));
+																						_setFieldUpdateModal(data);
+																					},
+																					dataType : 'json'
+																				});
+
+																		$(
+																				'#updateModal')
+																				.modal();
+																	});
+
+													function _setFieldUpdateModal(
+															data) {
+														$(
+																'#texttanggalPembelian')
+																.val(
+																		data.tanggalPembelian);
+														$('#texttotalHarga')
+																.val(
+																		data.totalHarga);
+														$('#textdistributor')
+																.val(
+																		data.distributor);
+														$('#textkaryawan').val(
+																data.karyawan);
+
+													}
+
+													$('.delete-btn')
+															.on(
+																	'click',
+																	function() {
+
+																		//ambil data dari server => ajax
+																		id = $(
+																				this)
+																				.attr(
+																						'data-id');
+
+																		$
+																				.ajax({
+																					type : 'DELETE',
+																					url : 'pembelian/delete/'
+																							+ id,
+																					success : function() {
+																						window.location = "/pembelian";
+																					}
+																				});
+
+																	});
+
+													//event submit data for update
+													$('#submit-update')
+															.click(
+																	function() {
+
+																		//Object ala js
+																		var Pembelian = {
+																			id : id,
+																			tanggalPembelian : $(
+																					'#texttanggalPembelian')
+																					.val(),
+																			totalHarga : $(
+																					'#texttotalHarga')
+																					.val(),
+																			distributor : $(
+																					'#textdistributor')
+																					.val(),
+																			karyawan : $(
+																					'#textkaryawan')
+																					.val(),
+
+																		};
+																		//ajax update
+																		//ajax update
+																		$
+																				.ajax({
+																					type : 'PUT',
+																					url : 'pembelian/update',
+																					contentType : "application/json",
+																					data : JSON
+																							.stringify(Pembelian),
+																					success : function(
+																							data) {
+																						window.location = "/pembelian";
+																					}
+																				});
+																	});
+
+												});
+							</script>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			
 		</div>
 	</div>
 	<!-- /page content -->

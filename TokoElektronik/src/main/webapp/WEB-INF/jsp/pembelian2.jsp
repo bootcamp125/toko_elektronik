@@ -104,9 +104,9 @@
 							<table id="datatable" class="table table-striped table-bordered">
 								<thead>
 									<tr>
+										<th>No Pembelian</th>
 										<th>Tanggal Pembelian</th>
 										<th>Total Harga</th>
-										<th>Nama Distributor</th>
 										<th>Nama Karyawan</th>
 										<th>Tindakan</th>
 									</tr>
@@ -114,9 +114,9 @@
 								<tbody>
 									<c:forEach var="pembelian" items="${pembelian }">
 										<tr>
+											<td>SAP${pembelian.id }</td>
 											<td>${pembelian.tanggalPembelian }</td>
 											<td>${pembelian.totalHarga }</td>
-											<td>${pembelian.distributor.namaDistributor }</td>
 											<td>${pembelian.karyawan.namaK }</td>
 											<td>
 												<button type="button" id="${pembelian.id }"

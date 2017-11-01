@@ -111,7 +111,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach var="detailPenjualan" items="${detailPenjualan }">
+									<c:forEach var="penjualan" items="${penjualan }">
 										<tr>
 											<td>${penjualan.tanggalPenjualan }</td>
 											<td>${penjualan.totalHarga }</td>

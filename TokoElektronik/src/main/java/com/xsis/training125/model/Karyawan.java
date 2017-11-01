@@ -1,14 +1,17 @@
 package com.xsis.training125.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -39,18 +42,23 @@ public class Karyawan {
 	@ManyToOne
 	@JoinColumn(name = "id_pekerjaan")
 	private Pekerjaan pekerjaan;
-	@OneToOne(mappedBy="karyawan")
-	private Pembelian pembelian;
-	@OneToOne(mappedBy="karyawan")
-	private Penjualan penjualan;
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="karyawan")
+	private List<Pembelian> pembelian;
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="karyawan")
+	private List<Penjualan> penjualan;
 	@OneToOne(mappedBy="karyawan")
 	private Retur retur;
 
 	public Karyawan() {
 	}
 
+	
+
+
+
 	public Karyawan(int id, String usernameK, String passwordK, String namaK, String jk, String alamat,
-			Date tanggalMasuk, int gaji, Pekerjaan pekerjaan, Pembelian pembelian, Penjualan penjualan, Retur retur) {
+			Date tanggalMasuk, int gaji, Pekerjaan pekerjaan, List<Pembelian> pembelian, List<Penjualan> penjualan,
+			Retur retur) {
 		super();
 		this.id = id;
 		this.usernameK = usernameK;
@@ -65,6 +73,10 @@ public class Karyawan {
 		this.penjualan = penjualan;
 		this.retur = retur;
 	}
+
+
+
+
 
 	public int getId() {
 		return id;
@@ -122,19 +134,20 @@ public class Karyawan {
 		this.alamat = alamat;
 	}
 
-	public Pembelian getPembelian() {
+
+	public List<Pembelian> getPembelian() {
 		return pembelian;
 	}
 
-	public void setPembelian(Pembelian pembelian) {
+	public void setPembelian(List<Pembelian> pembelian) {
 		this.pembelian = pembelian;
 	}
 
-	public Penjualan getPenjualan() {
+	public List<Penjualan> getPenjualan() {
 		return penjualan;
 	}
 
-	public void setPenjualan(Penjualan penjualan) {
+	public void setPenjualan(List<Penjualan> penjualan) {
 		this.penjualan = penjualan;
 	}
 
