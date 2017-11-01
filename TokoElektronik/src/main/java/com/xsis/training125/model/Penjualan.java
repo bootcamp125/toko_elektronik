@@ -37,7 +37,7 @@ public class Penjualan {
 	private List<DetailPenjualan> detailPenjualan;
 	
 	public Penjualan(){}
- 
+  
 	public Penjualan(int noNota, Date tanggalPenjualan, int totalHarga, Karyawan karyawan,
 			List<DetailPenjualan> detailPenjualan) {
 		super();
