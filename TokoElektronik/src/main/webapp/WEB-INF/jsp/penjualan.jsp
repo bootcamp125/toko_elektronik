@@ -114,7 +114,7 @@
 								<tbody>
 									<c:forEach var="penjualan" items="${penjualan }">
 										<tr>
-											<td>SSAP${penjualan.id }</td>
+											<td>SSAP${penjualan.noNota }</td>
 											<td>${penjualan.tanggalPenjualan }</td>
 											<td>${penjualan.totalHarga }</td>
 											<td>${penjualan.karyawan.namaK }</td>

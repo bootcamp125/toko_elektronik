@@ -15,16 +15,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.xsis.training125.model.Barang;
+import com.xsis.training125.model.DetailPenjualan;
 import com.xsis.training125.model.Distributor;
 import com.xsis.training125.model.Penjualan;
+import com.xsis.training125.service.DetailPenjualanService;
 import com.xsis.training125.service.PenjualanService;
 
 @Controller
 @RequestMapping("/penjualan")
 public class PenjualanController {
-	//a
+	
 	@Autowired
 	PenjualanService penjualanService;
+	@Autowired
+	DetailPenjualanService detailPenjualanService;
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public String index(Model model){
@@ -36,6 +40,8 @@ public class PenjualanController {
 	public String tambahPembelian( Model model){
 		List<Penjualan> penjualan = penjualanService.getAllPenjualan();
 		model.addAttribute("penjualan",penjualan);
+		List<DetailPenjualan> detailPenjualan = detailPenjualanService.getAllDetailPenjualan();
+		model.addAttribute("detailPenjualan", detailPenjualan);
 		return "formPenjualan";
 	}
 	

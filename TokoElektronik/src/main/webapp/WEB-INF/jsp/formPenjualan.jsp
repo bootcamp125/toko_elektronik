@@ -168,18 +168,19 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach var="penjualan" items="${penjualan }">
+									<c:forEach var="detailPenjualan" items="${detailPenjualan }">
 										<tr>
-											<td>SAP${penjualan.noNota }</td>
-											<td>${penjualan.detailPenjualan.barang.namaBarang }</td>
-											<td>${penjualan.detailPenjualan.jumlah }</td>
-											<td>${penjualan.detailPenjualan.diskon.diskon }</td>
+											<td>${detailPenjualan.penjualan.noNota }</td>
+											<td>${detailPenjualan.barang.namaBarang }</td>
+											<td>${detailPenjualan.jumlah }</td>
+											<td>${detailPenjualan.diskon.diskon }</td>
+											<td>${detailPenjualan.barang.harga }</td>
 											<td>
-												<button type="button" id="${penjualan.id }"
+												<button type="button" id="${detailPenjualan.penjualan.noNota }"
 													class="btn btn-info detail-btn">Detail</button>
-												<button type="button" id="${penjualan.id }"
+												<button type="button" id="${detailPenjualan.penjualan.noNota }"
 													class="btn btn-warning update-btn">Update</button>
-												<button type="button" data-id="${penjualan.id }"
+												<button type="button" data-id="${detailPenjualan.penjualan.noNota }"
 													class="btn btn-primary delete-btn">Hapus</button>
 											</td>
 										</tr>
