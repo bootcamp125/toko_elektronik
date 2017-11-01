@@ -104,6 +104,7 @@
 							<table id="datatable" class="table table-striped table-bordered">
 								<thead>
 									<tr>
+										<th>No Nota</th>
 										<th>Tanggal Pembelian</th>
 										<th>Total Harga</th>
 										<th>Nama Karyawan</th>
@@ -113,6 +114,7 @@
 								<tbody>
 									<c:forEach var="penjualan" items="${penjualan }">
 										<tr>
+											<td>SSAP${penjualan.id }</td>
 											<td>${penjualan.tanggalPenjualan }</td>
 											<td>${penjualan.totalHarga }</td>
 											<td>${penjualan.karyawan.namaK }</td>
