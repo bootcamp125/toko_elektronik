@@ -34,7 +34,8 @@ public class PenjualanController {
 	}
 	@RequestMapping(value = "/tambahdetailpenjualan", method=RequestMethod.GET)
 	public String tambahPembelian( Model model){
-		
+		List<Penjualan> penjualan = penjualanService.getAllPenjualan();
+		model.addAttribute("penjualan",penjualan);
 		return "formPenjualan";
 	}
 	
