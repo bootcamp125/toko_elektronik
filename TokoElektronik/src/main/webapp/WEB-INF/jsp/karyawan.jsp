@@ -100,7 +100,13 @@
 									
 										<tr>
 											<td>${karyawan.namaK }</td>
+<<<<<<< HEAD
 											<td>${karyawan.pekerjaan.deskripsi }</td>
+=======
+											<td>
+											${karyawan.pekerjaan.deskripsi }
+											</td>
+>>>>>>> branch 'master' of https://github.com/bootcamp125/toko_elektronik.git
 											<td>${karyawan.jk}</td>
 											<td>${karyawan.alamat }</td>
 											<td>${karyawan.tanggalMasuk }</td>
