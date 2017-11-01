@@ -101,9 +101,7 @@
 										<tr>
 											<td>${karyawan.namaK }</td>
 											<td>
-											<c:forEach var="pekerjaan" items="${pekerjaan }">
 											${karyawan.pekerjaan.deskripsi }
-											</c:forEach>
 											</td>
 											<td>${karyawan.jk}</td>
 											<td>${karyawan.alamat }</td>
