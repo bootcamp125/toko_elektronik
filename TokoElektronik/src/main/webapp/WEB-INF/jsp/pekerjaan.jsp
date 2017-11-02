@@ -169,10 +169,7 @@
 														$('#textNama').val(data.deskripsi);
 													}
 
-													$('.delete-btn')
-															.on(
-																	'click',
-																	function() {
+													$('.delete-btn').on('click',function() {
 
 																		//ambil data dari server => ajax
 																		id = $(

@@ -200,7 +200,7 @@
 					$.ajax({
 						success : function(data) {
 							//console.log(JSON.stringify(data));
-							window.location = "/pembelian";
+							window.location = "/detailpembelian";
 						}
 					});
 

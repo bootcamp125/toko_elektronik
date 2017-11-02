@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.xsis.training125.dao.KaryawanDao;
+import com.xsis.training125.dao.PekerjaanDao;
 import com.xsis.training125.model.Employee;
 import com.xsis.training125.model.Karyawan;
+import com.xsis.training125.model.Pekerjaan;
 
 @Transactional
 @Service
@@ -15,6 +17,8 @@ public class KaryawanService {
 
 	@Autowired
 	KaryawanDao karyawanDao;
+	@Autowired
+	PekerjaanDao pekerjaanDao;
 	
 	public List<Karyawan> Login(String username, String pass) {
 		// TODO Auto-generated method stub
@@ -44,7 +48,10 @@ public class KaryawanService {
 
 	public void update(Karyawan karyawan) {
 		// TODO Auto-generated method stub
+		Pekerjaan pekerjaan = karyawan.getPekerjaan();
+		
 		karyawanDao.update(karyawan);
+		pekerjaanDao.update(pekerjaan);
 	}
 
 	public void delete(int id) {

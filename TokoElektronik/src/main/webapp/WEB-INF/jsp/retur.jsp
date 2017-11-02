@@ -53,7 +53,7 @@
 	 		</c:forEach>
 	 	</tbody>
  	</table>
- 		<form action="/retur/save" method="POST">
+ 		<form action="/pembelian/save" method="POST">
  			<table>
  				<tr>
  					<td>jumlah</td>

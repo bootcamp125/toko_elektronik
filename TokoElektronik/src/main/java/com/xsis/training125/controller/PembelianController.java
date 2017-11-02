@@ -24,7 +24,7 @@ import com.xsis.training125.service.DistributorService;
 import com.xsis.training125.service.PembelianService;
 
 @Controller
-@RequestMapping("/pembelian")
+@RequestMapping("/")
 public class PembelianController {
 
 	@Autowired
@@ -36,16 +36,7 @@ public class PembelianController {
 	@Autowired
 	DistributorService distributorService;
 	
-	@RequestMapping(method=RequestMethod.GET)
-	public String index(Model model){
-		List<Pembelian> pembelian = pembelianService.getAllPembelian();
-		model.addAttribute("pembelian",pembelian);
-		List<Barang> barang = barangService.getAllBarang();
-		model.addAttribute("barang", barang);
-		List<Distributor> distributor = distributorService.getAllDistributor();
-		model.addAttribute("distributor", distributor);
-		return "pembelian4";
-	}
+	
 	
 	@RequestMapping(value = "/tambahdetailpembelian", method=RequestMethod.GET)
 	public String tambahPembelian( Model model){

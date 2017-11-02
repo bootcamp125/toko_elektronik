@@ -40,20 +40,20 @@ public class DetailPembelianController {
 	@RequestMapping(method=RequestMethod.GET)
 	public String index(Model model){
 		
-		List<DetailPembelian> detailPembelian = detailPembelianService.getAllDetailPembelian();
-		model.addAttribute("detailPembelian", detailPembelian);
 		List<Pembelian> pembelian = pembelianService.getAllPembelian();
-		model.addAttribute("pembelian",  pembelian);
+		model.addAttribute("pembelian",pembelian);
 		List<Barang> barang = barangService.getAllBarang();
 		model.addAttribute("barang", barang);
-		return "detailPembelian";
+		List<Distributor> distributor = distributorService.getAllDistributor();
+		model.addAttribute("distributor", distributor);
+		return "detailpembelian4";
 	}
 	
 	
 	@RequestMapping(value="/save", method=RequestMethod.POST)
 	public String savingData(@ModelAttribute DetailPembelian detailPembelian){
 		detailPembelianService.save(detailPembelian);
-		return "redirect:/detailPembelian";
+		return "redirect:/detailpembelian";
 	}
 	
 	@RequestMapping(value="/detailPembelianid/{id}")

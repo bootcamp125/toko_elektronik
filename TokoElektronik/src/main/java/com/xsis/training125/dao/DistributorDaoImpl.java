@@ -7,7 +7,6 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.xsis.training125.model.Diskon;
 import com.xsis.training125.model.Distributor;
 
 @Repository

@@ -97,10 +97,10 @@
 			</div>
 			<div class="x_content">
 				<p class="text-muted font-13 m-b-30">text here</p>
-				<button type="button" id="tambah-pembelian-btn"
-					class="btn btn-success btn-lg">
-					<i class="fa fa-plus"></i> Barang Baru
-				</button>
+				<button type="button" id="tambah-barang-btn"
+								class="btn btn-success btn-lg">
+								<i class="fa fa-plus"></i> Tambah data Barang
+							</button>
 				<!-- action="pembelian" method="GET"  -->
 				<form id="111" class="form-horizontal form-label-left" novalidate>
 					<span class="section">Personal Info</span>
@@ -121,8 +121,8 @@
 							Barang<span class="required">*</span>
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							<select class="distributor select2_single form-control"
-								name="distributor" tabindex="-1">
+							<select id="barang" class="barang select2_single form-control"
+								name="barang" tabindex="-1">
 								<c:forEach var="barang" items="${barang }">
 									<option value="${barang.id}">${barang.namaBarang}</option>
 								</c:forEach>
@@ -180,7 +180,7 @@
 							for="deskripsi">Deskripsi <span class="required">*</span>
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input id="deskripsi" type="text" name="deskripsi"
+							<input required="required" id="deskripsi" type="text" name="deskripsi"
 								data-validate-length-range="5,20"
 								class="optional form-control col-md-7 col-xs-12">
 						</div>
@@ -189,41 +189,42 @@
 					<div class="ln_solid"></div>
 					<div class="form-group">
 						<div class="col-md-6 col-md-offset-3">
-							<button type="submit" class="btn btn-primary">Cancel</button>
-							
-							<button type="button" id="tambah-btn"
-									class="pull-right btn btn-primary tambah-btn">Tambah
-									transaksi</button>
+							<button class="btn btn-primary" type="reset">Reset</button>
+							<button type="reset" id="tambah-btn"
+									class="pull-right btn btn-primary tambah-btn">Tambah Barang</button>
 						</div>
 					</div>
 				</form>
 
 				<div class="clearfix"></div>
-
 				<div class="row">
-
 					<div class="row">
 						<div class="col-md-12 col-sm-12 col-xs-12">
 							<div class="x_panel">
 								<div class="x_title">
 									<h2>Daftar Pembelian</h2>
-
 									<div class="clearfix"></div>
 								</div>
 								<div class="x_content">
 
 		<table id="datatable2"
 		class="table table-striped table-bordered">
+		<form action="/detailpembelian/save" method="POST">
 		<thead>
 			<tr>
 				<th>No Produk</th>
+				<th>Nama barang</th>
 				<th>Kategori</th>
 				<th>Distributor</th>
 				<th>Jumlah Barang</th>
 				<th>Harga</th>
 				<th>Deskripsi</th>
+				<th>Batal</th>
 			</tr>
-
+		 <tr>
+		 <button type="button" class="delete-row">Delete Row</button>
+		 <button type="submit" name="submit" class="btn btn-success">Submit</button>
+		 </tr>
 		</thead>
 		<tbody>
 											
@@ -233,10 +234,30 @@
 			src="/assets/js/jquery-3.2.1.min.js"></script>
 		<script type="text/javascript">
 		$(document).ready(function(){
+			
+			$('#tambah-barang-btn').on('click', function() {
+	            $.ajax({
+	                success: function( data) {
+	                  //console.log(JSON.stringify(data));
+	                  window.location = "/barang/tambahbarang/";
+	                }
+	              });
+
+	          });
+			
+			
+			
 	        $(".tambah-btn").click(function(){
+	        	
 	            var noProduk = $("#produk").val();
+	            var barang = $("#barang").val();
 	            var kategori = $("#kategori").val();
-	            var markup = "<tr><td>" + noProduk + "</td><td>" + kategori + "</td></tr>";
+	            var distributor = $("#distributor").val();
+	            var jumlahBarang = $("#jumlahBarang").val();
+	            var harga=$("#harga").val();
+	            var deskripsi=$("#deskripsi").val();
+	            var markup = 
+	            "<tr><td name='produk'>" + noProduk + "</td><td name='barang'>" + barang + "</td><td name='kategori'>"+kategori+ "</td><td name='distributor'>"+distributor+"</td><td name='jumlahBarnag'>"+jumlahBarang+"</td><td name='harga'>"+harga+"</td><td name='deskripsi'>"+deskripsi+"</td><td><input type='checkbox' name='record'></td></tr>";
 	            $("table tbody").append(markup);
 	        });
 	        
@@ -248,11 +269,80 @@
 	                }
 	            });
 	        });
-	    });   
-				 
-				 
+	        
+	        var id = 0;
+ 			$('.update-btn').on('click', function(){
+ 				
+ 				//ambil data dari server => ajax
+ 				id = $(this).attr('id');
+ 				
+ 				$.ajax({
+ 					type: 'POST',
+ 					url : 'pembelian/pembelianid/'+id,
+ 					success : function(data){
+ 						//console.log(JSON.stringify(data));
+ 						_setFieldUpdateModal(data);
+ 					},
+ 					dataType: 'json'
+ 				});
+ 				
+ 				$('#updateModal').modal();
+ 			});
+ 			
+ 			function _setFieldUpdateModal(data){
+ 				$('#textJumlah').val(data.jumlah);
+				$('#textKeterangan').val(data.keterangan);
+				$('#textTanggalRetur').val(data.tanggalRetur);
+				$('#textTotalHargaRetur').val(data.totalHargaRetur);
+				$('#textkaryawan').val(data.karyawan.namaK);
+				$('#textdistributor').val(data.distributor.namaDistributor);
+				$('#textpembelian').val(data.pembelian.id);
+ 			}
+ 			
+ 			$('.delete-btn').on('click', function() {
+
+				//ambil data dari server => ajax
+				id = $(this).attr('data-id');
+
+				$.ajax({
+					type : 'DELETE',
+					url : 'pembelian/delete/' + id,
+					success : function() {
+						window.location = "/pembelian";
+					}
+				});
 				
-				 
+
+			});
+ 			
+ 			//event submit data for update
+ 			$('#submit-update').click(function(){
+ 				
+ 				//Object ala js
+ 				var Retur = {
+ 					id : id,
+ 					jumlah : $('#textJumlah').val(),
+ 					keterangan : $('#textKeterangan').val(),
+ 					tanggalRetur : $('#textTanggalRetur').val(),
+ 					totalHargaRetur : $('#textTotalHargaRetur').val(),
+ 					karyawan : $('#textkaryawan').val(),
+ 					distributor : $('#textdistributor').val(),
+ 					pembelian : $('#textpembelian').val()
+ 				};
+ 				
+ 				//ajax update
+ 				$.ajax({
+ 					type: 'PUT',
+ 					url : 'retur/update',
+ 					contentType: "application/json",
+ 					data: JSON.stringify(Retur),
+ 					success: function(data){
+ 						window.location = "/retur";
+ 					}
+ 				});
+ 			});
+ 	
+	    });   
 				/* function(data) {
 					var t = $('#datatable2').DataTable();
 					var counter = 1;
@@ -270,6 +360,8 @@
 					});
 
 				}); */
+				
+				
 </script>
 				</div>
 			</div>
