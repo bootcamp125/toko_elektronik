@@ -142,10 +142,10 @@
 									<label class="control-label col-md-3 col-sm-3 col-xs-12">Pekerjaan<span class="required">*</span>
 									</label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
-										<select class="select2_single form-control" name="detailPembelian.barang.id"
+										<select class="select2_single form-control" name="pekerjaan.id"
 											tabindex="-1">
 											<c:forEach var="pekerjaan" items="${pekerjaan }">
-												<option value="${ pekerjaan.id}">${ pekerjaan.id}</option>
+												<option value="${ pekerjaan.id}">${ pekerjaan.deskripsi}</option>
 											</c:forEach>
 										</select>
 									</div>
