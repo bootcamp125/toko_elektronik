@@ -43,10 +43,15 @@ public class PekerjaanService {
 	public void update(Pekerjaan pekerjaan) {
 		// TODO Auto-generated method stub
 		pekerjaanDao.update(pekerjaan);
+		for(Karyawan karyawan : pekerjaan.getKaryawan()){
+			karyawan.setPekerjaan(pekerjaan);
+			karyawanDao.update(karyawan);
+		}
 	}
 
 	public void delete(int id) {
 		// TODO Auto-generated method stub
 		pekerjaanDao.delete(id);
+		
 	}
 }
