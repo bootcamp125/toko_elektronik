@@ -6,8 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
+import com.xsis.training125.dao.KaryawanDao;
 import com.xsis.training125.dao.PekerjaanDao;
+import com.xsis.training125.model.Karyawan;
 import com.xsis.training125.model.Pekerjaan;
 
 @Transactional
@@ -16,6 +17,8 @@ public class PekerjaanService {
 
 	@Autowired
 	PekerjaanDao pekerjaanDao;
+	@Autowired
+	KaryawanDao karyawanDao;
 	
 	public List<Pekerjaan> getAllPekerjaan() {
 		// TODO Auto-generated method stub
@@ -25,8 +28,11 @@ public class PekerjaanService {
 	public void save(Pekerjaan pekerjaan) {
 		// TODO Auto-generated method stub		
 		pekerjaanDao.save(pekerjaan);
-
 		
+		for(Karyawan karyawan : pekerjaan.getKaryawan()){
+			karyawan.setPekerjaan(pekerjaan);
+			karyawanDao.save(karyawan);
+		}
 	}
 
 	public Pekerjaan getPekerjaanById(int id) {
