@@ -130,12 +130,12 @@
 												<td class=" ">${barang.stock}</td>
 												<td class=" ">${barang.tanggalMasuk }</td>
 												<td class="a-right a-right ">$7.45</td>
-												<td class=" last"><a href="#">View</a></td>
+												<td class=" last"></td>
 											</tr>
 										</c:forEach>
 									</tbody>
 								</table>
-								<button type="button" id="btnAddUser"
+								<button type="button" id="tambah-btn"
 									class="pull-right btn btn-primary tambah-btn">Tambah
 									transaksi</button>
 
@@ -168,8 +168,9 @@
 						<div class="x_content">
 							<p class="text-muted font-13 m-b-30">Cari barang untuk
 								menambahkan transaksi</p>
-							<table id="datatable2"
-								class="table table-striped table-bordered">
+
+							<table id="datatable2" class="table table-striped table-bordered">
+
 								<thead>
 									<tr>
 										<th>Nama Barang</th>
@@ -181,23 +182,17 @@
 										<th>Tindakan</th>
 									</tr>
 								</thead>
-								<tbody>
+								<tbody id="Row2">
 
-									<tr id="Row2">
+									<tr>
 										<td></td>
 										<td></td>
 										<td></td>
 										<td></td>
 										<td></td>
-										<td><a id="diskon-btn" href="#"> <span
-												class="badge bg-red pull-left"></span></a></td>
-										<td>
-											<button type="button" class="btn btn-info detail-btn">Detail</button>
-											<button type="button" class="btn btn-warning update-btn">Update</button>
-											<button type="button" class="btn btn-primary delete-btn">Hapus</button>
-										</td>
+										<td></td>
+										<td></td>
 									</tr>
-
 
 								</tbody>
 							</table>
@@ -215,109 +210,26 @@
 	<script type="text/javascript" src="/assets/js/jquery-3.2.1.min.js"></script>
 	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 	<script type="text/javascript">
-		function addUser() {
-			var $source = $("#datatable").DataTable();
-			var names = $($source.rows().nodes()).filter(':has(:checked)').map(
-					function() {
-						return $(this).children().first().text();
-					}).toArray();
+		$(document).ready(
+				function() {
+					var t = $('#datatable2').DataTable();
+					var counter = 1;
 
-			var $rows = $source.rows(function(i, data) {
-				return names.indexOf('' + data.order) != -1;
-			});
+					$('#tambah-btn').on(
+							'click',
+							function() {
+								t.row.add([ counter + '.1',
+														counter + '.2',
+														counter + '.3',
+														counter + '.4',
+														counter + '.5',
+														counter + '.6' ]).draw(
+												false);
 
-			var data = $rows.data();
-
-			if (data.length > 0)
-				$("#datatable2").DataTable().rows.add(data.toArray()).draw();
-		}
-
-		function checkAll(check) {
-			var $source = $("#datatable").DataTable();
-			var names = $($source.rows().nodes())
-					.find('input[type="checkbox"]').each(function(i, el) {
-						el.checked = check == 1;
-					});
-		//a
-			return false;
-		}
-
-		$(document).ready(function() {
-			var dt = $('#example').dataTable();
-			dt.fnDestroy();
-		});
-
-		$(document)
-				.ready(
-						function() {
-							var url = 'http://www.json-generator.com/api/json/get/clmDuyndua?indent=2';
-							var table = $('#example').DataTable({
-								ajax : url,
-								createdRow : function(row, data, dataIndex) {
-									$(row).attr('id', 'row-' + dataIndex);
-								},
-								rowReorder : {
-									dataSrc : 'order',
-								},
-								columns : [ {
-									data : 'order'
-								}, {
-									data : 'name'
-								}, {
-									data : 'place'
-								} ]
+								counter++;
 							});
-							table.rowReordering();
 
-						});
-
-		$(document).ready(function() {
-			var dt = $('#example2').dataTable();
-			dt.fnDestroy();
-		});
-
-		$(document)
-				.ready(
-						function() {
-							var url = 'http://www.json-generator.com/api/json/get/cnmZgfsBKa?indent=2';
-							var table = $('#example2').DataTable({
-								ajax : url,
-								createdRow : function(row, data, dataIndex) {
-									$(row).attr('id', 'row-' + dataIndex);
-								},
-								rowReorder : {
-									dataSrc : 'order',
-								},
-								columns : [ {
-									data : 'order'
-								}, {
-									data : 'name'
-								}, {
-									data : 'checkbox'
-								} ]
-							});
-							table.rowReordering();
-
-						});
-
-		$(document).ready(function() {
-			$('body').on('mouseenter', 'input', function() {
-				$('.btn').prop('disabled', true);
-			});
-			$('body').on('mouseout', 'input', function() {
-				$('.btn').prop('disabled', false);
-			});
-
-			$('#checkAll').click(function() {
-				checkAll(1);
-			});
-			$('#uncheckAll').click(function() {
-				checkAll(0);
-			});
-			$('#btnAddUser').click(function() {
-				addUser();
-			});
-		});
+				});
 	</script>
 	<!-- /page content -->
 
