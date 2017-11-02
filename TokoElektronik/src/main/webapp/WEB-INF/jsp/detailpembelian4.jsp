@@ -98,9 +98,17 @@
 			<div class="x_content">
 				<p class="text-muted font-13 m-b-30">text here</p>
 				<button type="button" id="tambah-barang-btn"
-								class="btn btn-success btn-lg">
-								<i class="fa fa-plus"></i> Tambah data Barang
-							</button>
+					class="btn btn-success btn-lg">
+					<i class="fa fa-plus"></i> Tambah data Barang
+				</button>
+				<button type="button" id="retur-btn"
+					class="btn btn-success btn-lg pull-right">
+					<i class="fa fa-plus"></i> Retur Pembelian
+				</button>
+				<button type="button" id="retur-btn"
+					class="btn btn-success btn-lg pull-right">
+					<i class="fa fa-history"></i> Histori Pembelian
+				</button>
 				<!-- action="pembelian" method="GET"  -->
 				<form id="111" class="form-horizontal form-label-left" novalidate>
 					<span class="section">Personal Info</span>
@@ -245,6 +253,13 @@
 
 	          });
 			
+			$('#retur-btn').on('click',function(){
+				$.ajax({
+					success: function(data){
+						window.location ="retur";
+					}
+				});
+			});
 			
 			
 	        $(".tambah-btn").click(function(){
