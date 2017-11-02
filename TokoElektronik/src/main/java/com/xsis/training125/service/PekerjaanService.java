@@ -19,20 +19,21 @@ public class PekerjaanService {
 	PekerjaanDao pekerjaanDao;
 	@Autowired
 	KaryawanDao karyawanDao;
-	
+
 	public List<Pekerjaan> getAllPekerjaan() {
 		// TODO Auto-generated method stub
 		return pekerjaanDao.getAllPekerjaan();
 	}
 
 	public void save(Pekerjaan pekerjaan) {
-		// TODO Auto-generated method stub		
+		// TODO Auto-generated method stub
 		pekerjaanDao.save(pekerjaan);
-		//masukkan ke karyawan
-		/*for(Karyawan karyawan : pekerjaan.getKaryawan()){
-			karyawan.setPekerjaan(pekerjaan);
-			karyawanDao.save(karyawan);
-		}*/
+		// masukkan ke karyawan
+		/*
+		 * for(Karyawan karyawan : pekerjaan.getKaryawan()){
+		 * karyawan.setPekerjaan(pekerjaan); karyawanDao.save(karyawan); }
+		 */
+		
 	}
 
 	public Pekerjaan getPekerjaanById(int id) {
@@ -43,15 +44,16 @@ public class PekerjaanService {
 	public void update(Pekerjaan pekerjaan) {
 		// TODO Auto-generated method stub
 		pekerjaanDao.update(pekerjaan);
-		/*for(Karyawan karyawan : pekerjaan.getKaryawan()){
-			karyawan.setPekerjaan(pekerjaan);
-			karyawanDao.update(karyawan);
-		}*/
+		/*
+		 * for(Karyawan karyawan : pekerjaan.getKaryawan()){
+		 * karyawan.setPekerjaan(pekerjaan); karyawanDao.update(karyawan); }
+		 */
+		
 	}
 
 	public void delete(int id) {
 		// TODO Auto-generated method stub
 		pekerjaanDao.delete(id);
-		
+
 	}
 }

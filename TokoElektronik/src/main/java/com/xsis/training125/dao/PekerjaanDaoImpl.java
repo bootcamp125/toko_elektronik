@@ -37,7 +37,7 @@ public class PekerjaanDaoImpl implements PekerjaanDao {
 		session.save(pekerjaan);
 		session.flush();
 	}
-
+	
 	@Override
 	public Pekerjaan getPekerjaanById(int id) {
 		// TODO Auto-generated method stub
