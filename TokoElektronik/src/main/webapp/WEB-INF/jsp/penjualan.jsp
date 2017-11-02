@@ -202,8 +202,6 @@
 				.ready(
 						function() {
 
-						
-							
 							$(document).on(
 									"click",
 									".btn-addItem",
@@ -238,10 +236,10 @@
 										}
 
 										/* console.log(barang); */
-										$(this).parents("tr").remove();
-										appedTablePembelian(barang);										
-										
-
+										var table = $('#datatable').DataTable();
+										//$(this).parents("tr").remove();
+										table.row($(this).parents('tr')).remove().draw();
+										appedTablePembelian(barang);
 
 									});
 
@@ -303,16 +301,20 @@
 								$('#datatable tbody').append(raw);
 
 							}
-							
+
 							$(document).on(
 									"click",
 									".btn-cancel",
 									function() {
-										
-										var barangCancel = $.parseJSON($(this).attr('data-object'));
+
+										var barangCancel = $.parseJSON($(this)
+												.attr('data-object'));
 										/* console.log(barangCancel); */
 										movingTablePembelian(barangCancel);
+										//var table = $('#datatable').DataTable();
+										//table.row($(this).parents('tr')).remove().draw();
 										$(this).parents("tr").remove();
+										
 
 									});
 						});
