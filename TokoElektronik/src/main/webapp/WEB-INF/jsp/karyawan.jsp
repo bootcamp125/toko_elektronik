@@ -198,6 +198,7 @@
 									$('#textAlamat').val(data.alamat);
 									$('#textTanggal').val(data.tanggalMasuk);
 									$('#textGaji').val(data.gaji);
+									$('#textPekerjaan').val(data.pekerjaan.deskripsi);
 								}
 								
 					 			
@@ -273,7 +274,7 @@
 			  </div>
 			   <div class="form-group">
 			    <label for="textPekerjaan">Pekerjaan</label>
-			    <input type="text" class="form-control" id="textPekerjaan" name="pekerjaan" >  
+			    <input type="text" class="form-control" id="textPekerjaan" name="pekerjaan.deskripsi" >  
 			  </div>
 			</form>
 	      </div>
