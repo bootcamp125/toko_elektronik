@@ -48,6 +48,7 @@
 <!-- Custom Theme Style -->
 <link href="/assets/gentelella-master/build/css/custom.min.css"
 	rel="stylesheet">
+
 </head>
 <body class="nav-md">
 	<%@ include file="header.jsp"%>
@@ -122,10 +123,10 @@
 										<c:forEach var="barang" items="${barang }">
 											<tr class="even pointer">
 												<td class="a-center "><input type="checkbox"
-													class="flat" name="table_records"></td>
+													class="flat" name="table_records" id="${barang.id }"></td>
 												<td class=" ">${barang.namaBarang }</td>
 												<td class=" ">${barang.harga }</td>
-												<td class=" ">${barang.merk } </td>
+												<td class=" ">${barang.merk }</td>
 												<td class=" ">${barang.stock}</td>
 												<td class=" ">${barang.tanggalMasuk }</td>
 												<td class="a-right a-right ">$7.45</td>
@@ -134,200 +135,10 @@
 										</c:forEach>
 									</tbody>
 								</table>
-								<button type="button" 
-														class="pull-right btn btn-primary tambah-btn">Tambah transaksi</button>
-							</div>
-						</div>
-					</div>
+								<button type="button" id="btnAddUser"
+									class="pull-right btn btn-primary tambah-btn">Tambah
+									transaksi</button>
 
-				</div>
-				<div class="row">
-					<div class="col-md-12 col-sm-12 col-xs-12">
-						<div class="x_panel">
-							<div class="x_title">
-								<h2>Daftar Barang</h2>
-								<ul class="nav navbar-right panel_toolbox">
-									<li><a class="collapse-link"><i
-											class="fa fa-chevron-up"></i></a></li>
-									<li class="dropdown"><a href="#" class="dropdown-toggle"
-										data-toggle="dropdown" role="button" aria-expanded="false"><i
-											class="fa fa-wrench"></i></a>
-										<ul class="dropdown-menu" role="menu">
-											<li><a href="#">Settings 1</a></li>
-											<li><a href="#">Settings 2</a></li>
-										</ul></li>
-									<li><a class="close-link"><i class="fa fa-close"></i></a></li>
-								</ul>
-								<div class="clearfix"></div>
-							</div>
-							<div class="x_content">
-								<p class="text-muted font-13 m-b-30">Cari barang untuk
-									menambahkan transaksi</p>
-								<table id="datatable2"
-									class="table table-striped table-bordered">
-									<thead>
-										<tr>
-											<th>Nama Barang</th>
-											<th>Harga Satuan</th>
-											<th>Merk</th>
-											<th>Stock Barang</th>
-											<th>Tanggal Masuk</th>
-											<th>Discount</th>
-											<th>Tindakan</th>
-										</tr>
-									</thead>
-									<tbody>
-										<c:forEach var="barang" items="${barang }">
-											<tr>
-												<td>${barang.namaBarang }</td>
-												<td>${barang.harga }</td>
-												<td>${barang.merk }</td>
-												<td>${barang.stock }</td>
-												<td>${barang.tanggalMasuk }</td>
-												<td><a id="diskon-btn" href="#"> <span
-														class="badge bg-red pull-left">${barang.diskon.diskon }
-															%</span></a></td>
-												<td>
-													<button type="button" id="${barang.id }"
-														class="btn btn-info detail-btn">Detail</button>
-													<button type="button" id="${barang.id }"
-														class="btn btn-warning update-btn">Update</button>
-													<button type="button" data-id="${barang.id }"
-														class="btn btn-primary delete-btn">Hapus</button>
-												</td>
-											</tr>
-										</c:forEach>
-
-									</tbody>
-								</table>
-								<script type="text/javascript"
-									src="/assets/js/jquery-3.2.1.min.js"></script>
-								<script type="text/javascript">
-									$(document)
-											.ready(
-													function() {
-														$('#tambah-barang-btn')
-																.on(
-																		'click',
-																		function() {
-																			$
-																					.ajax({
-																						success : function(
-																								data) {
-																							//console.log(JSON.stringify(data));
-																							window.location = "/barang/tambahbarang/";
-																						}
-																					});
-
-																		});
-
-														var id = 0;
-														$('.update-btn')
-																.on(
-																		'click',
-																		function() {
-
-																			//ambil data dari server => ajax
-																			id = $(
-																					this)
-																					.attr(
-																							'id');
-
-																			$
-																					.ajax({
-																						type : 'POST',
-																						url : '/barang/barangid/'
-																								+ id,
-																						success : function(
-																								data) {
-																							//console.log(JSON.stringify(data));
-																							_setFieldUpdateModal(data);
-																						},
-																						dataType : 'json'
-																					});
-
-																			$(
-																					'#updateModal')
-																					.modal();
-																		});
-
-														function _setFieldUpdateModal(
-																data) {
-															$('#textNama')
-																	.val(
-																			data.namaBarang);
-															$('#textHarga')
-																	.val(
-																			data.harga);
-															$('#textMerk').val(
-																	data.merk);
-															$('#textTanggal')
-																	.val(
-																			data.tanggalMasuk);
-														}
-
-														$('.delete-btn')
-																.on(
-																		'click',
-																		function() {
-
-																			//ambil data dari server => ajax
-																			id = $(
-																					this)
-																					.attr(
-																							'data-id');
-
-																			$
-																					.ajax({
-																						type : 'DELETE',
-																						url : '/barang/delete/'
-																								+ id,
-																						success : function() {
-																							window.location = "/barang";
-																						}
-																					});
-
-																		});
-
-														//event submit data for update
-														$('#submit-update')
-																.click(
-																		function() {
-
-																			//Object ala js
-																			var Barang = {
-																				id : id,
-																				namaBarang : $(
-																						'#textNama')
-																						.val(),
-																				harga : $(
-																						'#textHarga')
-																						.val(),
-																				merk : $(
-																						'#textMerk')
-																						.val(),
-																				tanggalMasuk : $(
-																						'#textTanggal')
-																						.val()
-																			};
-
-																			//ajax update
-																			$
-																					.ajax({
-																						type : 'PUT',
-																						url : '/barang/update',
-																						contentType : "application/json",
-																						data : JSON
-																								.stringify(Barang),
-																						success : function(
-																								data) {
-																							window.location = "/barang";
-																						}
-																					});
-																		});
-
-													});
-								</script>
 							</div>
 						</div>
 					</div>
@@ -335,108 +146,267 @@
 				</div>
 
 			</div>
-		</div>
+			<div class="row">
+				<div class="col-md-12 col-sm-12 col-xs-12">
+					<div class="x_panel">
+						<div class="x_title">
+							<h2>Daftar Barang</h2>
+							<ul class="nav navbar-right panel_toolbox">
+								<li><a class="collapse-link"><i
+										class="fa fa-chevron-up"></i></a></li>
+								<li class="dropdown"><a href="#" class="dropdown-toggle"
+									data-toggle="dropdown" role="button" aria-expanded="false"><i
+										class="fa fa-wrench"></i></a>
+									<ul class="dropdown-menu" role="menu">
+										<li><a href="#">Settings 1</a></li>
+										<li><a href="#">Settings 2</a></li>
+									</ul></li>
+								<li><a class="close-link"><i class="fa fa-close"></i></a></li>
+							</ul>
+							<div class="clearfix"></div>
+						</div>
+						<div class="x_content">
+							<p class="text-muted font-13 m-b-30">Cari barang untuk
+								menambahkan transaksi</p>
+							<table id="datatable2"
+								class="table table-striped table-bordered">
+								<thead>
+									<tr>
+										<th>Nama Barang</th>
+										<th>Harga Satuan</th>
+										<th>Merk</th>
+										<th>Stock Barang</th>
+										<th>Tanggal Masuk</th>
+										<th>Discount</th>
+										<th>Tindakan</th>
+									</tr>
+								</thead>
+								<tbody>
+
+									<tr id="Row2">
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td><a id="diskon-btn" href="#"> <span
+												class="badge bg-red pull-left"></span></a></td>
+										<td>
+											<button type="button" class="btn btn-info detail-btn">Detail</button>
+											<button type="button" class="btn btn-warning update-btn">Update</button>
+											<button type="button" class="btn btn-primary delete-btn">Hapus</button>
+										</td>
+									</tr>
 
 
-		<!-- /page content -->
+								</tbody>
+							</table>
 
-		<!-- footer content -->
-		<%@ include file="footer.jsp"%>
-		<!-- /footer content -->
-		<div class="modal fade" id="updateModal" tabindex="-1" role="dialog"
-			aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Update Data
-							Barang</h5>
-
+						</div>
 					</div>
-					<div class="modal-body">
-						<form>
-							<div class="form-group">
-								<label for="textNama">Nama Barang</label> <input type="text"
-									class="form-control" id="textNama" name="namaBarang">
-							</div>
-							<div class="form-group">
-								<label for="textHarga">Harga barang</label> <input type="text"
-									class="form-control" id="textHarga" name="harga">
-							</div>
-							<div class="form-group">
-								<label for="textMerk">Merk Barang</label> <input type="text"
-									class="form-control" id="textMerk" name="merk">
-							</div>
-							<div class="form-group">
-								<label for="textTanggal">Tanggal Masuk</label> <input
-									type="text" class="form-control" id="textTanggal"
-									name="tanggalMasuk">
-							</div>
-							<!-- <div class="form-group">
-							<label for="textTanggal">Discount</label> <input type="text"
-								class="form-control" id="textDiskon" name="diskon">
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+
+
+	<script type="text/javascript" src="/assets/js/jquery-3.2.1.min.js"></script>
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	<script type="text/javascript">
+		function addUser() {
+			var $source = $("#datatable").DataTable();
+			var names = $($source.rows().nodes()).filter(':has(:checked)').map(
+					function() {
+						return $(this).children().first().text();
+					}).toArray();
+
+			var $rows = $source.rows(function(i, data) {
+				return names.indexOf('' + data.order) != -1;
+			});
+
+			var data = $rows.data();
+
+			if (data.length > 0)
+				$("#datatable2").DataTable().rows.add(data.toArray()).draw();
+		}
+
+		function checkAll(check) {
+			var $source = $("#datatable").DataTable();
+			var names = $($source.rows().nodes())
+					.find('input[type="checkbox"]').each(function(i, el) {
+						el.checked = check == 1;
+					});
+
+			return false;
+		}
+
+		$(document).ready(function() {
+			var dt = $('#example').dataTable();
+			dt.fnDestroy();
+		});
+
+		$(document)
+				.ready(
+						function() {
+							var url = 'http://www.json-generator.com/api/json/get/clmDuyndua?indent=2';
+							var table = $('#example').DataTable({
+								ajax : url,
+								createdRow : function(row, data, dataIndex) {
+									$(row).attr('id', 'row-' + dataIndex);
+								},
+								rowReorder : {
+									dataSrc : 'order',
+								},
+								columns : [ {
+									data : 'order'
+								}, {
+									data : 'name'
+								}, {
+									data : 'place'
+								} ]
+							});
+							table.rowReordering();
+
+						});
+
+		$(document).ready(function() {
+			var dt = $('#example2').dataTable();
+			dt.fnDestroy();
+		});
+
+		$(document)
+				.ready(
+						function() {
+							var url = 'http://www.json-generator.com/api/json/get/cnmZgfsBKa?indent=2';
+							var table = $('#example2').DataTable({
+								ajax : url,
+								createdRow : function(row, data, dataIndex) {
+									$(row).attr('id', 'row-' + dataIndex);
+								},
+								rowReorder : {
+									dataSrc : 'order',
+								},
+								columns : [ {
+									data : 'order'
+								}, {
+									data : 'name'
+								}, {
+									data : 'checkbox'
+								} ]
+							});
+							table.rowReordering();
+
+						});
+
+		$(document).ready(function() {
+			$('body').on('mouseenter', 'input', function() {
+				$('.btn').prop('disabled', true);
+			});
+			$('body').on('mouseout', 'input', function() {
+				$('.btn').prop('disabled', false);
+			});
+
+			$('#checkAll').click(function() {
+				checkAll(1);
+			});
+			$('#uncheckAll').click(function() {
+				checkAll(0);
+			});
+			$('#btnAddUser').click(function() {
+				addUser();
+			});
+		});
+	</script>
+	<!-- /page content -->
+
+	<!-- footer content -->
+	<%@ include file="footer.jsp"%>
+	<!-- /footer content -->
+	<div class="modal fade" id="updateModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Update Data
+						Barang</h5>
+
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label for="textNama">Nama Barang</label> <input type="text"
+								class="form-control" id="textNama" name="namaBarang">
 						</div>
 						<div class="form-group">
-							<label for="textTanggal">Tanggal Discount Berakhir</label> <input
-								type="text" class="form-control" id="textTanggalDAkhir"
-								name="tanggalBerakhir">
-						</div> -->
-						</form>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary"
-							data-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary" id="submit-update"
-							onclick="myFunction()">Update</button>
-					</div>
+							<label for="textHarga">Harga barang</label> <input type="text"
+								class="form-control" id="textHarga" name="harga">
+						</div>
+						<div class="form-group">
+							<label for="textMerk">Merk Barang</label> <input type="text"
+								class="form-control" id="textMerk" name="merk">
+						</div>
+						<div class="form-group">
+							<label for="textTanggal">Tanggal Masuk</label> <input type="text"
+								class="form-control" id="textTanggal" name="tanggalMasuk">
+						</div>
+
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" id="submit-update">Update</button>
 				</div>
 			</div>
 		</div>
-		<!-- jQuery -->
-		<script
-			src="/assets/gentelella-master/vendors/jquery/dist/jquery.min.js"></script>
-		<!-- Bootstrap -->
-		<script
-			src="/assets/gentelella-master/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-		<!-- FastClick -->
-		<script
-			src="/assets/gentelella-master/vendors/fastclick/lib/fastclick.js"></script>
-		<!-- NProgress -->
-		<script src="/assets/gentelella-master/vendors/nprogress/nprogress.js"></script>
-		<!-- iCheck -->
-		<script src="/assets/gentelella-master/vendors/iCheck/icheck.min.js"></script>
-		<!-- Datatables -->
-		<script
-			src="/assets/gentelella-master/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
-		<script
-			src="/assets/gentelella-master/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-		<script
-			src="/assets/gentelella-master/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-		<script
-			src="/assets/gentelella-master/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
-		<script
-			src="/assets/gentelella-master/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
-		<script
-			src="/assets/gentelella-master/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
-		<script
-			src="/assets/gentelella-master/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
-		<script
-			src="/assets/gentelella-master/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-		<script
-			src="/assets/gentelella-master/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-		<script
-			src="/assets/gentelella-master/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-		<script
-			src="/assets/gentelella-master/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-		<script
-			src="/assets/gentelella-master/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
-		<script
-			src="/assets/gentelella-master/vendors/jszip/dist/jszip.min.js"></script>
-		<script
-			src="/assets/gentelella-master/vendors/pdfmake/build/pdfmake.min.js"></script>
-		<script
-			src="/assets/gentelella-master/vendors/pdfmake/build/vfs_fonts.js"></script>
+	</div>
+	<!-- jQuery -->
+	<script
+		src="/assets/gentelella-master/vendors/jquery/dist/jquery.min.js"></script>
+	<!-- Bootstrap -->
+	<script
+		src="/assets/gentelella-master/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+	<!-- FastClick -->
+	<script
+		src="/assets/gentelella-master/vendors/fastclick/lib/fastclick.js"></script>
+	<!-- NProgress -->
+	<script src="/assets/gentelella-master/vendors/nprogress/nprogress.js"></script>
+	<!-- iCheck -->
+	<script src="/assets/gentelella-master/vendors/iCheck/icheck.min.js"></script>
+	<!-- Datatables -->
+	<script
+		src="/assets/gentelella-master/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+	<script
+		src="/assets/gentelella-master/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+	<script
+		src="/assets/gentelella-master/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+	<script
+		src="/assets/gentelella-master/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+	<script
+		src="/assets/gentelella-master/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+	<script
+		src="/assets/gentelella-master/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+	<script
+		src="/assets/gentelella-master/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+	<script
+		src="/assets/gentelella-master/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+	<script
+		src="/assets/gentelella-master/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+	<script
+		src="/assets/gentelella-master/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+	<script
+		src="/assets/gentelella-master/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+	<script
+		src="/assets/gentelella-master/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+	<script src="/assets/gentelella-master/vendors/jszip/dist/jszip.min.js"></script>
+	<script
+		src="/assets/gentelella-master/vendors/pdfmake/build/pdfmake.min.js"></script>
+	<script
+		src="/assets/gentelella-master/vendors/pdfmake/build/vfs_fonts.js"></script>
 
-		<!-- Custom Theme Scripts -->
-		<script src="/assets/gentelella-master/build/js/custom.min.js"></script>
+	<!-- Custom Theme Scripts -->
+	<script src="/assets/gentelella-master/build/js/custom.min.js"></script>
 </body>
 </html>
