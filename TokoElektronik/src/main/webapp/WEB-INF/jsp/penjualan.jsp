@@ -102,8 +102,8 @@
 									class="table table-striped jambo_table bulk_action">
 									<thead>
 										<tr class="headings">
-											<th><input type="checkbox" id="check-all" class="flat">
-											</th>
+											<th><input type="checkbox" id="check-all" class="flat"
+												onClick="myFunction()"></th>
 											<th class="column-title">Nama Barang</th>
 											<th class="column-title">Harga Satuan</th>
 											<th class="column-title">Merk</th>
@@ -124,18 +124,18 @@
 											<tr class="even pointer">
 												<td class="a-center "><input type="checkbox"
 													class="flat" name="table_records" id="${barang.id }"></td>
-												<td class=" ">${barang.namaBarang }</td>
-												<td class=" ">${barang.harga }</td>
-												<td class=" ">${barang.merk }</td>
-												<td class=" ">${barang.stock}</td>
-												<td class=" ">${barang.tanggalMasuk }</td>
-												<td class="a-right a-right ">$7.45</td>
+												<td class="textNamaBarang">${barang.namaBarang }</td>
+												<td class="textHarga">${barang.harga }</td>
+												<td class="textMerk">${barang.merk }</td>
+												<td class="textStock">${barang.stock}</td>
+												<td class="textTanggalmasuk">${barang.tanggalMasuk }</td>
+												<td class="a-right a-right textDiskon ">$7.45</td>
 												<td class=" last"></td>
 											</tr>
 										</c:forEach>
 									</tbody>
 								</table>
-								<button type="button" id="tambah-btn"
+								<button type="button" id="add"
 									class="pull-right btn btn-primary tambah-btn">Tambah
 									transaksi</button>
 
@@ -182,17 +182,9 @@
 										<th>Tindakan</th>
 									</tr>
 								</thead>
-								<tbody id="Row2">
+								<tbody>
 
-									<tr>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-									</tr>
+
 
 								</tbody>
 							</table>
@@ -210,27 +202,24 @@
 	<script type="text/javascript" src="/assets/js/jquery-3.2.1.min.js"></script>
 	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 	<script type="text/javascript">
-		$(document).ready(
-				function() {
-					var t = $('#datatable2').DataTable();
-					var counter = 1;
-//a
-					$('#tambah-btn').on(
-							'click',
-							function() {
-								t.row.add([ counter + '.1',
-														counter + '.2',
-														counter + '.3',
-														counter + '.4',
-														counter + '.5',
-														counter + '.6' ]).draw(
-												false);
-
-								counter++;
-							});
-
-				});
-	</script>
+    $(document).ready(function(){
+        $(".add-row").click(function(){
+            var name = $("#name").val();
+            var email = $("#email").val();
+            var markup = "<tr><td><input type='checkbox' name='record'></td><td>" + name + "</td><td>" + email + "</td></tr>";
+            $("table tbody").append(markup);
+        });
+        
+        // Find and remove selected table rows
+        $(".delete-row").click(function(){
+            $("table tbody").find('input[name="record"]').each(function(){
+                if($(this).is(":checked")){
+                    $(this).parents("tr").remove();
+                }
+            });
+        });
+    });    
+</script>
 	<!-- /page content -->
 
 	<!-- footer content -->
