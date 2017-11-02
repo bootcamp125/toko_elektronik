@@ -102,8 +102,7 @@
 									class="table table-striped jambo_table bulk_action">
 									<thead>
 										<tr class="headings">
-											<th><input type="checkbox" id="check-all" class="flat"
-												onClick="myFunction()"></th>
+
 											<th class="column-title">Nama Barang</th>
 											<th class="column-title">Harga Satuan</th>
 											<th class="column-title">Merk</th>
@@ -121,24 +120,22 @@
 
 									<tbody>
 										<c:forEach var="barang" items="${barang }">
-											<tr class="even pointer">
-												<td class="a-center "><input type="checkbox"
-													class="flat" name="table_records" id="${barang.id }"></td>
+											<tr class="even pointer" barang-id="${barang.id }">
+
 												<td class="textNamaBarang">${barang.namaBarang }</td>
 												<td class="textHarga">${barang.harga }</td>
 												<td class="textMerk">${barang.merk }</td>
 												<td class="textStock">${barang.stock}</td>
-												<td class="textTanggalmasuk">${barang.tanggalMasuk }</td>
+												<td class="textTanggalMasuk">${barang.tanggalMasuk }</td>
 												<td class="a-right a-right textDiskon ">$7.45</td>
-												<td class=" last"></td>
+												<td><button type="button" id="tambah-btn"
+														class="pull-right btn btn-primary btn-addItem">Beli</button></td>
 											</tr>
 										</c:forEach>
 									</tbody>
 								</table>
-								<button type="button" id="add"
-									class="pull-right btn btn-primary tambah-btn">Tambah
-									transaksi</button>
-
+								<!-- <a href="#" class="btn btn-default" id="btn-addItem">Add Item</a>
+								 -->
 							</div>
 						</div>
 					</div>
@@ -150,7 +147,7 @@
 				<div class="col-md-12 col-sm-12 col-xs-12">
 					<div class="x_panel">
 						<div class="x_title">
-							<h2>Daftar Barang</h2>
+							<h2>Keranjang Belanja</h2>
 							<ul class="nav navbar-right panel_toolbox">
 								<li><a class="collapse-link"><i
 										class="fa fa-chevron-up"></i></a></li>
@@ -183,12 +180,11 @@
 									</tr>
 								</thead>
 								<tbody>
-
-
-
 								</tbody>
 							</table>
-
+							<button type="button" id="tambah-btn"
+								class="pull-right btn btn-primary tambah-btn">Confirm
+								Transaksi</button>
 						</div>
 					</div>
 				</div>
@@ -202,24 +198,165 @@
 	<script type="text/javascript" src="/assets/js/jquery-3.2.1.min.js"></script>
 	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 	<script type="text/javascript">
-    $(document).ready(function(){
-        $(".add-row").click(function(){
-            var name = $("#name").val();
-            var email = $("#email").val();
-            var markup = "<tr><td><input type='checkbox' name='record'></td><td>" + name + "</td><td>" + email + "</td></tr>";
-            $("table tbody").append(markup);
-        });
-        
-        // Find and remove selected table rows
-        $(".delete-row").click(function(){
-            $("table tbody").find('input[name="record"]').each(function(){
-                if($(this).is(":checked")){
-                    $(this).parents("tr").remove();
-                }
-            });
-        });
-    });    
-</script>
+		$(document)
+				.ready(
+						function() {
+							var rows = $('#datatable tbody tr'), copyTable = $('#datatable2 tbody');
+
+							rows.click(function() {
+								/* var row = $(this), cloneRow = row.clone();
+								cloneRow.children('td:last-child').html('<input type="submit" value="Edit" style="font-size: 12px; width: 100px;" class="edit"><input type="submit" value="Delete" style="font-size: 12px; width: 100px;" class="delete">');
+								copyTable.append(cloneRow);
+								row.hide(); */
+								/* var namaBarang = $("td .textNamaBarang").val();
+								var harga = $("td .textHarga").val();
+								var merk = $("td .textMerk").val();
+								var stock = $("td .textStock").val();
+								var tanggalMasuk = $("td .textTanggalMasuk").val(); 
+								var markup = "<tr><td>" + namaBarang + "</td><td>" + harga + "</td></tr>";
+								$("#datatable2 tbody").append(markup); */
+								var barang = {
+									namaBarang : $("td .textNamaBarang").val(),
+									harga : $("td .textHarga").val(),
+									merk : $("td .textMerk").val(),
+									stock : $("td .textStock").val(),
+									tanggalMasuk : $("td .textTanggalMasuk")
+											.val()
+
+								}
+								//console.log(barang);
+							});
+
+							$(document).on(
+									"click",
+									".btn-addItem",
+									function() {
+
+										var namaBarang = $(this).parent()
+												.parent().find('td').eq(0)
+												.text();
+										var harga = $(this).parent().parent()
+												.find('td').eq(1).text();
+										var merk = $(this).parent().parent()
+												.find('td').eq(2).text();
+										var stock = $(this).parent().parent()
+												.find('td').eq(3).text();
+										var tanggalMasuk = $(this).parent()
+												.parent().find('td').eq(4)
+												.text();
+										var diskon = $(this).parent().parent()
+												.find('td').eq(5).text();
+										var id = $(this).parent().parent()
+												.attr('barang-id');
+										var barang = {
+
+											id : id,
+											namaBarang : namaBarang,
+											harga : harga,
+											merk : merk,
+											stock : stock,
+											tanggalMasuk : tanggalMasuk,
+											diskon : diskon
+
+										}
+
+										/* console.log(barang); */
+										appedTablePembelian(barang);
+										$(this).parent().parent().remove();
+
+									});
+
+							function appedTablePembelian(data) {
+
+								var raw = "<tr id="+data.id+"> ";
+								raw += "<td>";
+								raw += data.namaBarang;
+								raw += "</td>";
+								raw += "<td>";
+								raw += data.harga;
+								raw += "</td>";
+								raw += "<td>";
+								raw += data.merk;
+								raw += "</td>";
+								raw += "<td>";
+								raw += data.stock;
+								raw += "</td>";
+								raw += "<td>";
+								raw += data.tanggalMasuk;
+								raw += "</td>";
+								raw += "<td>";
+								raw += data.diskon;
+								raw += "</td>";
+								raw += "<td>";
+								raw += "<a href='#' class='btn-cancel' data-object='"
+										+ JSON.stringify(data) + "'>Cancel</a>";
+								raw += "</td>";
+								raw += "</tr>";
+								$('#datatable2 tbody').append(raw);
+
+							}
+
+							function movingTablePembelian(data) {
+
+								var raw = "<tr id="+data.id+"> ";
+								raw += "<td>";
+								raw += data.namaBarang;
+								raw += "</td>";
+								raw += "<td>";
+								raw += data.harga;
+								raw += "</td>";
+								raw += "<td>";
+								raw += data.merk;
+								raw += "</td>";
+								raw += "<td>";
+								raw += data.stock;
+								raw += "</td>";
+								raw += "<td>";
+								raw += data.tanggalMasuk;
+								raw += "</td>";
+								raw += "<td>";
+								raw += data.diskon;
+								raw += "</td>";
+								raw += "<td>";
+								raw += "<button type='button' class='pull-right btn btn-primary btn-addItem'>Beli</button>";
+								raw += "</td>";
+								raw += "</tr>";
+								$('#datatable tbody').append(raw);
+
+							}
+
+							$(document).on(
+									"click",
+									".btn-cancel",
+									function() {
+
+										var barangCancel = $.parseJSON($(this)
+												.attr('data-object'));
+										/* console.log(barangCancel); */
+										movingTablePembelian(barangCancel);
+										$(this).parent().parent().remove();
+
+									});
+
+							copyTable.on('click', '.edit', function(e) {
+								e.preventDefault();
+								alert('do edit function here');
+							});
+
+							copyTable.on('click', '.delete', function(e) {
+								var del = $(this).closest('tr');
+								var delC = $(this).closest('td:last-child');
+								e.preventDefault();
+								del.remove();
+								$("#datatable").append(del);
+
+							});
+						});
+
+		function hapusBarang(data) {
+			console.log(data)
+		}
+	</script>
 	<!-- /page content -->
 
 	<!-- footer content -->
