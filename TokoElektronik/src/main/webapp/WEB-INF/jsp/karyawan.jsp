@@ -119,17 +119,7 @@
 
 										<tr>
 											<td>${karyawan.namaK }</td>
-<<<<<<< HEAD
-<<<<<<< HEAD
 											<td>${karyawan.pekerjaan.deskripsi }</td>
-=======
-											<td>
-											${karyawan.pekerjaan.deskripsi }
-											</td>
->>>>>>> branch 'master' of https://github.com/bootcamp125/toko_elektronik.git
-=======
-											<td>${karyawan.pekerjaan.deskripsi }</td>
->>>>>>> branch 'master' of https://github.com/bootcamp125/toko_elektronik.git
 											<td>${karyawan.jk}</td>
 											<td>${karyawan.alamat }</td>
 											<td>${karyawan.tanggalMasuk }</td>
@@ -150,23 +140,15 @@
 							<script type="text/javascript"
 								src="/assets/js/jquery-3.2.1.min.js"></script>
 							<script type="text/javascript">
-								$(document)
-										.ready(
-												function() {
-													$('#tambah-karyawan-btn')
-															.on(
-																	'click',
-																	function() {
-																		$
-																				.ajax({
-																					success : function(
-																							data) {
-																						//console.log(JSON.stringify(data));
-																						window.location = "/karyawan/tambahkaryawan/";
-																					}
-																				});
-
-<<<<<<< HEAD
+								$(document).ready(function() {
+									$('#tambah-karyawan-btn').on('click',function() {
+										$.ajax({
+											success : function(
+													data) {
+												//console.log(JSON.stringify(data));
+												window.location = "/karyawan/tambahkaryawan/";
+											}
+										});
 							});
 							
 							 var id = 0;
@@ -198,24 +180,26 @@
 					 			}
 					 			
 					 			$('.delete-btn').on('click', function() {
-=======
-																	});
->>>>>>> branch 'master' of https://github.com/bootcamp125/toko_elektronik.git
+					 				//ambil data dari server => ajax
+									id = $(this).attr('data-id');
+									$.ajax({
+											type : 'DELETE',
+											url : '/karyawan/delete/'+ id,
+											success : function() {
+												window.location = "/karyawan";
+											}
+										});
 
-													var id = 0;
-													$('.update-btn')
-															.on(
-																	'click',
-																	function() {
-
-																		//ambil data dari server => ajax
-																		id = $(
-																				this)
-																				.attr(
-																						'id');
-
-<<<<<<< HEAD
-								});
+							});
+					 			
+					 			function _setFieldUpdateModal(data) {
+									$('#textNama').val(data.namaK);
+									$('#textJK').val(data.jk);
+									$('#textAlamat').val(data.alamat);
+									$('#textTanggal').val(data.tanggalMasuk);
+									$('#textGaji').val(data.gaji);
+								}
+								
 					 			
 					 			//event submit data for update
 					 			$('#submit-update').click(function(){
@@ -241,106 +225,9 @@
 					 						window.location = "/karyawan";
 					 					}
 					 				});
-					 			});
-=======
-																		$
-																				.ajax({
-																					type : 'POST',
-																					url : '/karyawan/karyawanid/'
-																							+ id,
-																					success : function(
-																							data) {
-																						//console.log(JSON.stringify(data));
-																						_setFieldUpdateModal(data);
-																					},
-																					dataType : 'json'
-																				});
->>>>>>> branch 'master' of https://github.com/bootcamp125/toko_elektronik.git
+					 			});		
 
-																		$(
-																				'#updateModal')
-																				.modal();
-																	});
-
-													function _setFieldUpdateModal(
-															data) {
-														$('#textNama').val(
-																data.namaK);
-														$('#textJK').val(
-																data.jk);
-														$('#textAlamat').val(
-																data.alamat);
-														$('#textTanggal')
-																.val(
-																		data.tanggalMasuk);
-														$('#textGaji').val(
-																data.gaji);
-													}
-
-													$('.delete-btn')
-															.on(
-																	'click',
-																	function() {
-
-																		//ambil data dari server => ajax
-																		id = $(
-																				this)
-																				.attr(
-																						'data-id');
-
-																		$
-																				.ajax({
-																					type : 'DELETE',
-																					url : '/karyawan/delete/'
-																							+ id,
-																					success : function() {
-																						window.location = "/karyawan";
-																					}
-																				});
-
-																	});
-
-													//event submit data for update
-													$('#submit-update')
-															.click(
-																	function() {
-
-																		//Object ala js
-																		var Karyawan = {
-																			id : id,
-																			namaK : $(
-																					'#textNama')
-																					.val(),
-																			jk : $(
-																					'#textJK')
-																					.val(),
-																			alamat : $(
-																					'#textAlamat')
-																					.val(),
-																			tanggalMasuk : $(
-																					'#textTanggal')
-																					.val(),
-																			gaji : $(
-																					'#textGaji')
-																					.val()
-																		};
-
-																		//ajax update
-																		$
-																				.ajax({
-																					type : 'PUT',
-																					url : '/karyawan/update',
-																					contentType : "application/json",
-																					data : JSON
-																							.stringify(Karyawan),
-																					success : function(
-																							data) {
-																						window.location = "/karyawan";
-																					}
-																				});
-																	});
-
-												});
+							});
 							</script>
 						</div>
 					</div>
@@ -349,15 +236,7 @@
 			</div>
 		</div>
 	</div>
-<<<<<<< HEAD
-	
-=======
 
-
->>>>>>> branch 'master' of https://github.com/bootcamp125/toko_elektronik.git
-	<!-- /page content -->
-
-<<<<<<< HEAD
         <!-- footer content -->
        <%@ include file = "footer.jsp" %>
         <!-- /footer content -->
