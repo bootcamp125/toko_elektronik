@@ -124,7 +124,7 @@
 							<select id="barang" class="barang select2_single form-control"
 								name="barang" tabindex="-1">
 								<c:forEach var="barang" items="${barang }">
-									<option value="${barang.namaBarang}">${barang.namaBarang}</option>
+									<option value="${barang.id}">${barang.namaBarang}</option>
 								</c:forEach>
 							</select>
 						</div>
@@ -148,7 +148,7 @@
 								class="distributor select2_single form-control "
 								name="distributor" tabindex="-1">
 								<c:forEach var="distributor" items="${distributor }">
-									<option value="${distributor.namaDistributor}">${distributor.namaDistributor}</option>
+									<option value="${distributor.id}">${distributor.namaDistributor}</option>
 								</c:forEach>
 							</select>
 						</div>
@@ -209,7 +209,7 @@
 
 		<table id="datatable2"
 		class="table table-striped table-bordered">
-		<form action="/pembelian/save" method="POST">
+		<form action="/detailpembelian/save" method="POST">
 		<thead>
 			<tr>
 				<th>No Produk</th>
@@ -245,6 +245,8 @@
 
 	          });
 			
+			
+			
 	        $(".tambah-btn").click(function(){
 	        	
 	            var noProduk = $("#produk").val();
@@ -255,7 +257,7 @@
 	            var harga=$("#harga").val();
 	            var deskripsi=$("#deskripsi").val();
 	            var markup = 
-	            "<tr><td>" + noProduk + "</td><td>" + barang + "</td><td>"+kategori+ "</td><td>"+distributor+"</td><td>"+jumlahBarang+"</td><td>"+harga+"</td><td>"+deskripsi+"</td><td><input type='checkbox' name='record'></td></tr>";
+	            "<tr><td name='produk'>" + noProduk + "</td><td name='barang'>" + barang + "</td><td name='kategori'>"+kategori+ "</td><td name='distributor'>"+distributor+"</td><td name='jumlahBarnag'>"+jumlahBarang+"</td><td name='harga'>"+harga+"</td><td name='deskripsi'>"+deskripsi+"</td><td><input type='checkbox' name='record'></td></tr>";
 	            $("table tbody").append(markup);
 	        });
 	        

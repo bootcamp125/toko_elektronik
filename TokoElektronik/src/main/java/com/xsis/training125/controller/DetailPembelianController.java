@@ -53,7 +53,7 @@ public class DetailPembelianController {
 	@RequestMapping(value="/save", method=RequestMethod.POST)
 	public String savingData(@ModelAttribute DetailPembelian detailPembelian){
 		detailPembelianService.save(detailPembelian);
-		return "redirect:/pembelian";
+		return "redirect:/detailpembelian";
 	}
 	
 	@RequestMapping(value="/detailPembelianid/{id}")

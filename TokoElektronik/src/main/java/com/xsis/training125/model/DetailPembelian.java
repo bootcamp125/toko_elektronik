@@ -21,9 +21,9 @@ public class DetailPembelian {
 	private String kategori;
 	private String deskripsi;
 	private int jumlah;
-	@ManyToOne
+	/*@ManyToOne
 	@JoinColumn(name="no_faktur")
-	private Pembelian pembelian;
+	private Pembelian pembelian;*/
 	private int harga;
 	@ManyToOne
 	@JoinColumn(name = "id_barang")
@@ -44,7 +44,7 @@ public class DetailPembelian {
 		this.kategori = kategori;
 		this.deskripsi = deskripsi;
 		this.jumlah = jumlah;
-		this.pembelian = pembelian;
+		/*this.pembelian = pembelian;*/
 		this.harga = harga;
 		this.barang = barang;
 		this.distributor = distributor;
@@ -101,7 +101,7 @@ public class DetailPembelian {
 	}
 
 
-	public Pembelian getPembelian() {
+/*	public Pembelian getPembelian() {
 		return pembelian;
 	}
 
@@ -109,7 +109,7 @@ public class DetailPembelian {
 	public void setPembelian(Pembelian pembelian) {
 		this.pembelian = pembelian;
 	}
-
+*/
 
 	public int getHarga() {
 		return harga;

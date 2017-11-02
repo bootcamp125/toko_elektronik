@@ -35,9 +35,9 @@ public class Pembelian {
 	@ManyToOne
 	@JoinColumn(name="id_karyawan")
 	private Karyawan karyawan;
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="pembelian")
+	/*@OneToMany(fetch=FetchType.LAZY, mappedBy="pembelian")
 	@Column(name="detail_pembelian")
-	private List<DetailPembelian> detailPembelian;
+	private List<DetailPembelian> detailPembelian;*/
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="pembelian")
 	@Column(name="retur")
 	private List<Retur> retur;
@@ -52,7 +52,7 @@ public class Pembelian {
 		this.totalHarga = totalHarga;
 		this.tanggalPembelian = tanggalPembelian;
 		this.karyawan = karyawan;
-		this.detailPembelian = detailPembelian;
+		/*this.detailPembelian = detailPembelian;*/
 		this.retur = retur;
 	}
 
@@ -82,7 +82,7 @@ public class Pembelian {
 		this.tanggalPembelian = tanggalPembelian;
 	}
 
-
+/*
 	public List<DetailPembelian> getDetailPembelian() {
 		return detailPembelian;
 	}
@@ -90,7 +90,7 @@ public class Pembelian {
 	public void setDetailPembelian(List<DetailPembelian> detailPembelian) {
 		this.detailPembelian = detailPembelian;
 	}
-
+*/
 	public Karyawan getKaryawan() {
 		return karyawan;
 	}
