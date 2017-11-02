@@ -46,14 +46,14 @@ public class DetailPembelianController {
 		model.addAttribute("barang", barang);
 		List<Distributor> distributor = distributorService.getAllDistributor();
 		model.addAttribute("distributor", distributor);
-		return "detailPembelian";
+		return "detailpembelian4";
 	}
 	
 	
 	@RequestMapping(value="/save", method=RequestMethod.POST)
 	public String savingData(@ModelAttribute DetailPembelian detailPembelian){
 		detailPembelianService.save(detailPembelian);
-		return "redirect:/detailPembelian";
+		return "redirect:/pembelian";
 	}
 	
 	@RequestMapping(value="/detailPembelianid/{id}")
