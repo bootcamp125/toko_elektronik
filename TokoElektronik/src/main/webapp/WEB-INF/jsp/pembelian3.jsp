@@ -101,22 +101,21 @@
 								class="btn btn-success btn-lg">
 								<i class="fa fa-plus"></i> Barang Baru
 							</button>
-							<form class="form-horizontal form-label-left" novalidate>
-	
-                     
+						<!-- action="pembelian" method="GET"  -->	
+					<form action="#" method="post" id="111" class="form-horizontal form-label-left" novalidate>
                       <span class="section">Personal Info</span>
                       <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">No Produk <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="produk" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="produk" placeholder="masukan nomor produk" required="required" type="text">
+                          <input id="produk" class="produk form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="produk" placeholder="masukan nomor produk" required="required" type="text">
                         </div>
                       </div>
                        <div class="form-group">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12">Nama Barang<span class="required">*</span>
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							<select class="select2_single form-control" name="distributor.id"
+							<select class="distributor select2_single form-control" name="distributor"
 								tabindex="-1">
 								<c:forEach var="barang" items="${barang }">
 									<option value="${barang.id}">${barang.namaBarang}</option>
@@ -128,14 +127,14 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="kategori">Kategori <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="kategori" type="text" name="kategori" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
+                          <input id="kategori" type="text" name="kategori" data-validate-length-range="5,20" class="kategori optional form-control col-md-7 col-xs-12">
                         </div>
                       </div>
                      <div class="form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12">Distributor						Barang<span class="required">*</span>
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">Distributor<span class="required">*</span>
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							<select id="distributor" class="select2_single form-control" name="distributor"
+							<select id="distributor" class="distributor select2_single form-control " name="distributor"
 								tabindex="-1">
 								<c:forEach var="distributor" items="${distributor }">
 									<option value="${distributor.id}">${distributor.namaDistributor}</option>
@@ -165,11 +164,13 @@
                           <input id="deskripsi" type="text" name="deskripsi" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
                         </div>
                       </div>
+                      <input type="text" name="nama" class="nama">
                       <div class="ln_solid"></div>
                       <div class="form-group">
                         <div class="col-md-6 col-md-offset-3">
                           <button type="submit" class="btn btn-primary">Cancel</button>
-                         <button type="submit" class="pull-right btn btn-primary tambah-btn">Tambah transaksi</button>
+                         <button id="tombol_1" type="submit" class="pull-right btn btn-primary tambah-btn">Tambah transaksi</button>
+                        <button id="tombol">KLIK</button>
                         </div>
                       </div>
                     </form>
@@ -199,29 +200,29 @@
 											<th>Harga</th>
 											<th>Deskripsi</th>
 										</tr>
+										
 									</thead>
 									<tbody>
+									kategori : <input type="text" name="ktgr" value="" size="20"/>
 										<script type="text/javascript">
-										$('.new_pembelian').click(function () {
-										      /* $("#hidderRow1").show();
-										       */$(".tambah-btn").click((function () {
-										          /* var nomorval = $("#first").val(),
-										          	  kategori = $("#kategori").val(),
-										              distributor = $("#distributor").val(),
-										              jumlahBarang = $("#jumlahBarang").val(),
-										              harga = $("#harga").val(),
-										              deskripsi = $("#deskripsi").val(),
-										          $("#firstName").text(firstval);
-										          $("#lastName").text(lastval);
-										          $("#date").text(dateval);
-										          $("#jumlahBarang").text(jumlahBarang);
-										          $("#harga").text(harga);
-										          $("#deskripsi").text(deskripsi);
-										           */console.log(#kategori);
-										           
-										      }));
+											function pilihh()
+											{
+												var objfrm = document.getElementById("111");
+												  var idx_opsi = objfrm.kategori.selectedIndex;
+												  //alert('idx ' + idx_opsi );
+												  objfrm.ktgr.value= objfrm.kategori.options[idx_opsi].text;
+											}
+										      </script>
+										      <script>
+										      $(document).ready(function(){
+										  		$('#tombol').click(function(){
+										  			var kategori = $(".kategori").attr('type');
+													alert(kategori);
+													console.log(#kategori);
+										  		});		
+										  	});
+										       </script>
 										
-										</script>
 
 									</tbody>
 								</table>
