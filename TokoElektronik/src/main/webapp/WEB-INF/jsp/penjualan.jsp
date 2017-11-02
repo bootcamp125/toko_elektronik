@@ -342,7 +342,7 @@
 								e.preventDefault();
 								alert('do edit function here');
 							});
-
+//a
 							copyTable.on('click', '.delete', function(e) {
 								var del = $(this).closest('tr');
 								var delC = $(this).closest('td:last-child');
