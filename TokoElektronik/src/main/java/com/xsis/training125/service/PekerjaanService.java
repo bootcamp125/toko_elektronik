@@ -29,11 +29,6 @@ public class PekerjaanService {
 		// TODO Auto-generated method stub		
 		pekerjaanDao.save(pekerjaan);
 		//masukkan ke karyawan
-		/*for(Karyawan karyawan : pekerjaan.getKaryawan()){
-			karyawan.setPekerjaan(pekerjaan);
-			karyawanDao.save(karyawan);
-		}*/
-	
 		for(Karyawan karyawan : pekerjaan.getKaryawan()){
 			karyawan.setPekerjaan(pekerjaan);
 			karyawanDao.save(karyawan);
