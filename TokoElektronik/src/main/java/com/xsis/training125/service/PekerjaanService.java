@@ -29,10 +29,10 @@ public class PekerjaanService {
 		// TODO Auto-generated method stub		
 		pekerjaanDao.save(pekerjaan);
 		//masukkan ke karyawan
-		for(Karyawan karyawan : pekerjaan.getKaryawan()){
+		/*for(Karyawan karyawan : pekerjaan.getKaryawan()){
 			karyawan.setPekerjaan(pekerjaan);
 			karyawanDao.save(karyawan);
-		}
+		}*/
 	}
 
 	public Pekerjaan getPekerjaanById(int id) {
@@ -43,10 +43,10 @@ public class PekerjaanService {
 	public void update(Pekerjaan pekerjaan) {
 		// TODO Auto-generated method stub
 		pekerjaanDao.update(pekerjaan);
-		for(Karyawan karyawan : pekerjaan.getKaryawan()){
+		/*for(Karyawan karyawan : pekerjaan.getKaryawan()){
 			karyawan.setPekerjaan(pekerjaan);
 			karyawanDao.update(karyawan);
-		}
+		}*/
 	}
 
 	public void delete(int id) {
