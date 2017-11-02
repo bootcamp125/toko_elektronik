@@ -7,6 +7,8 @@ import com.xsis.training125.model.Employee;
 public interface BarangDao {
 
 	List<Barang> getAllBarang();
+	
+	List<Barang> getAllBarangByStock();
 
 	void save(Barang barang);
 
