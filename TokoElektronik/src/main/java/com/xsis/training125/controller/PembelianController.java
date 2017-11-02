@@ -44,7 +44,7 @@ public class PembelianController {
 		model.addAttribute("barang", barang);
 		List<Distributor> distributor = distributorService.getAllDistributor();
 		model.addAttribute("distributor", distributor);
-		return "pembelian3";
+		return "pembelian4";
 	}
 	
 	@RequestMapping(value = "/tambahdetailpembelian", method=RequestMethod.GET)

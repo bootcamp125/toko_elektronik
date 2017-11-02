@@ -102,7 +102,7 @@
 								<i class="fa fa-plus"></i> Barang Baru
 							</button>
 						<!-- action="pembelian" method="GET"  -->	
-					<form action="#" method="post" id="111" class="form-horizontal form-label-left" novalidate>
+					<form id="111" class="form-horizontal form-label-left" novalidate>
                       <span class="section">Personal Info</span>
                       <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">No Produk <span class="required">*</span>
@@ -216,10 +216,11 @@
 										      <script>
 										      $(document).ready(function(){
 										  		$('#tombol').click(function(){
-										  			var kategori = $(".kategori").attr('type');
-													alert(kategori);
-													console.log(#kategori);
-										  		});		
+										  			kategori = $(".kategori").attr('type');
+										  			
+													console(kategori);	
+												});
+										  		
 										  	});
 										       </script>
 										
