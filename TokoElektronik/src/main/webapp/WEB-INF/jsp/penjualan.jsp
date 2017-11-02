@@ -201,32 +201,9 @@
 		$(document)
 				.ready(
 						function() {
-							var rows = $('#datatable tbody tr'), copyTable = $('#datatable2 tbody');
 
-							rows.click(function() {
-								/* var row = $(this), cloneRow = row.clone();
-								cloneRow.children('td:last-child').html('<input type="submit" value="Edit" style="font-size: 12px; width: 100px;" class="edit"><input type="submit" value="Delete" style="font-size: 12px; width: 100px;" class="delete">');
-								copyTable.append(cloneRow);
-								row.hide(); */
-								/* var namaBarang = $("td .textNamaBarang").val();
-								var harga = $("td .textHarga").val();
-								var merk = $("td .textMerk").val();
-								var stock = $("td .textStock").val();
-								var tanggalMasuk = $("td .textTanggalMasuk").val(); 
-								var markup = "<tr><td>" + namaBarang + "</td><td>" + harga + "</td></tr>";
-								$("#datatable2 tbody").append(markup); */
-								var barang = {
-									namaBarang : $("td .textNamaBarang").val(),
-									harga : $("td .textHarga").val(),
-									merk : $("td .textMerk").val(),
-									stock : $("td .textStock").val(),
-									tanggalMasuk : $("td .textTanggalMasuk")
-											.val()
-
-								}
-								//console.log(barang);
-							});
-
+						
+							
 							$(document).on(
 									"click",
 									".btn-addItem",
@@ -261,8 +238,10 @@
 										}
 
 										/* console.log(barang); */
-										appedTablePembelian(barang);
-										$(this).parent().parent().remove();
+										$(this).parents("tr").remove();
+										appedTablePembelian(barang);										
+										
+
 
 									});
 
@@ -324,38 +303,19 @@
 								$('#datatable tbody').append(raw);
 
 							}
-
+							
 							$(document).on(
 									"click",
 									".btn-cancel",
 									function() {
-
-										var barangCancel = $.parseJSON($(this)
-												.attr('data-object'));
+										
+										var barangCancel = $.parseJSON($(this).attr('data-object'));
 										/* console.log(barangCancel); */
 										movingTablePembelian(barangCancel);
-										$(this).parent().parent().remove();
+										$(this).parents("tr").remove();
 
 									});
-
-							copyTable.on('click', '.edit', function(e) {
-								e.preventDefault();
-								alert('do edit function here');
-							});
-//a
-							copyTable.on('click', '.delete', function(e) {
-								var del = $(this).closest('tr');
-								var delC = $(this).closest('td:last-child');
-								e.preventDefault();
-								del.remove();
-								$("#datatable").append(del);
-
-							});
 						});
-
-		function hapusBarang(data) {
-			console.log(data)
-		}
 	</script>
 	<!-- /page content -->
 
