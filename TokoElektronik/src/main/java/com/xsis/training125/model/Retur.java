@@ -1,6 +1,7 @@
 package com.xsis.training125.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -39,24 +41,17 @@ public class Retur {
 	@ManyToOne
 	@JoinColumn(name="no_faktur")
 	private Pembelian pembelian;
+	/*@ManyToOne
+	@JoinColumn(name="no_produk")
+	private DetailPembelian detailpembelian;*/
 
 	
 	public Retur() {
 	}
 
-
-	/**
-	 * @param id
-	 * @param jumlah
-	 * @param keterangan
-	 * @param tanggalRetur
-	 * @param totalHargaRetur
-	 * @param karyawan
-	 * @param distributor
-	 * @param pembelian
-	 */
+	
 	public Retur(int id, int jumlah, String keterangan, Date tanggalRetur, int totalHargaRetur, Karyawan karyawan,
-			Distributor distributor, Pembelian pembelian) {
+			Distributor distributor, Pembelian pembelian, Department department) {
 		super();
 		this.id = id;
 		this.jumlah = jumlah;
@@ -66,8 +61,21 @@ public class Retur {
 		this.karyawan = karyawan;
 		this.distributor = distributor;
 		this.pembelian = pembelian;
+	/*	this.detailpembelian = detailpembelian;*/
 	}
 
+	
+/*
+
+	public DetailPembelian getDetailpembelian() {
+		return detailpembelian;
+	}
+
+
+	public void setDetailpembelian(DetailPembelian detailpembelian) {
+		this.detailpembelian = detailpembelian;
+	}
+*/
 
 	public int getId() {
 		return id;

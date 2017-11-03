@@ -1,11 +1,16 @@
 package com.xsis.training125.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -31,24 +36,39 @@ public class DetailPembelian {
 	@ManyToOne
 	@JoinColumn(name = "id_distributor")
 	private Distributor distributor;
+	/*@OneToMany(fetch=FetchType.LAZY, mappedBy="detailPembelian")
+	private List<Retur> retur;*/
 	
 	public DetailPembelian() {
 	}
 
 	
-	public DetailPembelian(int id, String produk, String kategori, String deskripsi, int jumlah, Pembelian pembelian,
-			int harga, Barang barang, Distributor distributor) {
+	public DetailPembelian(int id, String produk, String kategori, String deskripsi, int jumlah, int harga,
+			Barang barang, Distributor distributor, List<Retur> retur) {
 		super();
 		this.id = id;
 		this.produk = produk;
 		this.kategori = kategori;
 		this.deskripsi = deskripsi;
 		this.jumlah = jumlah;
-		/*this.pembelian = pembelian;*/
 		this.harga = harga;
 		this.barang = barang;
 		this.distributor = distributor;
+		/*this.retur = retur;*/
 	}
+
+
+
+
+/*
+	public List<Retur> getRetur() {
+		return retur;
+	}
+
+
+	public void setRetur(List<Retur> retur) {
+		this.retur = retur;
+	}*/
 
 
 	public int getId() {

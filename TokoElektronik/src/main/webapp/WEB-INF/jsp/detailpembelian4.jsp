@@ -207,17 +207,23 @@
 			</tr>
 		 <tr>
 		 <button type="button" class="delete-row">Delete Row</button>
-		 <button type="submit" name="submit" class="btn btn-success">Submit</button>
+		 
 		 </tr>
 		</thead>
 		<tbody>
 											
 		</tbody>
+		
 		</table>
+		<button onclick="myFunction()" class="pull-right">SAVE</button>
+		
 		<script type="text/javascript"
 			src="/assets/js/jquery-3.2.1.min.js"></script>
 		<script type="text/javascript">
+		
 		$(document).ready(function(){
+			
+			
 			
 			$('#tambah-barang-btn').on('click', function() {
 	            $.ajax({
@@ -252,13 +258,18 @@
 	            $("table tbody").append(markup);
 	        });
 	        
-	        var arr=[
+	         /* var arr=[
 	        	'one',
-	        ];
-	        $.each(arr, function (index, value) {
-	        	  console.log(value);
-	        });
+	        ]; 
+	         $.each(datatable2 tbody, function (index, value) {
+	        	  console.log(index.value);
+	        });  */
 	        
+	        $("#datatable2 tbody tr").each(function() {
+
+	        	  // Within tr we find the last td child element and get content
+	        	  alert($(this).find("td:last-child").html());
+	        	});
 	        
 	        // Find and remove selected table rows
 	        $(".delete-row").click(function(){
@@ -305,20 +316,18 @@
 
 				$.ajax({
 					type : 'DELETE',
-					url : 'pembelian/delete/' + id,
+					url : 'DetailPembelian/delete/' + id,
 					success : function() {
 						window.location = "/pembelian";
 					}
 				});
-				
-
 			});
  			
  			//event submit data for update
  			$('#submit-update').click(function(){
  				
  				//Object ala js
- 				var Retur = {
+ 				var DetailPembelian = {
  					id : id,
  					jumlah : $('#textJumlah').val(),
  					keterangan : $('#textKeterangan').val(),
@@ -332,11 +341,11 @@
  				//ajax update
  				$.ajax({
  					type: 'PUT',
- 					url : 'retur/update',
+ 					url : 'detailPembelian/update',
  					contentType: "application/json",
- 					data: JSON.stringify(Retur),
+ 					data: JSON.stringify(DetailPembelian),
  					success: function(data){
- 						window.location = "/retur";
+ 						window.location = "/DetailPembelian";
  					}
  				});
  			});
