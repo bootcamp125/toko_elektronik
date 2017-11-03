@@ -35,18 +35,24 @@ public class Penjualan {
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="penjualan")
 	@Column(name="detail_penjualan")
 	private List<DetailPenjualan> detailPenjualan;
+	@ManyToOne
+	@JoinColumn(name = "id_pelanggan")
+	private Pelanggan pelanggan;
 	
 	public Penjualan(){}
-  
+
 	public Penjualan(int noNota, Date tanggalPenjualan, int totalHarga, Karyawan karyawan,
-			List<DetailPenjualan> detailPenjualan) {
+			List<DetailPenjualan> detailPenjualan, Pelanggan pelanggan) {
 		super();
 		this.noNota = noNota;
 		this.tanggalPenjualan = tanggalPenjualan;
 		this.totalHarga = totalHarga;
 		this.karyawan = karyawan;
 		this.detailPenjualan = detailPenjualan;
+		this.pelanggan = pelanggan;
 	}
+
+
 
 	public int getNoNota() {
 		return noNota;
@@ -90,6 +96,14 @@ public class Penjualan {
 
 	public void setDetailPenjualan(List<DetailPenjualan> detailPenjualan) {
 		this.detailPenjualan = detailPenjualan;
+	}
+
+	public Pelanggan getPelanggan() {
+		return pelanggan;
+	}
+
+	public void setPelanggan(Pelanggan pelanggan) {
+		this.pelanggan = pelanggan;
 	}
 	
 	

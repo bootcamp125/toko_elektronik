@@ -42,6 +42,7 @@
 				<value>com.xsis.training125.model.Employee</value>
 				<value>com.xsis.training125.model.Karyawan</value>
 				<value>com.xsis.training125.model.Pekerjaan</value>
+				<value>com.xsis.training125.model.Pelanggan</value>
 				<value>com.xsis.training125.model.Pembelian</value>
 				<value>com.xsis.training125.model.Penjualan</value>
 				<value>com.xsis.training125.model.Retur</value>
@@ -49,7 +50,7 @@
 		</property>
 		<property name="hibernateProperties">
 			<props>
-				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.hbm2ddl.auto">create</prop>
 				<prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.current_session_context_class">org.springframework.orm.hibernate5.SpringSessionContext

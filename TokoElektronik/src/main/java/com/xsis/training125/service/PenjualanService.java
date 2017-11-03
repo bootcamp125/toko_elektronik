@@ -6,9 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.xsis.training125.dao.BarangDao;
+import com.xsis.training125.dao.DetailPenjualanDao;
 import com.xsis.training125.dao.EmployeeDao;
 import com.xsis.training125.dao.PekerjaanDao;
 import com.xsis.training125.dao.PenjualanDao;
+import com.xsis.training125.model.Barang;
+import com.xsis.training125.model.DetailPenjualan;
 import com.xsis.training125.model.Penjualan;
 
 
@@ -18,6 +22,10 @@ public class PenjualanService {
 
 	@Autowired
 	PenjualanDao penjualanDao;
+	@Autowired
+	DetailPenjualanDao detailPenjualanDao;
+	@Autowired
+	BarangDao barangDao;
 
 	public List<Penjualan> getAllPenjualan() {
 		// TODO Auto-generated method stub
@@ -27,6 +35,10 @@ public class PenjualanService {
 	public void save(Penjualan penjualan) {
 		// TODO Auto-generated method stub
 		penjualanDao.save(penjualan);
+		for(DetailPenjualan detailPenjualan : penjualan.getDetailPenjualan()){
+			detailPenjualan.setPenjualan(penjualan);
+			detailPenjualanDao.save(detailPenjualan);
+		}
 	}
 
 	public Penjualan getPenjualanById(int id) {
