@@ -191,7 +191,7 @@
 														<tr class="headings">
 
 															<th class="column-title">No Nota</th>
-															<th class="column-title">Tanggal Pembelian</th>
+															<th class="column-title">Tanggal Transaksi</th>
 															<th class="column-title">Total Harga</th>
 															<th class="column-title">Nama Pelanggan</th>
 															<th class="column-title no-link last"><span
@@ -205,19 +205,15 @@
 													</thead>
 
 													<tbody>
-														<c:forEach var="barang" items="${barang }">
-															<tr class="even pointer" barang-id="${barang.id }">
+														<c:forEach var="penjualan" items="${penjualan }">
+															<tr class="even pointer" >
 
-																<td class="textNamaBarang">${barang.namaBarang }</td>
-																<td class="textStock">${barang.stock}</td>
-																<td class="textTanggalMasuk">${barang.tanggalMasuk }</td>
-																<td class="a-right a-right textDiskon ">$7.45</td>
+																<td >${penjualan.noNota }</td>
+																<td>${penjualan.tanggalPenjualan}</td>
+																<td >${penjualan.totalHarga }</td>
+																<td >-- pelanggan</td>
 																<td><button type="button" 
-																		class="btn btn-info detail-btn">Detail</button>
-																	<button type="button" 
-																		class="btn btn-warning update-btn">Update</button>
-																	<button type="button"
-																		class="btn btn-danger delete-btn">Hapus</button></td>
+																		class="btn btn-info detail-history-btn" id="${penjualan.noNota }">Detail Transaksi</button>
 															</tr>
 														</c:forEach>
 													</tbody>
@@ -383,6 +379,7 @@
 	<!-- footer content -->
 	<%@ include file="footer.jsp"%>
 	<!-- /footer content -->
+	
 	<div class="modal fade" id="updateModal" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
@@ -421,6 +418,43 @@
 			</div>
 		</div>
 	</div>
+	
+		<!-- modal u/history -->
+		<div class="modal fade" id="updateModalHistory" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Update Data
+						Transaksi</h5>
+
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label for="textHarga">Tanggal Transaksi</label> <input type="text"
+								class="form-control" id="textTanggalPenjualan" name="tanggalPenjualan">
+						</div>
+						<div class="form-group">
+							<label for="textMerk">Total Harga</label> <input type="text"
+								class="form-control" id="textHargaPenjualan" name="totalHarga">
+						</div>
+						<div class="form-group">
+							<label for="textTanggal">Nama Pelanggan</label> <input type="text"
+								class="form-control" id="textPelanggan" name="">
+						</div>
+
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" id="submit-update">Update</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
 	<!-- jQuery -->
 	<script
 		src="/assets/gentelella-master/vendors/jquery/dist/jquery.min.js"></script>
