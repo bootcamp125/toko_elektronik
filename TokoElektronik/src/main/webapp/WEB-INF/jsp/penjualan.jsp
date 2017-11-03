@@ -61,130 +61,175 @@
 					<h3>Daftar Stock Barang</h3>
 				</div>
 
-				<div class="title_right">
-					<div
-						class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-						<div class="input-group">
-							<input type="text" class="form-control"
-								placeholder="Search for..."> <span
-								class="input-group-btn">
-								<button class="btn btn-default" type="button">Go!</button>
-							</span>
-						</div>
-					</div>
-				</div>
 			</div>
 
 			<div class="clearfix"></div>
 
-			<div class="row">
-				<div class="col-md-12 col-sm-12 col-xs-12">
-					<div class="x_panel">
-						<div class="x_title">
-							<h2>Daftar Barang</h2>
-							<ul class="nav navbar-right panel_toolbox">
-								<li><a class="collapse-link"><i
-										class="fa fa-chevron-up"></i></a></li>
-								<li class="dropdown"><a href="#" class="dropdown-toggle"
-									data-toggle="dropdown" role="button" aria-expanded="false"><i
-										class="fa fa-wrench"></i></a>
-									<ul class="dropdown-menu" role="menu">
-										<li><a href="#">Settings 1</a></li>
-										<li><a href="#">Settings 2</a></li>
-									</ul></li>
-								<li><a class="close-link"><i class="fa fa-close"></i></a></li>
-							</ul>
-							<div class="clearfix"></div>
-						</div>
-						<div class="x_content">
-							<div class="table-responsive">
-								<table id="datatable"
-									class="table table-striped jambo_table bulk_action">
-									<thead>
-										<tr class="headings">
+			<div class="x_content">
 
-											<th class="column-title">Nama Barang</th>
-											<th class="column-title">Harga Satuan</th>
-											<th class="column-title">Merk</th>
-											<th class="column-title">Stock Barang</th>
-											<th class="column-title">Tanggal Masuk</th>
-											<th class="column-title">Discount</th>
-											<th class="column-title no-link last"><span class="nobr">Action</span>
-											</th>
-											<th class="bulk-actions" colspan="7"><a class="antoo"
-												style="color: #fff; font-weight: 500;">Bulk Actions ( <span
-													class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
-											</th>
-										</tr>
-									</thead>
+				<div class="" role="tabpanel" data-example-id="togglable-tabs">
+					<ul id="myTab1" class="nav nav-tabs bar_tabs right" role="tablist">
+						<li role="presentation" class="active"><a
+							href="#tab_content11" id="home-tabb" role="tab" data-toggle="tab"
+							aria-controls="home" aria-expanded="true">Home</a></li>
+						<li role="presentation" class=""><a href="#tab_content22"
+							role="tab" id="profile-tabb" data-toggle="tab"
+							aria-controls="profile" aria-expanded="false">History
+								Transaksi</a></li>
 
-									<tbody>
-										<c:forEach var="barang" items="${barang }">
-											<tr class="even pointer" barang-id="${barang.id }">
+					</ul>
+					<div id="myTabContent2" class="tab-content">
+						<div role="tabpanel" class="tab-pane fade active in"
+							id="tab_content11" aria-labelledby="home-tab">
+							<div class="row">
+								<div class="col-md-12 col-sm-12 col-xs-12">
+									<div class="x_panel">
+										<div class="x_title">
+											<h2>Daftar Barang</h2>
 
-												<td class="textNamaBarang">${barang.namaBarang }</td>
-												<td class="textHarga">${barang.harga }</td>
-												<td class="textMerk">${barang.merk }</td>
-												<td class="textStock">${barang.stock}</td>
-												<td class="textTanggalMasuk">${barang.tanggalMasuk }</td>
-												<td class="a-right a-right textDiskon ">$7.45</td>
-												<td><button type="button" id="tambah-btn"
-														class="pull-right btn btn-primary btn-addItem">Beli</button></td>
-											</tr>
-										</c:forEach>
-									</tbody>
-								</table>
-								<!-- <a href="#" class="btn btn-default" id="btn-addItem">Add Item</a>
-								 -->
+											<div class="clearfix"></div>
+										</div>
+										<div class="x_content">
+											<div class="table-responsive">
+												<table id="datatable"
+													class="table table-striped jambo_table bulk_action">
+													<thead>
+														<tr class="headings">
+
+															<th class="column-title">Nama Barang</th>
+															<th class="column-title">Harga Satuan</th>
+															<th class="column-title">Merk</th>
+															<th class="column-title">Stock Barang</th>
+															<th class="column-title">Tanggal Masuk</th>
+															<th class="column-title">Discount</th>
+															<th class="column-title no-link last"><span
+																class="nobr">Action</span></th>
+															<th class="bulk-actions" colspan="7"><a
+																class="antoo" style="color: #fff; font-weight: 500;">Bulk
+																	Actions ( <span class="action-cnt"> </span> ) <i
+																	class="fa fa-chevron-down"></i>
+															</a></th>
+														</tr>
+													</thead>
+
+													<tbody>
+														<c:forEach var="barang" items="${barang }">
+															<tr class="even pointer" barang-id="${barang.id }">
+
+																<td class="textNamaBarang">${barang.namaBarang }</td>
+																<td class="textHarga">${barang.harga }</td>
+																<td class="textMerk">${barang.merk }</td>
+																<td class="textStock">${barang.stock}</td>
+																<td class="textTanggalMasuk">${barang.tanggalMasuk }</td>
+																<td class="a-right a-right textDiskon ">$7.45</td>
+																<td><button type="button" id="tambah-btn"
+																		class="pull-right btn btn-primary btn-addItem">
+																		<i class="fa fa-shopping-cart"></i> Beli
+																	</button></td>
+															</tr>
+														</c:forEach>
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+							</div>
+							<div class="row">
+								<div class="col-md-12 col-sm-12 col-xs-12">
+									<div class="x_panel">
+										<div class="x_title">
+											<h2>Keranjang Belanja</h2>
+											<div class="clearfix"></div>
+										</div>
+										<div class="x_content">
+											<p class="text-muted font-13 m-b-30">Cari barang untuk
+												menambahkan transaksi</p>
+
+											<table id="datatable2"
+												class="table table-striped table-bordered">
+
+												<thead>
+													<tr>
+														<th>Nama Barang</th>
+														<th>Harga Satuan</th>
+														<th>Merk</th>
+														<th>Stock Barang</th>
+														<th>Tanggal Masuk</th>
+														<th>Discount</th>
+														<th>Tindakan</th>
+													</tr>
+												</thead>
+												<tbody>
+												</tbody>
+											</table>
+											<button type="button" id="tambah-btn"
+												class="pull-right btn btn-primary tambah-btn">Confirm
+												Transaksi</button>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
-					</div>
+						<div role="tabpanel" class="tab-pane fade" id="tab_content22"
+							aria-labelledby="profile-tab">
+							<div class="row">
+								<div class="col-md-12 col-sm-12 col-xs-12">
+									<div class="x_panel">
+										<div class="x_title">
+											<h2>Daftar History Transaksi Pelanggan</h2>
 
-				</div>
+											<div class="clearfix"></div>
+										</div>
+										<div class="x_content">
+											<div class="table-responsive">
+												<table id="datatable-fixed-header"
+													class="table table-striped jambo_table bulk_action">
+													<thead>
+														<tr class="headings">
 
-			</div>
-			<div class="row">
-				<div class="col-md-12 col-sm-12 col-xs-12">
-					<div class="x_panel">
-						<div class="x_title">
-							<h2>Keranjang Belanja</h2>
-							<ul class="nav navbar-right panel_toolbox">
-								<li><a class="collapse-link"><i
-										class="fa fa-chevron-up"></i></a></li>
-								<li class="dropdown"><a href="#" class="dropdown-toggle"
-									data-toggle="dropdown" role="button" aria-expanded="false"><i
-										class="fa fa-wrench"></i></a>
-									<ul class="dropdown-menu" role="menu">
-										<li><a href="#">Settings 1</a></li>
-										<li><a href="#">Settings 2</a></li>
-									</ul></li>
-								<li><a class="close-link"><i class="fa fa-close"></i></a></li>
-							</ul>
-							<div class="clearfix"></div>
-						</div>
-						<div class="x_content">
-							<p class="text-muted font-13 m-b-30">Cari barang untuk
-								menambahkan transaksi</p>
+															<th class="column-title">No Nota</th>
+															<th class="column-title">Tanggal Pembelian</th>
+															<th class="column-title">Total Harga</th>
+															<th class="column-title">Nama Pelanggan</th>
+															<th class="column-title no-link last"><span
+																class="nobr">Action</span></th>
+															<th class="bulk-actions" colspan="7"><a
+																class="antoo" style="color: #fff; font-weight: 500;">Bulk
+																	Actions ( <span class="action-cnt"> </span> ) <i
+																	class="fa fa-chevron-down"></i>
+															</a></th>
+														</tr>
+													</thead>
 
-							<table id="datatable2" class="table table-striped table-bordered">
+													<tbody>
+														<c:forEach var="barang" items="${barang }">
+															<tr class="even pointer" barang-id="${barang.id }">
 
-								<thead>
-									<tr>
-										<th>Nama Barang</th>
-										<th>Harga Satuan</th>
-										<th>Merk</th>
-										<th>Stock Barang</th>
-										<th>Tanggal Masuk</th>
-										<th>Discount</th>
-										<th>Tindakan</th>
-									</tr>
-								</thead>
-								<tbody>
-								</tbody>
-							</table>
-							<button type="button" id="tambah-btn"
-								class="pull-right btn btn-primary tambah-btn">Confirm
-								Transaksi</button>
+																<td class="textNamaBarang">${barang.namaBarang }</td>
+																<td class="textStock">${barang.stock}</td>
+																<td class="textTanggalMasuk">${barang.tanggalMasuk }</td>
+																<td class="a-right a-right textDiskon ">$7.45</td>
+																<td><button type="button" 
+																		class="btn btn-info detail-btn">Detail</button>
+																	<button type="button" 
+																		class="btn btn-warning update-btn">Update</button>
+																	<button type="button"
+																		class="btn btn-danger delete-btn">Hapus</button></td>
+															</tr>
+														</c:forEach>
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+							</div>
+
 						</div>
 					</div>
 				</div>
@@ -202,48 +247,60 @@
 				.ready(
 						function() {
 
-						
-							
-							$(document).on(
-									"click",
-									".btn-addItem",
-									function() {
+							$(document)
+									.on(
+											"click",
+											".btn-addItem",
+											function() {
 
-										var namaBarang = $(this).parent()
-												.parent().find('td').eq(0)
-												.text();
-										var harga = $(this).parent().parent()
-												.find('td').eq(1).text();
-										var merk = $(this).parent().parent()
-												.find('td').eq(2).text();
-										var stock = $(this).parent().parent()
-												.find('td').eq(3).text();
-										var tanggalMasuk = $(this).parent()
-												.parent().find('td').eq(4)
-												.text();
-										var diskon = $(this).parent().parent()
-												.find('td').eq(5).text();
-										var id = $(this).parent().parent()
-												.attr('barang-id');
-										var barang = {
+												var namaBarang = $(this)
+														.parent().parent()
+														.find('td').eq(0)
+														.text();
+												var harga = $(this).parent()
+														.parent().find('td')
+														.eq(1).text();
+												var merk = $(this).parent()
+														.parent().find('td')
+														.eq(2).text();
+												var stock = $(this).parent()
+														.parent().find('td')
+														.eq(3).text();
+												var tanggalMasuk = $(this)
+														.parent().parent()
+														.find('td').eq(4)
+														.text();
+												var diskon = $(this).parent()
+														.parent().find('td')
+														.eq(5).text();
+												var id = $(this).parent()
+														.parent().attr(
+																'barang-id');
+												var barang = {
 
-											id : id,
-											namaBarang : namaBarang,
-											harga : harga,
-											merk : merk,
-											stock : stock,
-											tanggalMasuk : tanggalMasuk,
-											diskon : diskon
+													id : id,
+													namaBarang : namaBarang,
+													harga : harga,
+													merk : merk,
+													stock : stock,
+													tanggalMasuk : tanggalMasuk,
+													diskon : diskon
 
-										}
+												}
 
-										/* console.log(barang); */
-										$(this).parents("tr").remove();
-										appedTablePembelian(barang);										
-										
+												/* console.log(barang); */
+												var table = $('#datatable')
+														.DataTable();
+												//$(this).parents("tr").remove();
+												table
+														.row(
+																$(this)
+																		.parents(
+																				'tr'))
+														.remove().draw();
+												appedTablePembelian(barang);
 
-
-									});
+											});
 
 							function appedTablePembelian(data) {
 
@@ -267,8 +324,9 @@
 								raw += data.diskon;
 								raw += "</td>";
 								raw += "<td>";
-								raw += "<a href='#' class='btn-cancel' data-object='"
-										+ JSON.stringify(data) + "'>Cancel</a>";
+								raw += "<a href='#' class='btn btn-warning btn-cancel' data-object='"
+										+ JSON.stringify(data)
+										+ "'><i class='fa fa-undo '></i> Cancel</a>";
 								raw += "</td>";
 								raw += "</tr>";
 								$('#datatable2 tbody').append(raw);
@@ -297,21 +355,24 @@
 								raw += data.diskon;
 								raw += "</td>";
 								raw += "<td>";
-								raw += "<button type='button' class='pull-right btn btn-primary btn-addItem'>Beli</button>";
+								raw += "<button type='button' class='pull-right btn btn-primary btn-addItem'><i class='fa fa-shopping-cart'></i> Beli</button>";
 								raw += "</td>";
 								raw += "</tr>";
 								$('#datatable tbody').append(raw);
 
 							}
-							
+
 							$(document).on(
 									"click",
 									".btn-cancel",
 									function() {
-										
-										var barangCancel = $.parseJSON($(this).attr('data-object'));
+
+										var barangCancel = $.parseJSON($(this)
+												.attr('data-object'));
 										/* console.log(barangCancel); */
 										movingTablePembelian(barangCancel);
+										//var table = $('#datatable').DataTable();
+										//table.row($(this).parents('tr')).remove().draw();
 										$(this).parents("tr").remove();
 
 									});

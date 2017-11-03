@@ -37,7 +37,7 @@ public class PenjualanController {
 	public String index(Model model){
 		List<Penjualan> penjualan = penjualanService.getAllPenjualan();
 		model.addAttribute("penjualan",penjualan);
-		List<Barang> barang = barangService.getAllBarang();
+		List<Barang> barang = barangService.getAllBarangByStock();
 		model.addAttribute("barang", barang);
 		return "penjualan";
 	}
