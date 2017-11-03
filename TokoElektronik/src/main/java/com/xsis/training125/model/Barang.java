@@ -43,8 +43,8 @@ public class Barang {
 	private Diskon diskon;
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="barang")
 	private List<DetailPembelian> detailPembelian;
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="barang")
-	private List<DetailPenjualan> detailPenjualan;
+	
+	// detail pembelian
 	
 	public Barang(){}
 	
@@ -63,7 +63,7 @@ public class Barang {
 		this.harga = harga;
 		this.diskon = diskon;
 		this.detailPembelian = detailPembelian;
-		this.detailPenjualan = detailPenjualan;
+		
 	}
 
 
@@ -143,13 +143,6 @@ public class Barang {
 		this.detailPembelian = detailPembelian;
 	}
 
-	public List<DetailPenjualan> getDetailPenjualan() {
-		return detailPenjualan;
-	}
-
-	public void setDetailPenjualan(List<DetailPenjualan> detailPenjualan) {
-		this.detailPenjualan = detailPenjualan;
-	}
 		
 	
 }

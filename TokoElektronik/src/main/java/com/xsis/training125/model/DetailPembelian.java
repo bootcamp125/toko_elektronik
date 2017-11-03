@@ -26,13 +26,16 @@ public class DetailPembelian {
 	private String kategori;
 	private String deskripsi;
 	private int jumlah;
+	private int harga;
+	
 	/*@ManyToOne
 	@JoinColumn(name="no_faktur")
 	private Pembelian pembelian;*/
-	private int harga;
+	
 	@ManyToOne
 	@JoinColumn(name = "id_barang")
 	private Barang barang;
+	
 	@ManyToOne
 	@JoinColumn(name = "id_distributor")
 	private Distributor distributor;
@@ -136,7 +139,7 @@ public class DetailPembelian {
 	}
 
 
-	public void setHarga(int harga) {
+	public void setHarga(int harga1) {
 		this.harga = harga;
 	}
 

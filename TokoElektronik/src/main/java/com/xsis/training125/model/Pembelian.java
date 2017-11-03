@@ -35,9 +35,7 @@ public class Pembelian {
 	@ManyToOne
 	@JoinColumn(name="id_karyawan")
 	private Karyawan karyawan;
-	/*@OneToMany(fetch=FetchType.LAZY, mappedBy="pembelian")
-	@Column(name="detail_pembelian")
-	private List<DetailPembelian> detailPembelian;*/
+	
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="pembelian")
 	@Column(name="retur")
 	private List<Retur> retur;
