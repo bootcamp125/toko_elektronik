@@ -46,8 +46,8 @@ public class Karyawan {
 	private List<Pembelian> pembelian;
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="karyawan")
 	private List<Penjualan> penjualan;
-	@OneToOne(mappedBy="karyawan")
-	private Retur retur;
+	/*@OneToOne(mappedBy="karyawan")
+	private Retur retur;*/
 
 	public Karyawan() {
 	}
@@ -71,7 +71,7 @@ public class Karyawan {
 		this.pekerjaan = pekerjaan;
 		this.pembelian = pembelian;
 		this.penjualan = penjualan;
-		this.retur = retur;
+		/*this.retur = retur;*/
 	}
 
  
@@ -151,13 +151,13 @@ public class Karyawan {
 		this.penjualan = penjualan;
 	}
 
-	public Retur getRetur() {
+	/*public Retur getRetur() {
 		return retur;
 	}
 
 	public void setRetur(Retur retur) {
 		this.retur = retur;
-	}
+	}*/
 
 	public Date getTanggalMasuk() {
 		return tanggalMasuk;
