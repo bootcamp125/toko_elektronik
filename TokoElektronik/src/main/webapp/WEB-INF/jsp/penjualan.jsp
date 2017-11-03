@@ -235,7 +235,7 @@
 																<td>${penjualan.noNota }</td>
 																<td>${penjualan.tanggalPenjualan}</td>
 																<td>${penjualan.totalHarga }</td>
-																<td>-- pelanggan</td>
+																<td>${penjualan.pelanggan.name }</td>
 																<td><button type="button"
 																		class="btn btn-info detail-history-btn"
 																		id="${penjualan.noNota }">Detail Transaksi</button>
@@ -405,37 +405,20 @@
 									function() {
 
 										//Object ala js
-										var namaBarang = $(this).parent()
-												.parent().find('td').eq(0)
-												.text();
-										var harga = $(this).parent().parent()
-												.find('td').eq(1).text();
-										var merk = $(this).parent().parent()
-												.find('td').eq(2).text();
-										var stock = $(this).parent().parent()
-												.find('td').eq(3).text();
-
-										var diskon = $(this).parent().parent()
-												.find('td').eq(5).text();
-										var id = $(this).parent().parent()
-												.attr('barang-id');
+										
 										var penjualan = {
 
-											noNota : $('#textNoNota').val(),
-											tanggalPenjualan : $(
-													'#textTanggalPenjualan')
-													.val(),
+											noNota : 1,
+											tanggalPenjualan : '22/12/2017',
 											totalHarga : 5000,
 											karyawan : 1,
-											Penjualan : [ {
-												barang : id,
+											detailPenjualan : [ {
+												barang : 1,
 												diskon : 1,
-												harga : harga,
+												harga : 10000,
 												jumlah : 5,
-												penjualan : $('#textNoNota')
-														.val()
-											},
-											]
+												noNota : 1
+											}]
 										}
 
 										//ajax update
