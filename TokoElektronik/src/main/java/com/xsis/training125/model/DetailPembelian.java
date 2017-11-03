@@ -26,52 +26,34 @@ public class DetailPembelian {
 	private String kategori;
 	private String deskripsi;
 	private int jumlah;
-	private int harga;
-	
 	/*@ManyToOne
 	@JoinColumn(name="no_faktur")
 	private Pembelian pembelian;*/
-	
+	private int harga;
 	@ManyToOne
 	@JoinColumn(name = "id_barang")
 	private Barang barang;
-	
 	@ManyToOne
 	@JoinColumn(name = "id_distributor")
 	private Distributor distributor;
-	/*@OneToMany(fetch=FetchType.LAZY, mappedBy="detailPembelian")
-	private List<Retur> retur;*/
 	
 	public DetailPembelian() {
 	}
 
 	
-	public DetailPembelian(int id, String produk, String kategori, String deskripsi, int jumlah, int harga,
-			Barang barang, Distributor distributor, List<Retur> retur) {
+	public DetailPembelian(int id, String produk, String kategori, String deskripsi, int jumlah, Pembelian pembelian,
+			int harga, Barang barang, Distributor distributor) {
 		super();
 		this.id = id;
 		this.produk = produk;
 		this.kategori = kategori;
 		this.deskripsi = deskripsi;
 		this.jumlah = jumlah;
+		/*this.pembelian = pembelian;*/
 		this.harga = harga;
 		this.barang = barang;
 		this.distributor = distributor;
-		/*this.retur = retur;*/
 	}
-
-
-
-
-/*
-	public List<Retur> getRetur() {
-		return retur;
-	}
-
-
-	public void setRetur(List<Retur> retur) {
-		this.retur = retur;
-	}*/
 
 
 	public int getId() {
@@ -139,7 +121,7 @@ public class DetailPembelian {
 	}
 
 
-	public void setHarga(int harga1) {
+	public void setHarga(int harga) {
 		this.harga = harga;
 	}
 
@@ -162,6 +144,7 @@ public class DetailPembelian {
 	public void setDistributor(Distributor distributor) {
 		this.distributor = distributor;
 	}
+	
 	
 	
 
