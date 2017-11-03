@@ -31,7 +31,7 @@ public class Pembelian {
 	private int totalHarga;
 	@Temporal(TemporalType.DATE)
 	@Column(name = "tanggal_pembelian")
-	private Date tanggalPembelian;
+	private Date tanggalPembelian;//a
 	@ManyToOne
 	@JoinColumn(name="id_karyawan")
 	private Karyawan karyawan;
