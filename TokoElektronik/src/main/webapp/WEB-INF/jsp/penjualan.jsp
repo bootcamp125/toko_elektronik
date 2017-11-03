@@ -137,6 +137,22 @@
 								</div>
 
 							</div>
+							<div class="form-group">
+								<label for="textNama">No Nota</label> <input type="text"
+									class="form-control" id="textNoNota" name="noNota">
+							</div>
+							<div class="form-group">
+								<label for="textHarga">Tanggal Transaksi</label> <input
+									type="text" class="form-control" id="textTanggalPenjualan"
+									name="tanggalPenjualan">
+							</div>
+							<div class="clearfix">
+								<br>
+							</div>
+
+							<div class="clearfix">
+								<br>
+							</div>
 							<div class="row">
 								<div class="col-md-12 col-sm-12 col-xs-12">
 									<div class="x_panel">
@@ -156,8 +172,7 @@
 														<th>Nama Barang</th>
 														<th>Harga Satuan</th>
 														<th>Merk</th>
-														<th>Stock Barang</th>
-														<th>Tanggal Masuk</th>
+														<th>Jumlah Pembelian</th>
 														<th>Discount</th>
 														<th>Tindakan</th>
 													</tr>
@@ -166,13 +181,22 @@
 												</tbody>
 											</table>
 											<button type="button" id="tambah-btn"
-												class="pull-right btn btn-primary tambah-btn">Confirm
+												class="pull-right btn btn-primary btn-confirm-transaksi">Confirm
 												Transaksi</button>
+
+											<div class="product_price">
+												<h1 class="price">Rp. 50000</h1>
+												<span class="price-tax"></span> <br>
+											</div>
+
 										</div>
 									</div>
 								</div>
+
+
 							</div>
 						</div>
+
 						<div role="tabpanel" class="tab-pane fade" id="tab_content22"
 							aria-labelledby="profile-tab">
 							<div class="row">
@@ -206,14 +230,15 @@
 
 													<tbody>
 														<c:forEach var="penjualan" items="${penjualan }">
-															<tr class="even pointer" >
+															<tr class="even pointer">
 
-																<td >${penjualan.noNota }</td>
+																<td>${penjualan.noNota }</td>
 																<td>${penjualan.tanggalPenjualan}</td>
-																<td >${penjualan.totalHarga }</td>
-																<td >-- pelanggan</td>
-																<td><button type="button" 
-																		class="btn btn-info detail-history-btn" id="${penjualan.noNota }">Detail Transaksi</button>
+																<td>${penjualan.totalHarga }</td>
+																<td>-- pelanggan</td>
+																<td><button type="button"
+																		class="btn btn-info detail-history-btn"
+																		id="${penjualan.noNota }">Detail Transaksi</button>
 															</tr>
 														</c:forEach>
 													</tbody>
@@ -248,7 +273,6 @@
 											"click",
 											".btn-addItem",
 											function() {
-
 												var namaBarang = $(this)
 														.parent().parent()
 														.find('td').eq(0)
@@ -262,10 +286,7 @@
 												var stock = $(this).parent()
 														.parent().find('td')
 														.eq(3).text();
-												var tanggalMasuk = $(this)
-														.parent().parent()
-														.find('td').eq(4)
-														.text();
+
 												var diskon = $(this).parent()
 														.parent().find('td')
 														.eq(5).text();
@@ -279,7 +300,6 @@
 													harga : harga,
 													merk : merk,
 													stock : stock,
-													tanggalMasuk : tanggalMasuk,
 													diskon : diskon
 
 												}
@@ -294,14 +314,22 @@
 																		.parents(
 																				'tr'))
 														.remove().draw();
-												appedTablePembelian(barang);
+												appendTablePembelian(barang);
 
 											});
 
-							function appedTablePembelian(data) {
+							function stockOption(data) {
+								var myOption = '';
+
+								for (var i = 1; i <= data; i++) {
+									myOption += '<option >' + i + '</option>';
+								}
+								return myOption;
+							}
+							function appendTablePembelian(data) {
 
 								var raw = "<tr id="+data.id+"> ";
-								raw += "<td>";
+								raw += "<td >";
 								raw += data.namaBarang;
 								raw += "</td>";
 								raw += "<td>";
@@ -310,11 +338,11 @@
 								raw += "<td>";
 								raw += data.merk;
 								raw += "</td>";
+
 								raw += "<td>";
-								raw += data.stock;
-								raw += "</td>";
-								raw += "<td>";
-								raw += data.tanggalMasuk;
+								raw += ' <div class="form-group"> <div class="col-md-9 col-sm-9 col-xs-12"> <select class="select2_single form-control" tabindex="-1">  '
+										+ stockOption(data.stock)
+										+ '</select>  </div> </div>    ';
 								raw += "</td>";
 								raw += "<td>";
 								raw += data.diskon;
@@ -372,6 +400,69 @@
 										$(this).parents("tr").remove();
 
 									});
+
+							$('.btn-confirm-transaksi').click(
+									function() {
+
+										//Object ala js
+										var namaBarang = $(this).parent()
+												.parent().find('td').eq(0)
+												.text();
+										var harga = $(this).parent().parent()
+												.find('td').eq(1).text();
+										var merk = $(this).parent().parent()
+												.find('td').eq(2).text();
+										var stock = $(this).parent().parent()
+												.find('td').eq(3).text();
+
+										var diskon = $(this).parent().parent()
+												.find('td').eq(5).text();
+										var id = $(this).parent().parent()
+												.attr('barang-id');
+										var penjualan = {
+
+											noNota : $('#textNoNota').val(),
+											tanggalPenjualan : $(
+													'#textTanggalPenjualan')
+													.val(),
+											totalHarga : 5000,
+											karyawan : 1,
+											Penjualan : [ {
+												barang : id,
+												diskon : 1,
+												harga : harga,
+												jumlah : 5,
+												penjualan : $('#textNoNota')
+														.val()
+											},
+											]
+										}
+
+										//ajax update
+										$.ajax({
+											type : 'POST',
+											url : '/penjualan/save',
+											contentType : "application/json",
+											data : JSON.stringify(penjualan),
+											success : function(data) {
+												window.location = "/penjualan";
+											},
+											dataType: 'json'
+
+										});
+
+										/* $.ajax({
+													type : 'POST',
+													url : '/detailpenjualan/save',
+													contentType : "application/json",
+													data : JSON
+															.stringify(detailPenjualan),
+													success : function(
+															data) {
+														window.location = "/penjualan";
+													}
+												}) */
+									});
 						});
 	</script>
 	<!-- /page content -->
@@ -379,7 +470,7 @@
 	<!-- footer content -->
 	<%@ include file="footer.jsp"%>
 	<!-- /footer content -->
-	
+
 	<div class="modal fade" id="updateModal" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
@@ -418,10 +509,10 @@
 			</div>
 		</div>
 	</div>
-	
-		<!-- modal u/history -->
-		<div class="modal fade" id="updateModalHistory" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+	<!-- modal u/history -->
+	<div class="modal fade" id="updateModalHistory" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -432,16 +523,17 @@
 				<div class="modal-body">
 					<form>
 						<div class="form-group">
-							<label for="textHarga">Tanggal Transaksi</label> <input type="text"
-								class="form-control" id="textTanggalPenjualan" name="tanggalPenjualan">
+							<label for="textHarga">Tanggal Transaksi</label> <input
+								type="text" class="form-control" id="textTanggalPenjualan"
+								name="tanggalPenjualan">
 						</div>
 						<div class="form-group">
 							<label for="textMerk">Total Harga</label> <input type="text"
 								class="form-control" id="textHargaPenjualan" name="totalHarga">
 						</div>
 						<div class="form-group">
-							<label for="textTanggal">Nama Pelanggan</label> <input type="text"
-								class="form-control" id="textPelanggan" name="">
+							<label for="textTanggal">Nama Pelanggan</label> <input
+								type="text" class="form-control" id="textPelanggan" name="">
 						</div>
 
 					</form>
@@ -454,7 +546,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- jQuery -->
 	<script
 		src="/assets/gentelella-master/vendors/jquery/dist/jquery.min.js"></script>

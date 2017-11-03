@@ -62,7 +62,7 @@ public class DetailPenjualanController {
 	@RequestMapping(value="/save", method=RequestMethod.POST)
 	public String savingData(@ModelAttribute DetailPenjualan detailPenjualan){
 		detailPenjualanService.save(detailPenjualan);
-		return "redirect:/detaildpenjualan";
+		return "redirect:/penjualan";
 	}
 	
 	@RequestMapping(value="/detailpenjualanid/{id}")

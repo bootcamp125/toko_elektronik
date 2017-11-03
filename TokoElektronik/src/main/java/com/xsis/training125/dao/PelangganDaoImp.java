@@ -6,51 +6,50 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import com.xsis.training125.model.Barang;
-import com.xsis.training125.model.Penjualan;
+import com.xsis.training125.model.Pelanggan;
 
 @Repository
-public class PenjualanDaoImpl implements PenjualanDao{
+public class PelangganDaoImp implements PelangganDao {
 
 	@Autowired
 	SessionFactory sessionFactory;
 
 	@Override
-	public List<Penjualan> getAllPenjualan() {
+	public List<Pelanggan> getAllPelanggan() {
 		// TODO Auto-generated method stub
 		Session session = sessionFactory.getCurrentSession();
-		String myHql = "from Penjualan";
-		List<Penjualan> penjualan = session.createQuery(myHql).list();
-		if(penjualan.isEmpty()){
+
+		// HQL (hibernate query language)
+		String myHql = "from Pelanggan";
+		List<Pelanggan> pelanggan = session.createQuery(myHql).list();
+		if (pelanggan.isEmpty()) {
 			return null;
 		}
-		return penjualan;
-	}
 
-
-	@Override
-	public Penjualan getPenjualanById(int id) {
-		// TODO Auto-generated method stub
-		Session session = sessionFactory.getCurrentSession();
-		
-		Penjualan penjualan = session.get(Penjualan.class, id);
-		return penjualan;
+		return pelanggan;
 	}
 
 	@Override
-	public void save(Penjualan penjualan) {
+	public void save(Pelanggan pelanggan) {
 		// TODO Auto-generated method stub
 		Session session = sessionFactory.getCurrentSession();
-		session.save(penjualan);
+		session.save(pelanggan);
 		session.flush();
 	}
 
 	@Override
-	public void update(Penjualan penjualan) {
+	public Pelanggan getPelangganById(int id) {
 		// TODO Auto-generated method stub
 		Session session = sessionFactory.getCurrentSession();
-		session.update(penjualan);
+		Pelanggan pelanggan = session.get(Pelanggan.class, id);
+		return pelanggan;
+	}
+
+	@Override
+	public void update(Pelanggan pelanggan) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		session.update(pelanggan);
 		session.flush();
 	}
 
@@ -58,18 +57,10 @@ public class PenjualanDaoImpl implements PenjualanDao{
 	public void delete(int id) {
 		// TODO Auto-generated method stub
 		Session session = sessionFactory.getCurrentSession();
-		Penjualan penjualan = new Penjualan();
-		penjualan.setNoNota(id);
-		
-		session.delete(penjualan);
+		Pelanggan pelanggan = new Pelanggan();
+		pelanggan.setId(id);	
+		session.delete(pelanggan);
 		session.flush();
 	}
-
-
-
-
-	
-	
-	
 
 }

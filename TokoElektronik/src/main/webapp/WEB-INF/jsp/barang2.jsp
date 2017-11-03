@@ -184,8 +184,7 @@
 							                type: 'PUT',
 							                url: '/barang/update',
 							                contentType: "application/json",
-							                data: JSON
-							                  .stringify(Barang),
+							                data: JSON.stringify(Barang),
 							                success: function(
 							                  data) {
 							                  window.location = "/barang";
