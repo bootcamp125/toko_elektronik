@@ -40,6 +40,8 @@ public class DetailPembelianController {
 	@RequestMapping(method=RequestMethod.GET)
 	public String index(Model model){
 		
+		/*List<DetailPembelian> detailPembelian = detailPembelianService.getAllDetailPembelian();
+		model.addAttribute("detailPembelian",detailPembelian);*/
 		List<Pembelian> pembelian = pembelianService.getAllPembelian();
 		model.addAttribute("pembelian",pembelian);
 		List<Barang> barang = barangService.getAllBarang();

@@ -105,26 +105,30 @@
 								<thead>
 									<tr>
 										<th>No Pembelian</th>
-										<th>Tanggal Pembelian</th>
-										<th>Total Harga</th>
-										<th>Nama Karyawan</th>
-										<th>Tindakan</th>
+										<th>Nama Barang</th>
+										<th>kategori</th>
+										<th>Deskripsi</th>
+										<th>Jumlah</th>
+										<th>Harga</th>
+										<th>Distributor</th>
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach var="pembelian" items="${pembelian }">
+									<c:forEach var="detailPembelian" items="${detailPembelian }">
 										<tr>
-											<td>SAP${pembelian.id }</td>
-											<td>${pembelian.tanggalPembelian }</td>
-											<td>${pembelian.totalHarga }</td>
-
-											<td>${pembelian.karyawan.namaK }</td>
+											<td>${detailPembelian.produk }</td>
+											 <td>${detailPembelian.barang.namaBarang }</td>
+											<td>${detailPembelian.kategori }</td>
+											<td>${detailPembelian.deskripsi }</td>
+											<td>${detailPembelian.jumlah }</td>
+											<td>${detailPembelian.harga }</td>
+											<td>${detailPembelian.distributor.namaDistributor }</td> 
 											<td>
-												<button type="button" id="${pembelian.id }"
+												<button type="button" id="${detailPembelian.id }"
 													class="btn btn-info detail-btn">Detail</button>
-												<button type="button" id="${pembelian.id }"
+												<button type="button" id="${detailPembelian.id }"
 													class="btn btn-warning update-btn">Update</button>
-												<button type="button" data-id="${pembelian.id }"
+												<button type="button" data-id="${detailPembelian.id }"
 													class="btn btn-primary delete-btn">Hapus</button>
 											</td>
 										</tr>

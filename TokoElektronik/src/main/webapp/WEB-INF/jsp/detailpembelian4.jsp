@@ -276,6 +276,14 @@
 	            $("table tbody").append(markup);
 	        });
 	        
+	        var arr=[
+	        	'one',
+	        ];
+	        $.each(arr, function (index, value) {
+	        	  console.log(value);
+	        });
+	        
+	        
 	        // Find and remove selected table rows
 	        $(".delete-row").click(function(){
 	            $("table tbody").find('input[name="record"]').each(function(){
