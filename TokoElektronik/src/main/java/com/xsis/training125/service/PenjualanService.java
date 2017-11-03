@@ -28,7 +28,7 @@ public class PenjualanService {
 	BarangDao barangDao;
 
 	public List<Penjualan> getAllPenjualan() {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stuba
 		return penjualanDao.getAllPenjualan();
 	}
 
