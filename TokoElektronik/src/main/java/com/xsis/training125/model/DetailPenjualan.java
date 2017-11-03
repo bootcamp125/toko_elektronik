@@ -18,7 +18,7 @@ public class DetailPenjualan {
 
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private int id;
 	private int jumlah;
 	private int harga;

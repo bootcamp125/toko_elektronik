@@ -412,7 +412,7 @@
 											tanggalPenjualan : '22/12/2017',
 											totalHarga : 5000,
 											karyawan : 1,
-											detailPenjualan : [ {
+											Penjualan : [ {
 												barang : 1,
 												diskon : 1,
 												harga : 10000,
@@ -428,7 +428,8 @@
 											contentType : "application/json",
 											data : JSON.stringify(penjualan),
 											success : function(data) {
-												window.location = "/penjualan";
+												console.log(data);
+												/* window.location = "/penjualan"; */
 											},
 											dataType: 'json'
 

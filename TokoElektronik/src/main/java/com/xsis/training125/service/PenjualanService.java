@@ -35,10 +35,10 @@ public class PenjualanService {
 	public void save(Penjualan penjualan) {
 		// TODO Auto-generated method stub
 		penjualanDao.save(penjualan);
-		/*for(DetailPenjualan detailPenjualan : penjualan.getDetailPenjualan()){
+		for(DetailPenjualan detailPenjualan : penjualan.getDetailPenjualan()){
 			detailPenjualan.setPenjualan(penjualan);
 			detailPenjualanDao.save(detailPenjualan);
-		}*/
+		}
 	}
 
 	public Penjualan getPenjualanById(int id) {
