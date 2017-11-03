@@ -32,9 +32,9 @@ public class Retur {
 	private Date tanggalRetur;
 	@Column(name="total_harga_retur")
 	private int totalHargaRetur;
-	@OneToOne
+	/*@OneToOne
 	@JoinColumn(name="id_karyawan", unique=true)
-	private Karyawan karyawan;
+	private Karyawan karyawan;*/
 	@ManyToOne
 	@JoinColumn(name="id_distributor")
 	private Distributor distributor;
@@ -58,7 +58,7 @@ public class Retur {
 		this.keterangan = keterangan;
 		this.tanggalRetur = tanggalRetur;
 		this.totalHargaRetur = totalHargaRetur;
-		this.karyawan = karyawan;
+		/*this.karyawan = karyawan;*/
 		this.distributor = distributor;
 		this.pembelian = pembelian;
 	/*	this.detailpembelian = detailpembelian;*/
@@ -127,14 +127,14 @@ public class Retur {
 	}
 
 
-	public Karyawan getKaryawan() {
+	/*public Karyawan getKaryawan() {
 		return karyawan;
 	}
 
 
 	public void setKaryawan(Karyawan karyawan) {
 		this.karyawan = karyawan;
-	}
+	}*/
 
 
 	public Distributor getDistributor() {

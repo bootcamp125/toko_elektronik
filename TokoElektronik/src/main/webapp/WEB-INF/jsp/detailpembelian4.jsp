@@ -72,7 +72,7 @@
 			<div class="clearfix"></div>
 			</div>
 			<div class="x_content">
-				<p class="text-muted font-13 m-b-30">text here</p>
+				
 				<button type="button" id="tambah-barang-btn"
 					class="btn btn-success btn-lg">
 					<i class="fa fa-plus"></i> Tambah data Barang
@@ -279,7 +279,7 @@
 	                }
 	            });
 	        });
-	        
+	        /* 
 	        var id = 0;
  			$('.update-btn').on('click', function(){
  				
@@ -350,7 +350,7 @@
  				});
  			});
  	
-	    });   
+	    });    */
 				/* function(data) {
 					var t = $('#datatable2').DataTable();
 					var counter = 1;
@@ -365,9 +365,9 @@
 							])
 							.draw(false);
 						counter++;
-					});
+					});*/
 
-				}); */
+				}); 
 				
 				
 </script>

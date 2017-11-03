@@ -1,18 +1,57 @@
-<%@page import="com.xsis.training125.model.Retur"%>
-<%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@page import="com.xsis.training125.model.Barang"%>
 
-<!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<!DOCTYPE html >
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-<link rel="stylesheet" href="/assets/bootstrap-4.0.0-beta.2/dist/css/bootstrap.min.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- Meta, title, CSS, favicons, etc. -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>DataTables | Gentelella</title>
+
+<!-- Bootstrap -->
+<link
+	href="/assets/gentelella-master/vendors/bootstrap/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<!-- Font Awesome -->
+<link
+	href="/assets/gentelella-master/vendors/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet">
+<!-- NProgress -->
+<link href="/assets/gentelella-master/vendors/nprogress/nprogress.css"
+	rel="stylesheet">
+<!-- iCheck -->
+<link
+	href="/assets/gentelella-master/vendors/iCheck/skins/flat/green.css"
+	rel="stylesheet">
+<!-- Datatables -->
+<link
+	href="/assets/gentelella-master/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css"
+	rel="stylesheet">
+<link
+	href="/assets/gentelella-master/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css"
+	rel="stylesheet">
+<link
+	href="/assets/gentelella-master/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css"
+	rel="stylesheet">
+<link
+	href="/assets/gentelella-master/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css"
+	rel="stylesheet">
+<link
+	href="/assets/gentelella-master/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css"
+	rel="stylesheet">
+
+<!-- Custom Theme Style -->
+<link href="/assets/gentelella-master/build/css/custom.min.css"
+	rel="stylesheet">
 </head>
-<body>
- 	<div class="container" id="container">
+<body class="nav-md">
+	<%@ include file="header.jsp"%>
+ 	<div class="right_col" role="main">
  	<table class="table table-sm table-striped table-bordered table-hover">
 	 	<thead class="thead-dark">
 	 		<tr>
@@ -20,9 +59,9 @@
 	 			<th>Keterangan</th>
 	 			<th>Tanggal Retur </th>
 	 			<th>Total Harga Retur</th>
-	 			<th>ID Karyawan</th>
+	 			
 	 			<th>ID Distributor</th>
-	 			<th>ID pembelian</th>
+	 		
 	 		</tr>
 	 	</thead>
 	 	
@@ -42,9 +81,9 @@
 	 				<td>${retur.keterangan }</td>
 	 				<td>${retur.tanggalRetur }</td>
 	 				<td>${retur.totalHargaRetur }</td>
-	 				<td>${retur.karyawan.namaK }</td>
-	 				<td>${retur.distributor.namaDistributor }</td>
-	 				<td>${retur.pembelian.id }</td>
+	 				
+	 				<td>${retur.distributor.id }</td>
+	 				
 	 				<td>
 	 					<a data-id="${retur.id }"class="btn btn-outline-danger delete-btn" href="#">Delete</a>
 	 					<a id="${retur.id }" class="btn btn-outline-warning update-btn" href="#">Update</a>
@@ -83,13 +122,7 @@
  						<input type="text" name="totalHargaRetur" placeholder="Masukkan"/>
  					</td>
  				</tr>
- 				<tr>
- 					<td>karyawan</td>
- 					<td>:</td>
- 					<td>
- 						<input type="text" name="karyawan" placeholder="Masukkan"/>
- 					</td>
- 				</tr>
+ 				
  				<tr>
  					<td>distributor</td>
  					<td>:</td>
@@ -253,5 +286,52 @@
 	    </div>
 	  </div>
 	</div>
+	<!-- jQuery -->
+	<script
+		src="/assets/gentelella-master/vendors/jquery/dist/jquery.min.js"></script>
+	<!-- Bootstrap -->
+	<script
+		src="/assets/gentelella-master/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+	<!-- FastClick -->
+	<script
+		src="/assets/gentelella-master/vendors/fastclick/lib/fastclick.js"></script>
+	<!-- NProgress -->
+	<script src="/assets/gentelella-master/vendors/nprogress/nprogress.js"></script>
+	<!-- iCheck -->
+	<script src="/assets/gentelella-master/vendors/iCheck/icheck.min.js"></script>
+	<!-- Datatables -->
+	<script
+		src="/assets/gentelella-master/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+	<script
+		src="/assets/gentelella-master/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+	<script
+		src="/assets/gentelella-master/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+	<script
+		src="/assets/gentelella-master/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+	<script
+		src="/assets/gentelella-master/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+	<script
+		src="/assets/gentelella-master/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+	<script
+		src="/assets/gentelella-master/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+	<script
+		src="/assets/gentelella-master/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+	<script
+		src="/assets/gentelella-master/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+	<script
+		src="/assets/gentelella-master/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+	<script
+		src="/assets/gentelella-master/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+	<script
+		src="/assets/gentelella-master/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+	<script src="/assets/gentelella-master/vendors/jszip/dist/jszip.min.js"></script>
+	<script
+		src="/assets/gentelella-master/vendors/pdfmake/build/pdfmake.min.js"></script>
+	<script
+		src="/assets/gentelella-master/vendors/pdfmake/build/vfs_fonts.js"></script>
+
+	<!-- Custom Theme Scripts -->
+	<script src="/assets/gentelella-master/build/js/custom.min.js"></script>
+	
 </body>
 </html>
