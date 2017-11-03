@@ -142,13 +142,9 @@
 																	function() {
 
 																		//ambil data dari server => ajax
-																		id = $(
-																				this)
-																				.attr(
-																						'id');
+																		id = $(this).attr('id');
 
-																		$
-																				.ajax({
+																		$.ajax({
 																					type : 'POST',
 																					url : '/pekerjaan/pekerjaanid/'	+ id,
 																					success : function(
@@ -159,8 +155,7 @@
 																					dataType : 'json'
 																				});
 
-																		$(
-																				'#updateModal')
+																		$('#updateModal')
 																				.modal();
 																	});
 

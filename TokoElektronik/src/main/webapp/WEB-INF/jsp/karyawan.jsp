@@ -198,7 +198,7 @@
 									$('#textAlamat').val(data.alamat);
 									$('#textTanggal').val(data.tanggalMasuk);
 									$('#textGaji').val(data.gaji);
-									$('#textPekerjaan').val(data.pekerjaan.deskripsi);
+														
 								}
 								
 					 			
@@ -213,7 +213,7 @@
 					 					alamat : $('#textAlamat').val(),
 					 					tanggalMasuk : $('#textTanggal').val(),
 					 					gaji : $('#textGaji').val(),
-					 					pekerjaan : $('#pekerjaan').val(),
+					 					pekerjaan : $('#textPekerjaanId').val()
 					 				};
 					 				
 					 				//ajax update
@@ -271,10 +271,7 @@
 			  <div class="form-group">
 			    <label for="textGaji">Gaji</label>
 			    <input type="text" class="form-control" id="textGaji" name="gaji" >
-			  </div>
-			   <div class="form-group">
-			    <label for="textPekerjaan">Pekerjaan</label>
-			    <input type="text" class="form-control" id="textPekerjaan" name="pekerjaan.deskripsi" >  
+			    <input type="text" class="form-control" id="textPekerjaanId" name="pekerjaan.deskripsi" >  
 			  </div>
 			</form>
 	      </div>
@@ -284,54 +281,6 @@
 	      </div>
 	    </div>
 	  </div>
-=======
-	<!-- footer content -->
-	<%@ include file="footer.jsp"%>
-	<!-- /footer content -->
-	<div class="modal fade" id="updateModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<form>
-						<div class="form-group">
-							<label for="textNama">Nama Karyawan</label> <input type="text"
-								class="form-control" id="textNama" name="namaK">
-						</div>
-
-						<div class="form-group">
-							<label for="textJK">Jenis Kelamin</label> <input type="text"
-								class="form-control" id="textJK" name="jk">
-						</div>
-						<div class="form-group">
-							<label for="textAlamat">Alamat</label> <input type="text"
-								class="form-control" id="textAlamat" name="alamat">
-						</div>
-						<div class="form-group">
-							<label for="textTanggal">Tanggal Masuk</label> <input type="text"
-								class="form-control" id="textTanggal" name="tanggalMasuk">
-						</div>
-						<div class="form-group">
-							<label for="textGaji">Gaji</label> <input type="text"
-								class="form-control" id="textGaji" name="gaji">
-						</div>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary" id="submit-update">Update</button>
-				</div>
-			</div>
-		</div>
->>>>>>> branch 'master' of https://github.com/bootcamp125/toko_elektronik.git
 	</div>
 	<!-- jQuery -->
 	<script

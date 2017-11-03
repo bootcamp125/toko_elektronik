@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.xsis.training125.model.Barang;
 import com.xsis.training125.model.Employee;
+import com.xsis.training125.model.Karyawan;
 
 
 @Repository
@@ -64,6 +65,18 @@ public class BarangDaoImpl implements BarangDao  {
 		barang.setId(id);	
 		session.delete(barang);
 		session.flush();
+	}
+
+	@Override
+	public List<Barang> getAllBarangByStock() {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		String myHql = "from Barang b where b.stock > 0";
+		List<Barang> barang = session.createQuery(myHql).list();
+		if (barang.isEmpty()) {
+			return null;
+		}
+		return barang;
 	}
 
 	

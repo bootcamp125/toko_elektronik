@@ -37,7 +37,7 @@ public class PekerjaanDaoImpl implements PekerjaanDao {
 		session.save(pekerjaan);
 		session.flush();
 	}
-
+	
 	@Override
 	public Pekerjaan getPekerjaanById(int id) {
 		// TODO Auto-generated method stub
@@ -47,10 +47,10 @@ public class PekerjaanDaoImpl implements PekerjaanDao {
 	}
 
 	@Override
-	public void update(Pekerjaan barang) {
+	public void update(Pekerjaan pekerjaan) {
 		// TODO Auto-generated method stub
 		Session session = sessionFactory.getCurrentSession();
-		session.update(barang);
+		session.update(pekerjaan);
 		session.flush();
 	}
 
@@ -58,9 +58,9 @@ public class PekerjaanDaoImpl implements PekerjaanDao {
 	public void delete(int id) {
 		// TODO Auto-generated method stub
 		Session session = sessionFactory.getCurrentSession();
-		Pekerjaan barang = new Pekerjaan();
-		barang.setId(id);	
-		session.delete(barang);
+		Pekerjaan pekerjaan = new Pekerjaan();
+		pekerjaan.setId(id);	
+		session.delete(pekerjaan);
 		session.flush();
 	}
 }

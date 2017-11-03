@@ -44,6 +44,11 @@ public class BarangService {
 		barangDao.delete(id);
 	}
 
+	public List<Barang> getAllBarangByStock() {
+		// TODO Auto-generated method stub
+		return barangDao.getAllBarangByStock();
+	}
+
 	
 
 
