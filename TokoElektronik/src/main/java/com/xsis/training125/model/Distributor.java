@@ -17,6 +17,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
 public class Distributor {
 
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
@@ -97,5 +98,6 @@ public class Distributor {
 	public void setRetur(List<Retur> retur) {
 		this.retur = retur;
 	}
+
 
 }
