@@ -22,7 +22,6 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 public class Penjualan {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="no_nota")
 	private int noNota;
 	@Column(name="tangal_penjualan")

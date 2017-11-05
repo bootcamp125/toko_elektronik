@@ -13,6 +13,7 @@ import com.xsis.training125.dao.PekerjaanDao;
 import com.xsis.training125.dao.PenjualanDao;
 import com.xsis.training125.model.Barang;
 import com.xsis.training125.model.DetailPenjualan;
+import com.xsis.training125.model.Pekerjaan;
 import com.xsis.training125.model.Penjualan;
 
 
@@ -35,10 +36,10 @@ public class PenjualanService {
 	public void save(Penjualan penjualan) {
 		// TODO Auto-generated method stub
 		penjualanDao.save(penjualan);
-		for(DetailPenjualan detailPenjualan : penjualan.getDetailPenjualan()){
+		/*for(DetailPenjualan detailPenjualan : penjualan.getDetailPenjualan()){
 			detailPenjualan.setPenjualan(penjualan);
 			detailPenjualanDao.save(detailPenjualan);
-		}
+		}*/
 	}
 
 	public Penjualan getPenjualanById(int id) {

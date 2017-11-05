@@ -126,6 +126,31 @@
 							          });
 
 							      var id = 0;
+							      $('.detail-btn').on('click', function() {
+
+							            //ambil data dari server => ajax
+							            id = $( this)  .attr('id');
+
+							            $.ajax({
+							                type: 'POST',
+							                url: '/barang/barangid/' + id,
+							                success: function( data) {
+							                  //console.log(JSON.stringify(data));
+							                  _setFieldDetailModal(data);
+							                },
+							                dataType: 'json'
+							              });
+
+							            $('#detailModal').modal();
+							          });
+							      
+							      function _setFieldDetailModal( data) {
+							    	  document.getElementById( 'namaBarang' ).innerHTML = data.namaBarang + '-' + data.merk;
+							    	  document.getElementById( 'deskripsiBarang' ).innerHTML = 'Deskripsi :'+ data.deskripsi ;
+							    	  document.getElementsByClassName( "price" )[0].innerHTML ='Rp.'+ data.harga +',-' ;
+								       
+								      }
+							      
 							      $('.update-btn').on('click', function() {
 
 							            //ambil data dari server => ajax
@@ -258,6 +283,81 @@
 			</div>
 		</div>
 	</div>
+	
+	<div class="modal fade " id="detailModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="col-md-12 col-sm-12 col-xs-12">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h2 class="modal-title" >
+						Detail Barang</h2>
+					
+				</div>
+				<div class="modal-body">
+				            
+		            <div class="row">
+		                <div class="x_panel">
+		                  
+		                  <div class="x_content">
+		
+		                    <div class="col-md-7 col-sm-7 col-xs-12" style="border:0px solid #e5e5e5;">
+		
+		                      <h3 id="namaBarang" class="prod_title">LOWA Men’s Renegade GTX Mid Hiking Boots Review</h3>
+		
+		                      <p id=deskripsiBarang>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terr.</p>
+		                      <br />
+		
+		
+		                        <div class="product_price" >
+		                        <span class="price-tax">Harga Barang</span>
+		                          <br>
+		                          <h1 class="price" ></h1>
+		                        </div>
+
+		
+		                      <div class="">
+		                        <button type="button" class="btn btn-default btn-lg">Add to Cart</button>
+		                        <button type="button" class="btn btn-default btn-lg">Add to Wishlist</button>
+		                      </div>
+		
+		                      <div class="product_social">
+		                        <ul class="list-inline">
+		                          <li><a href="#"><i class="fa fa-facebook-square"></i></a>
+		                          </li>
+		                          <li><a href="#"><i class="fa fa-twitter-square"></i></a>
+		                          </li>
+		                          <li><a href="#"><i class="fa fa-envelope-square"></i></a>
+		                          </li>
+		                          <li><a href="#"><i class="fa fa-rss-square"></i></a>
+		                          </li>
+		                        </ul>
+		                      </div>
+
+
+
+	
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    
+				
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Close</button>
+				</div>
+			</div>
+			</div>
+		</div>
+
+	
 	<!-- jQuery -->
 	<script
 		src="/assets/gentelella-master/vendors/jquery/dist/jquery.min.js"></script>
