@@ -181,14 +181,7 @@
 
 							});
 					 			
-					 			function _setFieldUpdateModal(data) {
-									$('#textNama').val(data.namaK);
-									$('#textJK').val(data.jk);
-									$('#textAlamat').val(data.alamat);
-									$('#textTanggal').val(data.tanggalMasuk);
-									$('#textGaji').val(data.gaji);
-														
-								}
+					 			
 								
 					 			
 					 			//event submit data for update

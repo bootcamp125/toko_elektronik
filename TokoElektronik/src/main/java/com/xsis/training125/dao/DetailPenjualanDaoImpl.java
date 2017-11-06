@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.xsis.training125.model.DetailPenjualan;
+import com.xsis.training125.model.Karyawan;
 
 @Repository
 public class DetailPenjualanDaoImpl implements DetailPenjualanDao {
@@ -66,6 +67,18 @@ public class DetailPenjualanDaoImpl implements DetailPenjualanDao {
 		detailPenjualan.setId(id);	
 		session.delete(detailPenjualan);
 		session.flush();
+	}
+
+
+	@Override
+	public List<DetailPenjualan> getDetailPenjualanByIdPenjualan(int id) {
+		Session session = sessionFactory.getCurrentSession();
+		String myHql = "from DetailPenjualan d where d.penjualan.id = '" + id + "'";
+		List<DetailPenjualan> detailPenjualan = session.createQuery(myHql).list();
+		if (detailPenjualan.isEmpty()) {
+			return null;
+		}
+		return detailPenjualan;
 	}
 
 }

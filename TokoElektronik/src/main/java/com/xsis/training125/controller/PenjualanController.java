@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import com.xsis.training125.model.Barang;
 import com.xsis.training125.model.DetailPenjualan;
 import com.xsis.training125.model.Distributor;
+import com.xsis.training125.model.Karyawan;
 import com.xsis.training125.model.Pelanggan;
 import com.xsis.training125.model.Penjualan;
 import com.xsis.training125.service.BarangService;
@@ -56,7 +57,14 @@ public class PenjualanController {
 		return penjualan;
 	}
 	
-	
+	@RequestMapping(value="/invoice/{id}")
+	public String getInvoice(@PathVariable int id, Model model){
+		Penjualan penjualan = penjualanService.getPenjualanById(id);
+		model.addAttribute("penjualan",penjualan);
+		List<DetailPenjualan> detailPenjualan = detailPenjualanService.getDetailPenjualanByIdPenjualan(id);
+		model.addAttribute("detailPenjualan", detailPenjualan);
+		return "invoice";
+	}
 	
 	@RequestMapping(value="/penjualanid/{id}")
 	@ResponseBody

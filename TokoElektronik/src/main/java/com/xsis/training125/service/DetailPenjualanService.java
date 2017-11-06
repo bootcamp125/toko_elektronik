@@ -38,4 +38,9 @@ public class DetailPenjualanService {
 		// TODO Auto-generated method stub
 		detailPenjualanDao.delete(id);
 	}
+
+	public List<DetailPenjualan> getDetailPenjualanByIdPenjualan(int id) {
+		// TODO Auto-generated method stub
+		return detailPenjualanDao.getDetailPenjualanByIdPenjualan(id);
+	}
 }

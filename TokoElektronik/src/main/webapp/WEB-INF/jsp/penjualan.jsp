@@ -82,6 +82,37 @@
 						<div role="tabpanel" class="tab-pane fade active in"
 							id="tab_content11" aria-labelledby="home-tab">
 
+							<div class="col-md-12 col-sm-12 col-xs-12">
+								<div class="x_panel">
+									<div class="x_title">
+										<h2>Form Transaksi</h2>
+
+										<div class="clearfix"></div>
+									</div>
+									<div class="x_content">
+
+										<div class="form-group">
+											<label for="textHarga">Tanggal Transaksi</label> <input
+												type="text" class="form-control" disabled="disabled"
+												id="textTanggalPenjualan" name="tanggalPenjualan" value="">
+
+										</div>
+										<div class="form-group">
+											<label for="textPelanggan">Nama Pelanggan</label> <select
+												class="select2_single form-control" tabindex="-1"
+												id="TextPelanggan" required="required" name="pelanggan.id">
+												<option></option>
+												<c:forEach var="pelanggan" items="${pelanggan }">
+													<option value="${pelanggan.id} ">${pelanggan.name}</option>
+												</c:forEach>
+											</select>
+
+										</div>
+
+									</div>
+								</div>
+							</div>
+
 							<div class="row">
 								<div class="col-md-12 col-sm-12 col-xs-12">
 									<div class="x_panel">
@@ -135,47 +166,7 @@
 
 
 							</div>
-							<div class="col-md-12 col-sm-12 col-xs-12">
-								<div class="x_panel">
-									<div class="x_title">
-										<h2>Form Transaksi</h2>
 
-										<div class="clearfix"></div>
-									</div>
-									<div class="x_content">
-										<div class="form-group">
-											<label for="textNama">No Nota</label> <input type="text"
-												class="form-control" id="textNoNota" name="noNota"
-												required="required"> <input type="hidden"
-												class="form-control" id="textNoNotadetailPenjualan"
-												name="detailPenjualan.noNota" required="required">
-
-										</div>
-										<div class="form-group">
-											<label for="textHarga">Tanggal Transaksi</label> <input
-												type="text" class="form-control" id="textTanggalPenjualan"
-												name="tanggalPenjualan" required="required"> <input
-												type="hidden" class="form-control" name="totalHarga"
-												id="textTotalHarga">
-
-
-
-										</div>
-										<div class="form-group">
-											<label for="textPelanggan">Nama Pelanggan</label> <select
-												class="select2_single form-control" tabindex="-1"
-												id="TextPelanggan" required="required" name="pelanggan.id">
-												<option></option>
-												<c:forEach var="pelanggan" items="${pelanggan }">
-													<option value="${pelanggan.id} ">${pelanggan.name}</option>
-												</c:forEach>
-											</select>
-
-										</div>
-
-									</div>
-								</div>
-							</div>
 							<div class="clearfix">
 								<br>
 							</div>
@@ -302,6 +293,19 @@
 									.getElementById('harga');
 							var jumlah = 1;
 							var dp = [];
+							var date = new Date();
+
+							var day = date.getDate();
+							var month = date.getMonth() + 1;
+							var year = date.getFullYear();
+
+							if (month < 10)
+								month = "0" + month;
+							if (day < 10)
+								day = "0" + day;
+
+							var today = year + "-" + month + "-" + day;
+							$("#textTanggalPenjualan").attr("value", today);
 							$(document)
 									.on(
 											"click",
@@ -386,27 +390,25 @@
 
 								//Object ala js
 								var penjualan = {
-									noNota : $('#textNoNota').val(),
-									/* tanggalPenjualan : $(
-											'#textTanggalPenjualan')
-											.val(), */
+
+									tanggalPenjualan : Date.now(),
 									totalHarga : hargaBarangSatuan,
 									pelanggan : pelanggan,
 									karyawan : karyawan,
 									detailPenjualan : dp
 								}
-								
+
 								/* console.log(penjualan); */
 								//ajax update
-								 $.ajax({
+								$.ajax({
 									type : 'POST',
 									url : '/penjualan/save',
 									contentType : "application/json",
 									data : JSON.stringify(penjualan),
 									success : function(data) {
-										console.log(data);
+										window.location = "/penjualan";
 									}
-								}); 
+								});
 							});
 
 							function stockOption(data) {
@@ -547,6 +549,23 @@
 										* jumlah);
 
 							}
+
+							$('.detail-history-btn')
+									.on(
+											'click',
+											function() {
+												id = $(this).attr('id');
+
+												$
+														.ajax({
+															success : function(
+																	data) {
+																//console.log(JSON.stringify(data));
+																window.location = "/penjualan/invoice/"
+																		+ id;
+															}
+														});
+											});
 
 						});
 	</script>

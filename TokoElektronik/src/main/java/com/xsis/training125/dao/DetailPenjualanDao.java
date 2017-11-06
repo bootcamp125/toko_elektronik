@@ -21,4 +21,7 @@ public interface DetailPenjualanDao {
 	
 	void delete(int id);
 
+
+	List<DetailPenjualan> getDetailPenjualanByIdPenjualan(int id);
+
 }

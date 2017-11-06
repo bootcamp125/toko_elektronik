@@ -52,6 +52,10 @@
 <!-- Custom Theme Style -->
 <link href="/assets/gentelella-master/build/css/custom.min.css"
 	rel="stylesheet">
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+
 </head>
 <body class="nav-md">
 	<%@ include file="header.jsp"%>
@@ -99,7 +103,7 @@
 											required="required" class="form-control col-md-7 col-xs-12">
 									</div>
 								</div>
-								
+
 								<div class="form-group">
 									<label for="textJK"
 										class="control-label col-md-3 col-sm-3 col-xs-12">Jenis
@@ -124,8 +128,8 @@
 										Masuk <span class="required">*</span>
 									</label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
-										<input id="textTanggal"
-											class="date-picker form-control col-md-7 col-xs-12"
+										<input id="datepicker"
+											class="date-picker form-control col-md-7 col-xs-12 "
 											required="required" type="text" name="tanggalMasuk">
 									</div>
 								</div>
@@ -139,11 +143,12 @@
 								</div>
 								<div class="form-group">
 
-									<label class="control-label col-md-3 col-sm-3 col-xs-12">Pekerjaan<span class="required">*</span>
+									<label class="control-label col-md-3 col-sm-3 col-xs-12">Pekerjaan<span
+										class="required">*</span>
 									</label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
-										<select class="select2_single form-control" name="pekerjaan.id"
-											tabindex="-1">
+										<select class="select2_single form-control"
+											name="pekerjaan.id" tabindex="-1">
 											<c:forEach var="pekerjaan" items="${pekerjaan }">
 												<option value="${ pekerjaan.id}">${ pekerjaan.deskripsi}</option>
 											</c:forEach>
@@ -160,6 +165,8 @@
 								</div>
 
 							</form>
+
+
 						</div>
 					</div>
 				</div>
@@ -167,6 +174,19 @@
 		</div>
 	</div>
 	<!-- /page content -->
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script>
+		$('#datepicker').datepicker({
+			changeMonth : true,
+			changeYear : true
+		});
+	</script>
+
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+		integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+		crossorigin="anonymous"></script>
 
 
 	<!-- footer content -->
