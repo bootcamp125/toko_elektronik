@@ -87,8 +87,8 @@
 						</div>
 						<div class="x_content">
 							<br />
-							<form action="/barang/save" method="POST" id="demo-form2"
-								data-parsley-validate class="form-horizontal form-label-left">
+							<div id="demo-form2" data-parsley-validate
+								class="form-horizontal form-label-left">
 
 								<div class="form-group">
 									<label class="control-label col-md-3 col-sm-3 col-xs-12"
@@ -100,11 +100,12 @@
 									</div>
 								</div>
 								<div class="form-group">
-								<label class="control-label col-md-3 col-sm-3 col-xs-12" 
-									for="textDeskripsiBarang">Deskripsi Barang <span class="required">*</span></label>
+									<label class="control-label col-md-3 col-sm-3 col-xs-12"
+										for="textDeskripsiBarang">Deskripsi Barang <span
+										class="required">*</span></label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
-		                         		 <textarea id="textDeskripsiBarang" required="required" class="form-control" 
-		                         		 name="deskripsi"></textarea>						
+										<textarea id="textDeskripsiBarang" required="required"
+											class="form-control" name="deskripsi"></textarea>
 									</div>
 								</div>
 								<div class="form-group">
@@ -118,22 +119,23 @@
 								</div>
 								<div class="form-group">
 									<label for="textMerk"
-										class="control-label col-md-3 col-sm-3 col-xs-12">Merk</label>
+										class="control-label col-md-3 col-sm-3 col-xs-12">Merk
+										<span class="required">*</span>
+									</label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
 										<input id="textMerk" class="form-control col-md-7 col-xs-12"
-											type="text" name="merk">
+											class="required" type="text" name="merk">
 									</div>
 								</div>
 
 								<div class="form-group">
 									<label for="textTanggal"
 										class="control-label col-md-3 col-sm-3 col-xs-12">Tanggal
-										Masuk <span class="required">*</span>
-									</label>
+										Masuk </label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
 										<input id="textTanggal"
 											class="date-picker form-control col-md-7 col-xs-12"
-											required="required" type="text" name="tanggalMasuk">
+											type="text" name="tanggalMasuk" disabled="disabled">
 									</div>
 								</div>
 								<div class="ln_solid"></div>
@@ -141,11 +143,12 @@
 									<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 										<button class="btn btn-primary" type="button">Cancel</button>
 										<button class="btn btn-primary" type="reset">Reset</button>
-										<button type="submit" name="submit" class="btn btn-success">Submit</button>
+										<button type="submit" name="submit" class="btn btn-success"
+											id="submit-btn">Submit</button>
 									</div>
 								</div>
 
-							</form>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -153,8 +156,47 @@
 		</div>
 	</div>
 	<!-- /page content -->
+	<script type="text/javascript" src="/assets/js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(
+				function() {
+					var date = new Date();
+					$('#textTanggal').val(
+							date.getDate() + '-' + date.getMonth() + '-'
+									+ date.getFullYear());
+					
+					$('#submit-btn')
+							.on(
+									'click',
+									function() {
+										var barang = {
+											namaBarang : $('#textNama').val(),
+											deskripsi : $(
+													'#textDeskripsiBarang')
+													.val(),
+											harga : $('#textHarga').val(),
+											merk : $('#textMerk').val(),
+											tanggalMasuk : Date.now()
+										};
+										
+										
 
+										$.ajax({
+											type : 'POST',
+											url : '/barang/save',
+											contentType : "application/json",
+											data : JSON.stringify(barang),
+											
+											success : function(data) {
+												
+												 window.location = "/barang"; 
+											}
+										});
 
+									});
+
+				});
+	</script>
 	<!-- footer content -->
 	<%@ include file="footer.jsp"%>
 	<!-- /footer content -->

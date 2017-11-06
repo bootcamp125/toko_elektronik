@@ -309,9 +309,9 @@
 		
 		                    <div class="col-md-7 col-sm-7 col-xs-12" style="border:0px solid #e5e5e5;">
 		
-		                      <h3 id="namaBarang" class="prod_title">LOWA Men’s Renegade GTX Mid Hiking Boots Review</h3>
+		                      <h3 id="namaBarang" class="prod_title"></h3>
 		
-		                      <p id=deskripsiBarang>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terr.</p>
+		                      <p id=deskripsiBarang></p>
 		                      <br />
 		
 		

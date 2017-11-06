@@ -347,12 +347,7 @@
 												var table = $('#datatable')
 														.DataTable();
 												//$(this).parents("tr").remove();
-												table
-														.row(
-																$(this)
-																		.parents(
-																				'tr'))
-														.remove().draw();
+												table.row($(this).parents('tr')).remove().draw();
 												appendTablePembelian(barang);
 												totalHargaBarang(barang);
 												hargaBarangText.innerHTML = 'Rp.'
@@ -361,16 +356,17 @@
 												$('#textTotalHarga').val(
 														hargaBarangSatuan);
 												$('#textIdBarang').val(id);
-
+												
 												var barang = {
 													id : id
+													
 												}
 
 												var detailPenjualan = {
 													jumlah : jumlah,
 													barang : barang,
 													/* penjualan : penjualan, */
-													harga : 1000
+													harga : hargaBarangSatuan
 												}
 
 												dp.push(detailPenjualan);
@@ -409,6 +405,8 @@
 										window.location = "/penjualan";
 									}
 								});
+								
+								
 							});
 
 							function stockOption(data) {
@@ -510,12 +508,7 @@
 												$('#jumlahPembelianBarang')
 														.change(
 																function() {
-																	alert($(
-																			this)
-																			.find(
-																					':selected')
-																			.data(
-																					'id'));
+																	
 																	jumlah = $(
 																			this)
 																			.find(

@@ -44,7 +44,7 @@ public class BarangController {
 	}
 	
 	@RequestMapping(value="/save", method=RequestMethod.POST)
-	public String savingData(@ModelAttribute Barang barang){
+	public String savingData(@RequestBody Barang barang){
 		barangService.save(barang);
 		return "redirect:/barang";
 	}

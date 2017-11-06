@@ -1,5 +1,6 @@
 package com.xsis.training125.service;
 
+import java.util.EmptyStackException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,6 @@ import com.xsis.training125.model.Barang;
 import com.xsis.training125.model.DetailPenjualan;
 import com.xsis.training125.model.Pekerjaan;
 import com.xsis.training125.model.Penjualan;
-
 
 @Transactional
 @Service
@@ -33,16 +33,16 @@ public class PenjualanService {
 		return penjualanDao.getAllPenjualan();
 	}
 
-	/*public void save(List<DetailPenjualan> detailPenjualan) {
-		// TODO Auto-generated method stub		
-		
-		penjualanDao.save(detailPenjualan);
-		for(DetailPenjualan detailPenjualan : penjualan.getDetailPenjualan()){
-			detailPenjualan.setPenjualan(penjualan);
-			detailPenjualanDao.save(detailPenjualan);
-		}
-		
-	}*/
+	/*
+	 * public void save(List<DetailPenjualan> detailPenjualan) { // TODO
+	 * Auto-generated method stub
+	 * 
+	 * penjualanDao.save(detailPenjualan); for(DetailPenjualan detailPenjualan :
+	 * penjualan.getDetailPenjualan()){ detailPenjualan.setPenjualan(penjualan);
+	 * detailPenjualanDao.save(detailPenjualan); }
+	 * 
+	 * }
+	 */
 
 	public Penjualan getPenjualanById(int id) {
 		// TODO Auto-generated method stub
@@ -62,12 +62,19 @@ public class PenjualanService {
 	public void save(Penjualan penjualan) {
 		// TODO Auto-generated method stub
 		penjualanDao.save(penjualan);
-		for(DetailPenjualan detailPenjualan : penjualan.getDetailPenjualan()){
+		for (DetailPenjualan detailPenjualan : penjualan.getDetailPenjualan()) {
 			detailPenjualan.setPenjualan(penjualan);
 			detailPenjualanDao.save(detailPenjualan);
 		}
+		/*for (DetailPenjualan detailPenjualan : penjualan.getDetailPenjualan()) {
+			Barang barang = detailPenjualan.getBarang();
+			int jmlBarang = barang.getStock();
+			int penguranganStock = jmlBarang - detailPenjualan.getJumlah();
+			
+			barang.setStock(penguranganStock);
+			barangDao.update(barang);
+			
+		}*/
 	}
 
-	
-	
 }
