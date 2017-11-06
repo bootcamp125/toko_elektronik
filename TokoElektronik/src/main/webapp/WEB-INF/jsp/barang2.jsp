@@ -124,6 +124,16 @@
 							              });
 
 							          });
+							      
+							      $('#diskon-btn').on('click', function() {
+							            $.ajax({
+							                success: function( data) {
+							                  //console.log(JSON.stringify(data));
+							                  window.location = "/diskon/tambahdiskon/";
+							                }
+							              });
+
+							          });
 
 							      var id = 0;
 							      $('.detail-btn').on('click', function() {
@@ -263,15 +273,7 @@
 							<label for="textTanggal">Tanggal Masuk</label> <input type="text"
 								class="form-control" id="textTanggal" name="tanggalMasuk">
 						</div>
-						<!-- <div class="form-group">
-							<label for="textTanggal">Discount</label> <input type="text"
-								class="form-control" id="textDiskon" name="diskon">
-						</div>
-						<div class="form-group">
-							<label for="textTanggal">Tanggal Discount Berakhir</label> <input
-								type="text" class="form-control" id="textTanggalDAkhir"
-								name="tanggalBerakhir">
-						</div> -->
+						
 					</form>
 				</div>
 				<div class="modal-footer">
@@ -321,8 +323,7 @@
 
 		
 		                      <div class="">
-		                        <button type="button" class="btn btn-default btn-lg">Add to Cart</button>
-		                        <button type="button" class="btn btn-default btn-lg">Add to Wishlist</button>
+		                        <button type="button" class="btn btn-default btn-lg" id="diskon-btn">Tambahkan Diskon</button>
 		                      </div>
 		
 		                      <div class="product_social">

@@ -58,21 +58,9 @@
 		<div class="">
 			<div class="page-title">
 				<div class="title_left">
-					<h3>Daftar Karyawan</h3>
+					<h3>Daftar Pelanggan</h3>
 				</div>
 
-				<div class="title_right">
-					<div
-						class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-						<div class="input-group">
-							<input type="text" class="form-control"
-								placeholder="Search for..."> <span
-								class="input-group-btn">
-								<button class="btn btn-default" type="button">Go!</button>
-							</span>
-						</div>
-					</div>
-				</div>
 			</div>
 
 			<div class="clearfix"></div>
@@ -81,44 +69,45 @@
 				<div class="col-md-12 col-sm-12 col-xs-12">
 					<div class="x_panel">
 						<div class="x_title">
-							<h2>Daftar Karyawan</h2>
-							
+							<h2>Daftar Pelanggan</h2>
+							<ul class="nav navbar-right panel_toolbox">
+								<li><a class="collapse-link"><i
+										class="fa fa-chevron-up"></i></a></li>
+								
+								<li><a class="close-link"><i class="fa fa-close"></i></a></li>
+							</ul>
 							<div class="clearfix"></div>
 						</div>
 						<div class="x_content">
 							<p class="text-muted font-13 m-b-30"></p>
 							<button type="button" id="tambah-karyawan-btn"
 								class="btn btn-success btn-lg">
-								<i class="fa fa-plus"></i> Tambah Data Karyawan
+								<i class="fa fa-plus"></i> Tambah Data Pelanggan
 							</button>
 							<table id="datatable" class="table table-striped table-bordered">
 								<thead>
 									<tr>
 										<th>Nama</th>
-										<th>Pekerjaan</th>
-										<th>jenis kelamin</th>
 										<th>Alamat</th>
-										<th>Tanggal Masuk</th>
-										<th>Gaji</th>
+										<th>Email</th>
+										<th>Tanggal Lahir</th>										
 										<th>Tindakan</th>
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach var="karyawan" items="${karyawan }">
+									<c:forEach var="pelanggan" items="${pelanggan }">
 
 										<tr>
-											<td>${karyawan.namaK }</td>
-											<td>${karyawan.pekerjaan.deskripsi }</td>
-											<td>${karyawan.jk}</td>
-											<td>${karyawan.alamat }</td>
-											<td>${karyawan.tanggalMasuk }</td>
-											<td>${karyawan.gaji }</td>
+											<td>${pelanggan.name }</td>
+											<td>${pelanggan.address }</td>
+											<td>${pelanggan.email}</td>
+											<td>${pelanggan.birthDay}</td>
 											<td>
-												<button type="button" id="${karyawan.id }"
+												<button type="button" id="${pelanggan.id }"
 													class="btn btn-info detail-btn">Detail</button>
-												<button type="button" id="${karyawan.id }"
+												<button type="button" id="${pelanggan.id }"
 													class="btn btn-warning update-btn">Update</button>
-												<button type="button" data-id="${karyawan.id }"
+												<button type="button" data-id="${pelanggan.id }"
 													class="btn btn-danger delete-btn">Hapus</button>
 											</td>
 										</tr>
@@ -135,7 +124,7 @@
 											success : function(
 													data) {
 												//console.log(JSON.stringify(data));
-												window.location = "/karyawan/tambahkaryawan/";
+												window.location = "/pelanggan/tambahpelanggan/";
 											}
 										});
 							});
@@ -148,7 +137,7 @@
 					 				
 					 				$.ajax({
 					 					type: 'POST',
-					 					url : '/karyawan/karyawanid/'+id,
+					 					url : '/pelanggan/pelangganid/'+id,
 					 					success : function(data){
 					 						//console.log(JSON.stringify(data));
 					 						_setFieldUpdateModal(data);
@@ -160,12 +149,11 @@
 					 			});
 					 			
 					 			function _setFieldUpdateModal(data){
-					 				$('#textNama').val(data.namaK);
-									$('#textJK').val(data.jk);
-									$('#textAlamat').val(data.alamat);
-									$('#textTanggal').val(data.tanggalMasuk);
-									$('#textGaji').val(data.gaji);
-									$('#textPekerjaan').val(data.pekerjaan.deskripsi);
+					 				$('#textNama').val(data.name);
+									$('#textAddress').val(data.address);
+									$('#textEmail').val(data.email);
+									$('#textBirthDay').val(data.birthDay);
+									
 					 			}
 					 			
 					 			$('.delete-btn').on('click', function() {
@@ -173,23 +161,15 @@
 									id = $(this).attr('data-id');
 									$.ajax({
 											type : 'DELETE',
-											url : '/karyawan/delete/'+ id,
+											url : '/pelanggan/delete/'+ id,
 											success : function() {
-												window.location = "/karyawan";
+												window.location = "/pelanggan";
 											}
 										});
 
 							});
 					 			
-					 			function _setFieldUpdateModal(data) {
-									$('#textNama').val(data.namaK);
-									$('#textJK').val(data.jk);
-									$('#textAlamat').val(data.alamat);
-									$('#textTanggal').val(data.tanggalMasuk);
-									$('#textGaji').val(data.gaji);
-														
-								}
-								
+					 			
 					 			
 					 			//event submit data for update
 					 			$('#submit-update').click(function(){
@@ -197,22 +177,21 @@
 					 				//Object ala js
 					 				var Karyawan = {
 					 					id : id,
-					 					namaK : $('#textNama').val(),
-					 					jk : $('#textJK').val(),
-					 					alamat : $('#textAlamat').val(),
-					 					tanggalMasuk : $('#textTanggal').val(),
-					 					gaji : $('#textGaji').val(),
-					 					pekerjaan : $('#textPekerjaanId').val()
+					 					name : $('#textName').val(),
+					 					address : $('#textAddress').val(),
+					 					email : $('#textEmail').val(),
+					 					birthDay : $('#textBirthDay').val()
+					 					
 					 				};
 					 				
 					 				//ajax update
 					 				$.ajax({
 					 					type: 'PUT',
-					 					url : '/karyawan/update',
+					 					url : '/pelanggan/update',
 					 					contentType: "application/json",
 					 					data: JSON.stringify(Karyawan),
 					 					success: function(data){
-					 						window.location = "/karyawan";
+					 						window.location = "/pelanggan";
 					 					}
 					 				});
 					 			});		
@@ -242,26 +221,22 @@
 	      <div class="modal-body">
 	        <form>
 			  <div class="form-group">
-			    <label for="textNama">Nama Karyawan</label>
-			    <input type="text" class="form-control" id="textNama" name="namaK" >
+			    <label for="textNama">Nama Pelanggan</label>
+			    <input type="text" class="form-control" id="textName" name="name" >
 			  </div>
 			  <div class="form-group">
-			    <label for="textJK">Jenis Kelamin</label>
-			    <input type="text" class="form-control" id="textJK" name="jk"  >
+			    <label for="textJK">Alamat</label>
+			    <input type="text" class="form-control" id="textAddress" name="address"  >
 			  </div>
 			  <div class="form-group">
-			    <label for="textAlamat">Alamat</label>
-			    <input type="text" class="form-control" id="textAlamat" name="alamat" >
+			    <label for="textAlamat">Email</label>
+			    <input type="text" class="form-control" id="textEmail" name="email" >
 			  </div>
 			  <div class="form-group">
-			    <label for="textTanggal">Tanggal Masuk</label>
-			    <input type="text" class="form-control" id="textTanggal" name="tanggalMasuk" >
+			    <label for="textTanggal">Tanggal Lahir</label>
+			    <input type="text" class="form-control" id="textBirthDay" name="birthDay" >
 			  </div>
-			  <div class="form-group">
-			    <label for="textGaji">Gaji</label>
-			    <input type="text" class="form-control" id="textGaji" name="gaji" >
-			    <input type="text" class="form-control" id="textPekerjaanId" name="pekerjaan.deskripsi" >  
-			  </div>
+			 
 			</form>
 	      </div>
 	      <div class="modal-footer">

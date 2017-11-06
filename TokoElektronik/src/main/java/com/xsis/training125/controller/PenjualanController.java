@@ -17,9 +17,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import com.xsis.training125.model.Barang;
 import com.xsis.training125.model.DetailPenjualan;
 import com.xsis.training125.model.Distributor;
+import com.xsis.training125.model.Pelanggan;
 import com.xsis.training125.model.Penjualan;
 import com.xsis.training125.service.BarangService;
 import com.xsis.training125.service.DetailPenjualanService;
+import com.xsis.training125.service.PelangganService;
 import com.xsis.training125.service.PenjualanService;
 
 @Controller
@@ -32,6 +34,8 @@ public class PenjualanController {
 	DetailPenjualanService detailPenjualanService;
 	@Autowired
 	BarangService barangService;
+	@Autowired
+	PelangganService pelangganService;
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public String index(Model model){
@@ -39,22 +43,20 @@ public class PenjualanController {
 		model.addAttribute("penjualan",penjualan);
 		List<Barang> barang = barangService.getAllBarangByStock();
 		model.addAttribute("barang", barang);
+		List<Pelanggan> pelanggan = pelangganService.getAllPelanggan();
+		model.addAttribute("pelanggan", pelanggan);
 		return "penjualan";
 	}
-	@RequestMapping(value = "/tambahdetailpenjualan", method=RequestMethod.GET)
-	public String tambahPembelian( Model model){
-		List<Penjualan> penjualan = penjualanService.getAllPenjualan();
-		model.addAttribute("penjualan",penjualan);
-		List<DetailPenjualan> detailPenjualan = detailPenjualanService.getAllDetailPenjualan();
-		model.addAttribute("detailPenjualan", detailPenjualan);
-		return "formPenjualan";
-	}
+	
 	
 	@RequestMapping(value="/save", method=RequestMethod.POST)
-	public String savingData(@ModelAttribute Penjualan penjualan){
+	@ResponseBody
+	public Penjualan savingData(@RequestBody Penjualan penjualan){
 		penjualanService.save(penjualan);
-		return "redirect:/penjualan";
+		return penjualan;
 	}
+	
+	
 	
 	@RequestMapping(value="/penjualanid/{id}")
 	@ResponseBody

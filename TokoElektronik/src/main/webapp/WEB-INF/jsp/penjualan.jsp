@@ -81,7 +81,7 @@
 					<div id="myTabContent2" class="tab-content">
 						<div role="tabpanel" class="tab-pane fade active in"
 							id="tab_content11" aria-labelledby="home-tab">
-							<form action="/penjualan/save" method="POST">
+
 							<div class="row">
 								<div class="col-md-12 col-sm-12 col-xs-12">
 									<div class="x_panel">
@@ -105,7 +105,7 @@
 															<th class="column-title">Discount</th>
 															<th class="column-title no-link last"><span
 																class="nobr">Action</span></th>
-															
+
 														</tr>
 													</thead>
 
@@ -133,27 +133,48 @@
 
 								</div>
 
-							</div>
-							<div class="form-group">
-								<label for="textNama">No Nota</label> <input type="text"
-									class="form-control" id="textNoNota" name="noNota" required="required">
 
 							</div>
-							<div class="form-group">
-								<label for="textHarga">Tanggal Transaksi</label> <input
-									type="text" class="form-control" id="textTanggalPenjualan"
-									name="tanggalPenjualan" required="required">
-									<input 
-									type="hidden" class="form-control" 
-									name="totalHarga" id = "textTotalHarga">
-									
-									<input 
-									type="hidden" class="form-control" 
-									name="barang.id" id = "textIdBarang">
-									<input 
-									type="hidden" class="form-control" 
-									name="jumlah" id = "textJumlahBarang">
-									
+							<div class="col-md-12 col-sm-12 col-xs-12">
+								<div class="x_panel">
+									<div class="x_title">
+										<h2>Form Transaksi</h2>
+
+										<div class="clearfix"></div>
+									</div>
+									<div class="x_content">
+										<div class="form-group">
+											<label for="textNama">No Nota</label> <input type="text"
+												class="form-control" id="textNoNota" name="noNota"
+												required="required"> <input type="hidden"
+												class="form-control" id="textNoNotadetailPenjualan"
+												name="detailPenjualan.noNota" required="required">
+
+										</div>
+										<div class="form-group">
+											<label for="textHarga">Tanggal Transaksi</label> <input
+												type="text" class="form-control" id="textTanggalPenjualan"
+												name="tanggalPenjualan" required="required"> <input
+												type="hidden" class="form-control" name="totalHarga"
+												id="textTotalHarga">
+
+
+
+										</div>
+										<div class="form-group">
+											<label for="textPelanggan">Nama Pelanggan</label> <select
+												class="select2_single form-control" tabindex="-1"
+												id="TextPelanggan" required="required" name="pelanggan.id">
+												<option></option>
+												<c:forEach var="pelanggan" items="${pelanggan }">
+													<option value="${pelanggan.id} ">${pelanggan.name}</option>
+												</c:forEach>
+											</select>
+
+										</div>
+
+									</div>
+								</div>
 							</div>
 							<div class="clearfix">
 								<br>
@@ -190,13 +211,14 @@
 												</tbody>
 											</table>
 											<button id="btn-confirm-transaksi"
-												class="pull-right btn btn-primary" type="submit" name="submit">Confirm
-												Transaksi</button>
+												class="pull-right btn btn-primary" type="submit"
+												name="submit">Confirm Transaksi</button>
 
 											<div class="product_price">
-											<span class="price-tax">Harga total Pembelian Barang</span> <br>
+												<span class="price-tax">Harga total Pembelian Barang</span>
+												<br>
 												<h1 class="price" id="harga">Rp. 0 ,-</h1>
-												
+
 											</div>
 
 										</div>
@@ -205,7 +227,7 @@
 
 
 							</div>
-							</form>
+
 						</div>
 
 						<div role="tabpanel" class="tab-pane fade" id="tab_content22"
@@ -231,7 +253,7 @@
 															<th class="column-title">Nama Pelanggan</th>
 															<th class="column-title no-link last"><span
 																class="nobr">Action</span></th>
-															
+
 														</tr>
 													</thead>
 
@@ -276,15 +298,16 @@
 						function() {
 							var hargaBarangSatuan = 0;
 							var hargaBarangSatuans = 0;
-							var hargaBarangText = document.getElementById( 'harga' );
+							var hargaBarangText = document
+									.getElementById('harga');
 							var jumlah = 1;
-							
+							var dp = [];
 							$(document)
 									.on(
 											"click",
 											".btn-addItem",
 											function() {
-												
+
 												var namaBarang = $(this)
 														.parent().parent()
 														.find('td').eq(0)
@@ -328,25 +351,75 @@
 														.remove().draw();
 												appendTablePembelian(barang);
 												totalHargaBarang(barang);
-												alert(hargaBarangSatuan);
-												
-												hargaBarangText.innerHTML ='Rp.'+hargaBarangSatuan +',-' ;
-												$('#textTotalHarga').val(hargaBarangSatuan);
+												hargaBarangText.innerHTML = 'Rp.'
+														+ hargaBarangSatuan
+														+ ',-';
+												$('#textTotalHarga').val(
+														hargaBarangSatuan);
 												$('#textIdBarang').val(id);
-												
+
+												var barang = {
+													id : id
+												}
+
+												var detailPenjualan = {
+													jumlah : jumlah,
+													barang : barang,
+													/* penjualan : penjualan, */
+													harga : 1000
+												}
+
+												dp.push(detailPenjualan);
+
+												console.log(dp);
+
 											});
-							
-							
+
+							$('#btn-confirm-transaksi').click(function() {
+								var pelanggan = {
+									id : $('#TextPelanggan').val()
+								}
+
+								var karyawan = {
+									id : 1
+								}
+
+								//Object ala js
+								var penjualan = {
+									noNota : $('#textNoNota').val(),
+									/* tanggalPenjualan : $(
+											'#textTanggalPenjualan')
+											.val(), */
+									totalHarga : hargaBarangSatuan,
+									pelanggan : pelanggan,
+									karyawan : karyawan,
+									detailPenjualan : dp
+								}
+								
+								/* console.log(penjualan); */
+								//ajax update
+								 $.ajax({
+									type : 'POST',
+									url : '/penjualan/save',
+									contentType : "application/json",
+									data : JSON.stringify(penjualan),
+									success : function(data) {
+										console.log(data);
+									}
+								}); 
+							});
+
 							function stockOption(data) {
 								var myOption = '';
 
 								for (var i = 1; i <= data; i++) {
-									myOption += '<option data-id='+i+'>' + i + '</option>';
+									myOption += '<option data-id='+i+'>' + i
+											+ '</option>';
 								}
-								
+
 								return myOption;
 							}
-							
+
 							function appendTablePembelian(data) {
 
 								var raw = "<tr id="+data.id+"> ";
@@ -374,20 +447,23 @@
 										+ "'><i class='fa fa-undo '></i> Cancel</a>";
 								raw += "</td>";
 								raw += "</tr>";
-								
+
 								$('#datatable2 tbody').append(raw);
-								$('.jumlahPembelianBarang').change(function(){
-									jumlah = $(this).find(':selected').data('id');		
-									totalHargaSatuJenisBarang(data, jumlah);
-									hargaBarangText.innerHTML ='Rp.'+hargaBarangSatuan +',-' ;
-									$('#textJumlahBarang').val(jumlah);
-								});
-								
-								
+								$('.jumlahPembelianBarang').change(
+										function() {
+											jumlah = $(this).find(':selected')
+													.data('id');
+											totalHargaSatuJenisBarang(data,
+													jumlah);
+											hargaBarangText.innerHTML = 'Rp.'
+													+ hargaBarangSatuan + ',-';
+											$('#textJumlahBarang').val(jumlah);
+										});
+
 							}
-							
+
 							function movingTablePembelian(data) {
-								
+
 								var raw = "<tr id="+data.id+"> ";
 								raw += "<td>";
 								raw += data.namaBarang;
@@ -415,42 +491,63 @@
 
 							}
 
-							$(document).on(
-									"click",
-									".btn-cancel",
-									function() {
+							$(document)
+									.on(
+											"click",
+											".btn-cancel",
+											function() {
 
-										var barangCancel = $.parseJSON($(this)
-												.attr('data-object'));
-										/* console.log(barangCancel); */
-										movingTablePembelian(barangCancel);
-										//var table = $('#datatable').DataTable();
-										//table.row($(this).parents('tr')).remove().draw();
-										$('#jumlahPembelianBarang').change(function(){
-											alert($(this).find(':selected').data('id'));
-											jumlah = $(this).find(':selected').data('id');
-										});
-										totalHargaBarangk(barangCancel, jumlah);
-										hargaBarangText.innerHTML ='Rp.'+hargaBarangSatuan +',-';
-										$('#textTotalHarga').val(hargaBarangSatuan);
-										$(this).parents("tr").remove();
+												var barangCancel = $
+														.parseJSON($(this)
+																.attr(
+																		'data-object'));
+												/* console.log(barangCancel); */
+												movingTablePembelian(barangCancel);
+												//var table = $('#datatable').DataTable();
+												//table.row($(this).parents('tr')).remove().draw();
+												$('#jumlahPembelianBarang')
+														.change(
+																function() {
+																	alert($(
+																			this)
+																			.find(
+																					':selected')
+																			.data(
+																					'id'));
+																	jumlah = $(
+																			this)
+																			.find(
+																					':selected')
+																			.data(
+																					'id');
+																});
+												totalHargaBarangk(barangCancel,
+														jumlah);
+												hargaBarangText.innerHTML = 'Rp.'
+														+ hargaBarangSatuan
+														+ ',-';
+												$('#textTotalHarga').val(
+														hargaBarangSatuan);
+												$(this).parents("tr").remove();
 
-									});
-							
-							function totalHargaSatuJenisBarang(data, jumlah){
-								var barangtot = parseInt(data.harga*jumlah);						
+											});
+
+							function totalHargaSatuJenisBarang(data, jumlah) {
+								var barangtot = parseInt(data.harga * jumlah);
 								return hargaBarangSatuan = barangtot;
 							}
-							
-							function totalHargaBarang(data){							
+
+							function totalHargaBarang(data) {
 								return hargaBarangSatuan += parseInt(data.harga);
-								
+
 							}
-							
-							function totalHargaBarangk(data, jumlah){
-								return hargaBarangSatuan -= parseInt(data.harga*jumlah);
-								
+
+							function totalHargaBarangk(data, jumlah) {
+								return hargaBarangSatuan -= parseInt(data.harga
+										* jumlah);
+
 							}
+
 						});
 	</script>
 	<!-- /page content -->
