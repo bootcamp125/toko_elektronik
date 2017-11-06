@@ -259,6 +259,9 @@
 																<td><button type="button"
 																		class="btn btn-info detail-history-btn"
 																		id="${penjualan.noNota }">Detail Transaksi</button>
+																		<button type="button"
+																		class="btn btn-warning delete-penjualan-btn"
+																		id="${penjualan.noNota }">Hapus Transaksi</button>
 															</tr>
 														</c:forEach>
 													</tbody>
@@ -559,6 +562,26 @@
 															}
 														});
 											});
+							
+							$('.delete-penjualan-btn').on('click',function() {
+
+								//ambil data dari server => ajax
+								id = $(
+										this)
+										.attr(
+												'id');
+
+								$
+										.ajax({
+											type : 'DELETE',
+											url : '/penjualan/delete/'
+													+ id,
+											success : function() {
+												window.location = "/penjualan";
+											}
+										});
+
+							});
 
 						});
 	</script>

@@ -33,17 +33,6 @@ public class PenjualanService {
 		return penjualanDao.getAllPenjualan();
 	}
 
-	/*
-	 * public void save(List<DetailPenjualan> detailPenjualan) { // TODO
-	 * Auto-generated method stub
-	 * 
-	 * penjualanDao.save(detailPenjualan); for(DetailPenjualan detailPenjualan :
-	 * penjualan.getDetailPenjualan()){ detailPenjualan.setPenjualan(penjualan);
-	 * detailPenjualanDao.save(detailPenjualan); }
-	 * 
-	 * }
-	 */
-
 	public Penjualan getPenjualanById(int id) {
 		// TODO Auto-generated method stub
 		return penjualanDao.getPenjualanById(id);
