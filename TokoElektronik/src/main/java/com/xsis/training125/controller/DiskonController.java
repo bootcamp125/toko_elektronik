@@ -39,8 +39,18 @@ public class DiskonController {
 		return "diskon";
 	}
 	
+	@RequestMapping(value="/tambahdiskon/{id}", method=RequestMethod.GET)
+	public String tambahDiskon(Model model, @PathVariable int id){
+		
+		List<Diskon> diskon = diskonService.getAllDiskon();
+		model.addAttribute("diskon", diskon);
+		Barang barang = barangService.getBarangById(id);
+		model.addAttribute("barang", barang);
+		return "formDiskon";
+	}
+	
 	@RequestMapping(value="/save", method=RequestMethod.POST)
-	public String savingData(@ModelAttribute Diskon diskon){
+	public String savingData(@RequestBody Diskon diskon){
 		diskonService.save(diskon);
 		return "redirect:/retur";
 	}

@@ -43,8 +43,12 @@ public class PenjualanService {
 		penjualanDao.update(penjualan);
 	}
 
-	public void delete(int id) {
+	public void delete(int id, Penjualan penjualan) {
 		// TODO Auto-generated method stub
+		for (DetailPenjualan detailPenjualan : penjualan.getDetailPenjualan()) {
+			int idPenjualan = detailPenjualan.getId();
+			detailPenjualanDao.delete(idPenjualan);
+		}
 		penjualanDao.delete(id);
 	}
 
@@ -54,6 +58,7 @@ public class PenjualanService {
 		for (DetailPenjualan detailPenjualan : penjualan.getDetailPenjualan()) {
 			detailPenjualan.setPenjualan(penjualan);
 			detailPenjualanDao.save(detailPenjualan);
+			
 		}
 		/*for (DetailPenjualan detailPenjualan : penjualan.getDetailPenjualan()) {
 			Barang barang = detailPenjualan.getBarang();

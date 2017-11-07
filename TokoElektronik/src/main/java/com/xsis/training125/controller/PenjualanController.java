@@ -28,7 +28,7 @@ import com.xsis.training125.service.PenjualanService;
 @Controller
 @RequestMapping("/penjualan")
 public class PenjualanController {
-	
+
 	@Autowired
 	PenjualanService penjualanService;
 	@Autowired
@@ -37,51 +37,53 @@ public class PenjualanController {
 	BarangService barangService;
 	@Autowired
 	PelangganService pelangganService;
-	
-	@RequestMapping(method=RequestMethod.GET)
-	public String index(Model model){
+
+	@RequestMapping(method = RequestMethod.GET)
+	public String index(Model model) {
 		List<Penjualan> penjualan = penjualanService.getAllPenjualan();
-		model.addAttribute("penjualan",penjualan);
+		model.addAttribute("penjualan", penjualan);
 		List<Barang> barang = barangService.getAllBarangByStock();
 		model.addAttribute("barang", barang);
 		List<Pelanggan> pelanggan = pelangganService.getAllPelanggan();
 		model.addAttribute("pelanggan", pelanggan);
 		return "penjualan";
 	}
-	
-	
-	@RequestMapping(value="/save", method=RequestMethod.POST)
+
+	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	@ResponseBody
-	public Penjualan savingData(@RequestBody Penjualan penjualan){
-		penjualanService.save(penjualan);
+	public Penjualan savingData(@RequestBody Penjualan penjualan) {
+		penjualanService.save(penjualan); 
+		/*for (DetailPenjualan detailPenjualan : penjualan.getDetailPenjualan()) {
+			System.out.println(detailPenjualan.getJumlah());
+		}*/
 		return penjualan;
 	}
-	
-	@RequestMapping(value="/invoice/{id}")
-	public String getInvoice(@PathVariable int id, Model model){
+
+	@RequestMapping(value = "/invoice/{id}")
+	public String getInvoice(@PathVariable int id, Model model) {
 		Penjualan penjualan = penjualanService.getPenjualanById(id);
-		model.addAttribute("penjualan",penjualan);
+		model.addAttribute("penjualan", penjualan);
 		List<DetailPenjualan> detailPenjualan = detailPenjualanService.getDetailPenjualanByIdPenjualan(id);
 		model.addAttribute("detailPenjualan", detailPenjualan);
 		return "invoice";
 	}
-	
-	@RequestMapping(value="/penjualanid/{id}")
+
+	@RequestMapping(value = "/penjualanid/{id}")
 	@ResponseBody
-	public Penjualan getPenjualanById(@PathVariable int id){
+	public Penjualan getPenjualanById(@PathVariable int id) {
 		Penjualan result = penjualanService.getPenjualanById(id);
 		return result;
 	}
-	
-	@RequestMapping(value="/update", method=RequestMethod.PUT)
+
+	@RequestMapping(value = "/update", method = RequestMethod.PUT)
 	@ResponseStatus(HttpStatus.OK)
-	public void updatePenjualan(@RequestBody Penjualan penjualan){
+	public void updatePenjualan(@RequestBody Penjualan penjualan) {
 		penjualanService.update(penjualan);
 	}
-	
-	@RequestMapping(value="/delete/{id}", method=RequestMethod.DELETE)
+
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.OK)
-	public void delete(@PathVariable int id){
-		penjualanService.delete(id);
+	public void delete(@PathVariable int id, @RequestBody Penjualan penjualan) {
+		penjualanService.delete(id, penjualan);
 	}
 }

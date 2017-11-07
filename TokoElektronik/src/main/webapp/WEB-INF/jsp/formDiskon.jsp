@@ -52,6 +52,8 @@
 <!-- Custom Theme Style -->
 <link href="/assets/gentelella-master/build/css/custom.min.css"
 	rel="stylesheet">
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 <body class="nav-md">
 	<%@ include file="header.jsp"%>
@@ -61,7 +63,7 @@
 		<div class="">
 			<div class="page-title">
 				<div class="title_left">
-					<h3>Barang</h3>
+					<h3>Diskon</h3>
 				</div>
 
 			</div>
@@ -70,70 +72,41 @@
 				<div class="col-md-12 col-sm-12 col-xs-12">
 					<div class="x_panel">
 						<div class="x_title">
-							<h2>Tambah Barang</h2>
-							<ul class="nav navbar-right panel_toolbox">
-								<li><a class="collapse-link"><i
-										class="fa fa-chevron-up"></i></a></li>
-								<li class="dropdown"><a href="#" class="dropdown-toggle"
-									data-toggle="dropdown" role="button" aria-expanded="false"><i
-										class="fa fa-wrench"></i></a>
-									<ul class="dropdown-menu" role="menu">
-										<li><a href="#">Settings 1</a></li>
-										<li><a href="#">Settings 2</a></li>
-									</ul></li>
-								<li><a class="close-link"><i class="fa fa-close"></i></a></li>
-							</ul>
+							<h2>Tambah Diskon</h2>
+
 							<div class="clearfix"></div>
 						</div>
 						<div class="x_content">
 							<br />
-							<form action="/barang/save" method="POST" id="demo-form2"
-								data-parsley-validate class="form-horizontal form-label-left">
+							<div id="demo-form2" data-parsley-validate
+								class="form-horizontal form-label-left">
 
 								<div class="form-group">
 									<label class="control-label col-md-3 col-sm-3 col-xs-12"
 										for="textNama">Nama Barang <span class="required">*</span>
 									</label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
-										<input type="text" id="textNama" name="namaBarang"
-											required="required" class="form-control col-md-7 col-xs-12">
-									</div>
-								</div>
-								<div class="form-group">
-								<label class="control-label col-md-3 col-sm-3 col-xs-12" 
-									for="textDeskripsiBarang">Deskripsi Barang <span class="required">*</span></label>
-									<div class="col-md-6 col-sm-6 col-xs-12">
-		                         		 <textarea id="textDeskripsiBarang" required="required" class="form-control" 
-		                         		 name="deskripsi"></textarea>						
+										${barang.namaBarang} <br> ${barang.deskripsi}
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="control-label col-md-3 col-sm-3 col-xs-12"
-										for="textHarga">Harga Satuan <span class="required">*</span>
-									</label>
+										for="textDiskon">Diskon <span class="required">*</span></label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
-										<input type="text" id="textHarga" name="harga"
-											required="required" class="form-control col-md-7 col-xs-12">
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="textMerk"
-										class="control-label col-md-3 col-sm-3 col-xs-12">Merk</label>
-									<div class="col-md-6 col-sm-6 col-xs-12">
-										<input id="textMerk" class="form-control col-md-7 col-xs-12"
-											type="text" name="merk">
+										<input type="text" id="textDiskon" required="required"
+											class="form-control col-md-7 col-xs-12">
 									</div>
 								</div>
 
 								<div class="form-group">
 									<label for="textTanggal"
 										class="control-label col-md-3 col-sm-3 col-xs-12">Tanggal
-										Masuk <span class="required">*</span>
+										Berakhir <span class="required">*</span>
 									</label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
-										<input id="textTanggal"
-											class="date-picker form-control col-md-7 col-xs-12"
-											required="required" type="text" name="tanggalMasuk">
+										<input id="datepicker"
+											class="date-picker form-control col-md-7 col-xs-12 "
+											required="required" type="text" >
 									</div>
 								</div>
 								<div class="ln_solid"></div>
@@ -141,11 +114,13 @@
 									<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 										<button class="btn btn-primary" type="button">Cancel</button>
 										<button class="btn btn-primary" type="reset">Reset</button>
-										<button type="submit" name="submit" class="btn btn-success">Submit</button>
+										<button type="submit" name="submit" class="btn btn-success"
+											id="submit-btn" data-id="${barang.id}"
+											harga="${barang.harga}">Submit</button>
 									</div>
 								</div>
 
-							</form>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -153,7 +128,49 @@
 		</div>
 	</div>
 	<!-- /page content -->
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script>
+		$('#datepicker').datepicker({
+			changeMonth : true,
+			changeYear : true
+		});
 
+		$('#submit-btn').on('click', function() {
+			//ambil data dari server => ajax
+			id = $(this).attr('data-id');
+			harga = $(this).attr('harga');
+
+			var barang = {
+				id : id
+			}
+
+			var diskon = {
+				diskon : $('#textDiskon').val(),
+				hargaDiskon : harga,
+				tanggalBerakhir : $('#datepicker').val(),
+				barang : barang
+
+			};
+
+			$.ajax({
+				type : 'POST',
+				url : '/diskon/save',
+				contentType : "application/json",
+				data : JSON.stringify(diskon),
+
+				success : function(data) {
+
+					window.location = "/barang";
+				}
+			});
+
+		});
+	</script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+		integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+		crossorigin="anonymous"></script>
 
 	<!-- footer content -->
 	<%@ include file="footer.jsp"%>

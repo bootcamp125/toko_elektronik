@@ -24,4 +24,7 @@ public interface DetailPenjualanDao {
 
 	List<DetailPenjualan> getDetailPenjualanByIdPenjualan(int id);
 
+
+	
+
 }

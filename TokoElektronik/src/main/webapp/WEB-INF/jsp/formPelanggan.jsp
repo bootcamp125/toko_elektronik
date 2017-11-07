@@ -52,6 +52,9 @@
 <!-- Custom Theme Style -->
 <link href="/assets/gentelella-master/build/css/custom.min.css"
 	rel="stylesheet">
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	
 </head>
 <body class="nav-md">
 	<%@ include file="header.jsp"%>
@@ -112,7 +115,7 @@
 										lahir <span class="required">*</span>
 									</label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
-										<input id="textBirthDay"
+										<input id="datepicker"
 											class="date-picker form-control col-md-7 col-xs-12"
 											required="required" type="text" name="birthDay">
 									</div>
@@ -121,7 +124,7 @@
 								
 								<div class="ln_solid"></div>
 								<div class="form-group">
-									<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+									<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-6">
 										<button class="btn btn-primary" type="button">Cancel</button>
 										<button class="btn btn-primary" type="reset">Reset</button>
 										<button type="submit" name="submit" class="btn btn-success">Submit</button>
@@ -136,7 +139,19 @@
 		</div>
 	</div>
 	<!-- /page content -->
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script>
+		$('#datepicker').datepicker({
+			changeMonth : true,
+			changeYear : true
+		});
+	</script>
 
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+		integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+		crossorigin="anonymous"></script>
 
 	<!-- footer content -->
 	<%@ include file="footer.jsp"%>

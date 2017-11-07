@@ -59,8 +59,7 @@ public class PenjualanDaoImpl implements PenjualanDao{
 		// TODO Auto-generated method stub
 		Session session = sessionFactory.getCurrentSession();
 		Penjualan penjualan = new Penjualan();
-		penjualan.setNoNota(id);
-		
+		penjualan.setNoNota(id);		
 		session.delete(penjualan);
 		session.flush();
 	}

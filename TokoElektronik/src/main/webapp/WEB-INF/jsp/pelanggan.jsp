@@ -73,7 +73,7 @@
 							<ul class="nav navbar-right panel_toolbox">
 								<li><a class="collapse-link"><i
 										class="fa fa-chevron-up"></i></a></li>
-								
+
 								<li><a class="close-link"><i class="fa fa-close"></i></a></li>
 							</ul>
 							<div class="clearfix"></div>
@@ -90,7 +90,7 @@
 										<th>Nama</th>
 										<th>Alamat</th>
 										<th>Email</th>
-										<th>Tanggal Lahir</th>										
+										<th>Tanggal Lahir</th>
 										<th>Tindakan</th>
 									</tr>
 								</thead>
@@ -118,85 +118,126 @@
 							<script type="text/javascript"
 								src="/assets/js/jquery-3.2.1.min.js"></script>
 							<script type="text/javascript">
-								$(document).ready(function() {
-									$('#tambah-karyawan-btn').on('click',function() {
-										$.ajax({
-											success : function(
-													data) {
-												//console.log(JSON.stringify(data));
-												window.location = "/pelanggan/tambahpelanggan/";
-											}
-										});
-							});
-							
-							 var id = 0;
-					 			$('.update-btn').on('click', function(){
-					 				
-					 				//ambil data dari server => ajax
-					 				id = $(this).attr('id');
-					 				
-					 				$.ajax({
-					 					type: 'POST',
-					 					url : '/pelanggan/pelangganid/'+id,
-					 					success : function(data){
-					 						//console.log(JSON.stringify(data));
-					 						_setFieldUpdateModal(data);
-					 					},
-					 					dataType: 'json'
-					 				});
-					 				
-					 				$('#updateModal').modal();
-					 			});
-					 			
-					 			function _setFieldUpdateModal(data){
-					 				$('#textNama').val(data.name);
-									$('#textAddress').val(data.address);
-									$('#textEmail').val(data.email);
-									$('#textBirthDay').val(data.birthDay);
-									
-					 			}
-					 			
-					 			$('.delete-btn').on('click', function() {
-					 				//ambil data dari server => ajax
-									id = $(this).attr('data-id');
-									$.ajax({
-											type : 'DELETE',
-											url : '/pelanggan/delete/'+ id,
-											success : function() {
-												window.location = "/pelanggan";
-											}
-										});
+								$(document)
+										.ready(
+												function() {
+													$('#tambah-karyawan-btn')
+															.on(
+																	'click',
+																	function() {
+																		$
+																				.ajax({
+																					success : function(
+																							data) {
+																						//console.log(JSON.stringify(data));
+																						window.location = "/pelanggan/tambahpelanggan/";
+																					}
+																				});
+																	});
 
-							});
-					 			
-					 			
-					 			
-					 			//event submit data for update
-					 			$('#submit-update').click(function(){
-					 				
-					 				//Object ala js
-					 				var Karyawan = {
-					 					id : id,
-					 					name : $('#textName').val(),
-					 					address : $('#textAddress').val(),
-					 					email : $('#textEmail').val(),
-					 					birthDay : $('#textBirthDay').val()
-					 					
-					 				};
-					 				
-					 				//ajax update
-					 				$.ajax({
-					 					type: 'PUT',
-					 					url : '/pelanggan/update',
-					 					contentType: "application/json",
-					 					data: JSON.stringify(Karyawan),
-					 					success: function(data){
-					 						window.location = "/pelanggan";
-					 					}
-					 				});
-					 			});		
+													var id = 0;
+													$('.update-btn')
+															.on(
+																	'click',
+																	function() {
 
-							});
+																		//ambil data dari server => ajax
+																		id = $(
+																				this)
+																				.attr(
+																						'id');
+
+																		$
+																				.ajax({
+																					type : 'POST',
+																					url : '/pelanggan/pelangganid/'
+																							+ id,
+																					success : function(
+																							data) {
+																						//console.log(JSON.stringify(data));
+																						_setFieldUpdateModal(data);
+																					},
+																					dataType : 'json'
+																				});
+
+																		$(
+																				'#updateModal')
+																				.modal();
+																	});
+
+													function _setFieldUpdateModal(
+															data) {
+														$('#textNama').val(
+																data.name);
+														$('#textAddress').val(
+																data.address);
+														$('#textEmail').val(
+																data.email);
+														$('#textBirthDay').val(
+																data.birthDay);
+
+													}
+
+													$('.delete-btn')
+															.on(
+																	'click',
+																	function() {
+																		//ambil data dari server => ajax
+																		id = $(
+																				this)
+																				.attr(
+																						'data-id');
+																		$
+																				.ajax({
+																					type : 'DELETE',
+																					url : '/pelanggan/delete/'
+																							+ id,
+																					success : function() {
+																						window.location = "/pelanggan";
+																					}
+																				});
+
+																	});
+
+													//event submit data for update
+													$('#submit-update')
+															.click(
+																	function() {
+
+																		//Object ala js
+																		var Karyawan = {
+																			id : id,
+																			name : $(
+																					'#textName')
+																					.val(),
+																			address : $(
+																					'#textAddress')
+																					.val(),
+																			email : $(
+																					'#textEmail')
+																					.val(),
+																			birthDay : $(
+																					'#textBirthDay')
+																					.val()
+
+																		};
+
+																		//ajax update
+																		$
+																				.ajax({
+																					type : 'PUT',
+																					url : '/pelanggan/update',
+																					contentType : "application/json",
+																					data : JSON
+																							.stringify(Karyawan),
+																					success : function(
+																							data) {
+																						window.location = "/pelanggan";
+																					}
+																				});
+																	});
+
+												});
 							</script>
 						</div>
 					</div>
@@ -205,46 +246,61 @@
 			</div>
 		</div>
 	</div>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script>
+		$('#textBirthDay').datepicker({
+			changeMonth : true,
+			changeYear : true
+		});
+	</script>
 
-        <!-- footer content -->
-       <%@ include file = "footer.jsp" %>
-        <!-- /footer content -->
-     <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	  <div class="modal-dialog" role="document">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	          <span aria-hidden="true">&times;</span>
-	        </button>
-	      </div>
-	      <div class="modal-body">
-	        <form>
-			  <div class="form-group">
-			    <label for="textNama">Nama Pelanggan</label>
-			    <input type="text" class="form-control" id="textName" name="name" >
-			  </div>
-			  <div class="form-group">
-			    <label for="textJK">Alamat</label>
-			    <input type="text" class="form-control" id="textAddress" name="address"  >
-			  </div>
-			  <div class="form-group">
-			    <label for="textAlamat">Email</label>
-			    <input type="text" class="form-control" id="textEmail" name="email" >
-			  </div>
-			  <div class="form-group">
-			    <label for="textTanggal">Tanggal Lahir</label>
-			    <input type="text" class="form-control" id="textBirthDay" name="birthDay" >
-			  </div>
-			 
-			</form>
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-primary" id="submit-update">Update</button>
-	      </div>
-	    </div>
-	  </div>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+		integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+		crossorigin="anonymous"></script>
+	<!-- footer content -->
+	<%@ include file="footer.jsp"%>
+	<!-- /footer content -->
+	<div class="modal fade" id="updateModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label for="textNama">Nama Pelanggan</label> <input type="text"
+								class="form-control" id="textName" name="name">
+						</div>
+						<div class="form-group">
+							<label for="textJK">Alamat</label> <input type="text"
+								class="form-control" id="textAddress" name="address">
+						</div>
+						<div class="form-group">
+							<label for="textAlamat">Email</label> <input type="text"
+								class="form-control" id="textEmail" name="email">
+						</div>
+						<div class="form-group">
+							<label for="textTanggal">Tanggal Lahir</label> <input type="text"
+								class="form-control" id="textBirthDay" name="birthDay">
+						</div>
+
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" id="submit-update">Update</button>
+				</div>
+			</div>
+		</div>
 	</div>
 	<!-- jQuery -->
 	<script

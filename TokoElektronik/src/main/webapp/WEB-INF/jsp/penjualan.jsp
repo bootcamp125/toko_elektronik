@@ -135,6 +135,8 @@
 															<th class="column-title">Tanggal Masuk</th>
 															<th class="column-title">Discount</th>
 															<th class="column-title no-link last"><span
+																class="nobr">Jumlah</span></th>
+															<th class="column-title no-link last"><span
 																class="nobr">Action</span></th>
 
 														</tr>
@@ -150,6 +152,9 @@
 																<td class="textStock">${barang.stock}</td>
 																<td class="textTanggalMasuk">${barang.tanggalMasuk }</td>
 																<td class="a-right a-right textDiskon ">$7.45</td>
+																<td><div class="form-group jumlahPembelianBarang col-md-1 col-sm-1 col-xs-1">
+																			<input type="text" class="form-control textJumlah">
+																	</div></td>
 																<td><button type="button" id="tambah-btn"
 																		class="pull-right btn btn-primary btn-addItem">
 																		<i class="fa fa-shopping-cart"></i> Beli
@@ -259,7 +264,7 @@
 																<td><button type="button"
 																		class="btn btn-info detail-history-btn"
 																		id="${penjualan.noNota }">Detail Transaksi</button>
-																		<button type="button"
+																	<button type="button"
 																		class="btn btn-warning delete-penjualan-btn"
 																		id="${penjualan.noNota }">Hapus Transaksi</button>
 															</tr>
@@ -301,7 +306,7 @@
 							var day = date.getDate();
 							var month = date.getMonth() + 1;
 							var year = date.getFullYear();
-
+							var hargaJumlahBarang = 0;
 							if (month < 10)
 								month = "0" + month;
 							if (day < 10)
@@ -345,14 +350,24 @@
 													diskon : diskon
 
 												}
-
+												jumlah = $('.textJumlah').val();
+												hargaJumlahBarang = parseInt(jumlah * harga);
+												hargaBarangSatuan += hargaJumlahBarang;
 												/* console.log(barang); */
 												var table = $('#datatable')
 														.DataTable();
+												
 												//$(this).parents("tr").remove();
-												table.row($(this).parents('tr')).remove().draw();
+												table
+														.row(
+																$(this)
+																		.parents(
+																				'tr'))
+														.remove().draw();
+											
 												appendTablePembelian(barang);
-												totalHargaBarang(barang);
+												
+												
 												hargaBarangText.innerHTML = 'Rp.'
 														+ hargaBarangSatuan
 														+ ',-';
@@ -360,18 +375,21 @@
 														hargaBarangSatuan);
 												$('#textIdBarang').val(id);
 												
-												var barang = {
-													id : id
-													
-												}
+												
 
+												var barang = {
+													id : id,
+													
+
+												}
+												
 												var detailPenjualan = {
 													jumlah : jumlah,
 													barang : barang,
 													/* penjualan : penjualan, */
-													harga : hargaBarangSatuan
+													harga : hargaJumlahBarang
 												}
-
+												console.log(jumlah);
 												dp.push(detailPenjualan);
 
 												console.log(dp);
@@ -408,8 +426,7 @@
 										window.location = "/penjualan";
 									}
 								});
-								
-								
+
 							});
 
 							function stockOption(data) {
@@ -430,16 +447,14 @@
 								raw += data.namaBarang;
 								raw += "</td>";
 								raw += "<td>";
-								raw += data.harga;
+								raw += hargaJumlahBarang;
 								raw += "</td>";
 								raw += "<td>";
 								raw += data.merk;
 								raw += "</td>";
 
 								raw += "<td>";
-								raw += ' <div class="form-group"> <div class="col-md-9 col-sm-9 col-xs-12"> <select class="select2_single form-control jumlahPembelianBarang" tabindex="-1">  '
-										+ stockOption(data.stock)
-										+ '</select>  </div> </div>    ';
+								raw += jumlah;
 								raw += "</td>";
 								raw += "<td>";
 								raw += data.diskon;
@@ -452,16 +467,7 @@
 								raw += "</tr>";
 
 								$('#datatable2 tbody').append(raw);
-								$('.jumlahPembelianBarang').change(
-										function() {
-											jumlah = $(this).find(':selected')
-													.data('id');
-											totalHargaSatuJenisBarang(data,
-													jumlah);
-											hargaBarangText.innerHTML = 'Rp.'
-													+ hargaBarangSatuan + ',-';
-											$('#textJumlahBarang').val(jumlah);
-										});
+								
 
 							}
 
@@ -511,7 +517,7 @@
 												$('#jumlahPembelianBarang')
 														.change(
 																function() {
-																	
+
 																	jumlah = $(
 																			this)
 																			.find(
@@ -562,24 +568,19 @@
 															}
 														});
 											});
-							
-							$('.delete-penjualan-btn').on('click',function() {
+
+							$('.delete-penjualan-btn').on('click', function() {
 
 								//ambil data dari server => ajax
-								id = $(
-										this)
-										.attr(
-												'id');
+								id = $(this).attr('id');
 
-								$
-										.ajax({
-											type : 'DELETE',
-											url : '/penjualan/delete/'
-													+ id,
-											success : function() {
-												window.location = "/penjualan";
-											}
-										});
+								$.ajax({
+									type : 'DELETE',
+									url : '/penjualan/delete/' + id,
+									success : function() {
+										window.location = "/penjualan";
+									}
+								});
 
 							});
 
