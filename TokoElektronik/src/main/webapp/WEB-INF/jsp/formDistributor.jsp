@@ -88,42 +88,49 @@
 						<div class="x_content">
 							<br />
 							<form action="/distributor/save" method="POST" id="demo-form2"
-								data-parsley-validate class="form-horizontal form-label-left">
-
-								<div class="form-group">
+								class="form-horizontal form-label-left" novalidate>
+								<div class="item form-group">
 									<label class="control-label col-md-3 col-sm-3 col-xs-12"
 										for="textNama">Nama Distributor <span class="required">*</span>
 									</label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
-										<input type="text" id="textNama" name="namaDistributor"
-											required="required" class="form-control col-md-7 col-xs-12">
+										<input id="textNama" class="form-control col-md-7 col-xs-12"
+											data-validate-length-range="4" name="namaDistributor"
+											required="required" type="text">
 									</div>
 								</div>
-								<div class="form-group">
+								<div class="item form-group">
 									<label class="control-label col-md-3 col-sm-3 col-xs-12"
-										for="textAlamat">Alamat Distributor <span class="required">*</span>
+										for="textAlamat">Alamat Distributor <span
+										class="required">*</span>
 									</label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
-										<input type="text" id="textAlamat" name="alamat"
-											required="required" class="form-control col-md-7 col-xs-12">
+										<input id="textAlamat" class="form-control col-md-7 col-xs-12"
+											data-validate-length-range="4" name="alamat"
+											required="required" type="text">
 									</div>
 								</div>
-								<div class="form-group">
+								<div class="item form-group">
 									<label for="textNoContact"
-										class="control-label col-md-3 col-sm-3 col-xs-12">No telp</label>
-									<div class="col-md-6 col-sm-6 col-xs-12">
-										<input id="textNoContact" class="form-control col-md-7 col-xs-12"
-											type="text" name="noContact">
+										class="control-label col-md-3 col-sm-3 col-xs-12">No
+										telp</label>
+									<div
+										class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+										<input id="textNoContact"
+											class="form-control col-md-7 col-xs-12 has-feedback-left"
+											min="0" step="100" data-parsley-validation-threshold="1"
+											data-parsley-trigger="keyup" data-parsley-type="number"
+											type="text" name="noContact" required="required"
+											placeholder="ex : 081212"> <span
+											class="fa fa-phone form-control-feedback left"
+											aria-hidden="true"></span>
 									</div>
 								</div>
-
-								
 								<div class="ln_solid"></div>
 								<div class="form-group">
 									<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-										<button class="btn btn-primary" type="button">Cancel</button>
 										<button class="btn btn-primary" type="reset">Reset</button>
-										<button type="submit" name="submit" class="btn btn-success">Submit</button>
+										<button type="submit" class="btn btn-success">Submit</button>
 									</div>
 								</div>
 
@@ -192,6 +199,8 @@
 	<!-- Custom Theme Scripts -->
 	<script src="/assets/gentelella-master/build/js/custom.min.js"></script>
 
+	<!-- validator -->
+	<script src="/assets/gentelella-master/vendors/validator/validator.js"></script>
 
 </body>
 </html>

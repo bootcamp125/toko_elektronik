@@ -88,28 +88,24 @@
 						<div class="x_content">
 							<br />
 							<form action="/pekerjaan/save" method="POST" id="demo-form2"
-								data-parsley-validate class="form-horizontal form-label-left">
-
-								<div class="form-group">
+								class="form-horizontal form-label-left" novalidate>
+								<div class="item form-group">
 									<label class="control-label col-md-3 col-sm-3 col-xs-12"
 										for="textNama">Nama Pekerjaan <span class="required">*</span>
 									</label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
-										<input type="text" id="textNama" name="deskripsi"
-											required="required" class="form-control col-md-7 col-xs-12">
+										<input id="textNama" class="form-control col-md-7 col-xs-12"
+											data-validate-length-range="4" name="deskripsi"
+											required="required" type="text">
 									</div>
 								</div>
-								
-								
 								<div class="ln_solid"></div>
 								<div class="form-group">
 									<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-										<button class="btn btn-primary" id="btn-cancel" type="button">Cancel</button>
 										<button class="btn btn-primary" type="reset">Reset</button>
-										<button type="submit" name="submit" class="btn btn-success">Submit</button>
+										<button type="submit" class="btn btn-success">Submit</button>
 									</div>
 								</div>
-
 							</form>
 						</div>
 					</div>
@@ -175,6 +171,7 @@
 	<!-- Custom Theme Scripts -->
 	<script src="/assets/gentelella-master/build/js/custom.min.js"></script>
 
-
+	<!-- validator -->
+	<script src="/assets/gentelella-master/vendors/validator/validator.js"></script>
 </body>
 </html>
