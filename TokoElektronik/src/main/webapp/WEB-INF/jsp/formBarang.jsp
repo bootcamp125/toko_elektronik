@@ -75,10 +75,9 @@
 						</div>
 						<div class="x_content">
 							<br />
-							<div id="demo-form2" data-parsley-validate
-								class="form-horizontal form-label-left">
+							<form id="demo-form2" class="form-horizontal form-label-left">
 
-								<div class="form-group">
+								<div class="item form-group">
 									<label class="control-label col-md-3 col-sm-3 col-xs-12"
 										for="textNama">Nama Barang <span class="required">*</span>
 									</label>
@@ -87,56 +86,48 @@
 											required="required" class="form-control col-md-7 col-xs-12">
 									</div>
 								</div>
-								<div class="form-group">
+								<div class="item form-group">
 									<label class="control-label col-md-3 col-sm-3 col-xs-12"
 										for="textDeskripsiBarang">Deskripsi Barang <span
-										class="required">*</span></label>
-									<div class="col-md-6 col-sm-6 col-xs-12">
-										<textarea id="textDeskripsiBarang" required="required"
-											class="form-control" name="deskripsi"></textarea>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="control-label col-md-3 col-sm-3 col-xs-12"
-										for="textHarga">Harga Satuan 
+										class="required">*</span>
 									</label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
-										<input type="text" id="textHarga" name="harga" data-parsley-trigger="change" required=""
-											 class="form-control col-md-7 col-xs-12">
+										<textarea id="textDeskripsiBarang" required="required"
+											name="deskripsi" class="form-control col-md-7 col-xs-12"></textarea>
 									</div>
 								</div>
-								<div class="form-group">
-									<label for="textMerk"
-										class="control-label col-md-3 col-sm-3 col-xs-12">Merk
-										<span class="required">*</span>
+								<div class="item form-group">
+									<label for="textHarga"
+										class="control-label col-md-3 col-sm-3 col-xs-12">Harga
+										Satuan</label>
+									<div class="col-md-6 col-sm-6 col-xs-12">
+										<input id="textHarga" class="form-control col-md-7 col-xs-12"
+											min="0" step="100" data-parsley-validation-threshold="1"
+											data-parsley-trigger="keyup" data-parsley-type="number"
+											type="text" name="harga" required="required"
+											placeholder="ex : 10000000">
+									</div>
+								</div>
+								<div class="item form-group">
+									<label class="control-label col-md-3 col-sm-3 col-xs-12"
+										for="textMerk">Merk <span class="required">*</span>
 									</label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
 										<input id="textMerk" class="form-control col-md-7 col-xs-12"
-											class="required" type="text" name="merk">
+											data-validate-length-range="6" data-validate-words="2"
+											name="merk" required="required" type="text">
 									</div>
-								</div>
 
-								<div class="form-group">
-									<label for="textTanggal"
-										class="control-label col-md-3 col-sm-3 col-xs-12">Tanggal
-										Masuk </label>
-									<div class="col-md-6 col-sm-6 col-xs-12">
-										<input id="textTanggal"
-											class="date-picker form-control col-md-7 col-xs-12"
-											type="text" name="tanggalMasuk" disabled="disabled">
-									</div>
 								</div>
 								<div class="ln_solid"></div>
 								<div class="form-group">
 									<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-										<button class="btn btn-primary" type="button">Cancel</button>
 										<button class="btn btn-primary" type="reset">Reset</button>
-										<button type="submit" name="submit" class="btn btn-success"
-											id="submit-btn">Submit</button>
+										<button type="submit" class="btn btn-success" id="submit-btn">Submit</button>
 									</div>
 								</div>
 
-							</div>
+							</form>
 						</div>
 					</div>
 				</div>
@@ -146,71 +137,41 @@
 	<!-- /page content -->
 	<script type="text/javascript" src="/assets/js/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript">
-		$(document).ready(
-				function() {
-					function getValid(validate){
-						validate.validate();	
-						return validate.isValid();
-					}
-					
-					
-					
-					var date = new Date();
-					$('#textTanggal').val(
-							date.getDate() + '-' + date.getMonth() + '-'
-									+ date.getFullYear());
-					
-					$('#submit-btn')
-							.on(
-									'click',
-									function() {
-										
-										oCode = $('#textHarga').parsley({
-											required : true,
-											requiredMessage : ' Code cannot be empty !!',
-											minlengthMessage: ' must more than 5 character',
-											typeMessage: ' must be email character',
-											minlength: 5,
-											type:"email"
-										});
-										/* 
-										
-										
-										var valid = getValid(oCode);
-										
-										
-										if(!valid)
-											return false;
-										else
-											alert("success"); 
-											
-										var barang = {
-											namaBarang : $('#textNama').val(),
-											deskripsi : $(
-													'#textDeskripsiBarang')
-													.val(),
-											harga : $('#textHarga').val(),
-											merk : $('#textMerk').val(),
-											tanggalMasuk : Date.now()
-										};
-										
-										
+		$(document).ready(function() {
 
-										$.ajax({
-											type : 'POST',
-											url : '/barang/save',
-											contentType : "application/json",
-											data : JSON.stringify(barang),
-											
-											success : function(data) {
-												
-												 window.location = "/barang"; 
-											}
-										});
+			$("#demo-form2").on('submit', function(e) {
 
-									});
+				e.preventDefault();
+				var form = $(this);
 
-				});
+				form.parsley().validate();
+
+				if (form.parsley().isValid()) {
+
+					var barang = {
+						namaBarang : $('#textNama').val(),
+						deskripsi : $('#textDeskripsiBarang').val(),
+						harga : $('#textHarga').val(),
+						merk : $('#textMerk').val(),
+						tanggalMasuk : Date.now()
+					};
+
+					$.ajax({
+						type : 'POST',
+						url : '/barang/save',
+						contentType : "application/json",
+						data : JSON.stringify(barang),
+
+						success : function(data) {
+
+							window.location = "/barang";
+						}
+					});
+				}
+
+			});
+
+		});
 	</script>
 	<!-- footer content -->
 	<%@ include file="footer.jsp"%>
