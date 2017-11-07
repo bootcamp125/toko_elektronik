@@ -228,6 +228,8 @@
 	<!-- Custom Theme Scripts -->
 	<script src="/assets/gentelella-master/build/js/custom.min.js"></script>
 
+	<!-- validator -->
+	<script src="/assets/gentelella-master/vendors/validator/validator.js"></script>
 
 </body>
 </html>
