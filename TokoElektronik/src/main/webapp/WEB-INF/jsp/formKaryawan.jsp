@@ -81,7 +81,7 @@
 						<div class="x_content">
 							<br />
 							<form action="/karyawan/save" method="POST" id="demo-form2"
-								data-parsley-validate class="form-horizontal form-label-left">
+								class="form-horizontal form-label-left" novalidate>
 								<div class="item form-group">
 									<label class="control-label col-md-3 col-sm-3 col-xs-12"
 										for="textNama">Nama Karyawan <span class="required">*</span>
@@ -94,22 +94,28 @@
 									</div>
 
 								</div>
+								<div class="item form-group">
 
-								<div class="form-group">
-									<label for="textJK"
-										class="control-label col-md-3 col-sm-3 col-xs-12">Jenis
-										Kelamin</label>
+									<label class="control-label col-md-3 col-sm-3 col-xs-12">Jenis
+										Kelamin<span class="required">*</span>
+									</label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
-										<input id="textJK" class="form-control col-md-7 col-xs-12"
-											type="text" name="jk">
+										<select class="select2_single form-control" name="jk"
+											tabindex="-1" required="required">
+											<option value="wanita">Wanita</option>
+											<option value="pria">Pria</option>
+										</select>
 									</div>
 								</div>
-								<div class="form-group">
+								<div class="item form-group">
 									<label for="textAlamat"
-										class="control-label col-md-3 col-sm-3 col-xs-12">Alamat</label>
+										class="control-label col-md-3 col-sm-3 col-xs-12">Alamat
+										<span class="required">*</span>
+									</label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
 										<input id="textAlamat" class="form-control col-md-7 col-xs-12"
-											type="text" name="alamat">
+											type="text" name="alamat" required="required"
+											placeholder="jl. merdeka" data-validate-length-range="4">
 									</div>
 								</div>
 
@@ -129,7 +135,10 @@
 										class="control-label col-md-3 col-sm-3 col-xs-12">Gaji</label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
 										<input id="textGaji" class="form-control col-md-7 col-xs-12"
-											type="text" name="gaji">
+											min="0" step="100" data-parsley-validation-threshold="1"
+											data-parsley-trigger="keyup" data-parsley-type="number"
+											type="text" name="gaji" required="required"
+											placeholder="ex : 10000000">
 									</div>
 								</div>
 								<div class="form-group">
@@ -149,9 +158,8 @@
 								<div class="ln_solid"></div>
 								<div class="form-group">
 									<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-										<button class="btn btn-primary" type="button">Cancel</button>
 										<button class="btn btn-primary" type="reset">Reset</button>
-										<button type="submit" name="submit" class="btn btn-success">Submit</button>
+										<button id="send" type="submit" class="btn btn-success">Submit</button>
 									</div>
 								</div>
 							</form>
@@ -171,6 +179,7 @@
 			changeMonth : true,
 			changeYear : true
 		});
+		
 	</script>
 
 	<script

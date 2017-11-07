@@ -17,15 +17,6 @@
 		</property>
 	</bean>
 	
-	<!-- <bean id="myaddress" class="com.xsis.training125.controller.Address"></bean> -->
-	
-	<bean id="mybean" class="com.xsis.training125.controller.MyBean">
-		<property name="name" value="mas zul" />
-		<!-- <property name="address" ref="myaddress"></property> -->
-	</bean>
-	<!-- 
-		MyBean bean = new MyBean();
-	 -->
 	<mvc:annotation-driven />	
 	<mvc:resources mapping="/assets/**" location="/assets/"/>
 </beans>

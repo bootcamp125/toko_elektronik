@@ -1,6 +1,6 @@
 <%@page import="com.xsis.training125.model.Pekerjaan"%>
 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html >
 <html>
@@ -116,7 +116,7 @@
 							<script type="text/javascript"
 								src="/assets/js/jquery-3.2.1.min.js"></script>
 							<script type="text/javascript">
-								
+							
 								$(document)
 										.ready(
 												function() {
@@ -142,11 +142,16 @@
 																	function() {
 
 																		//ambil data dari server => ajax
-																		id = $(this).attr('id');
+																		id = $(
+																				this)
+																				.attr(
+																						'id');
 
-																		$.ajax({
+																		$
+																				.ajax({
 																					type : 'POST',
-																					url : '/pekerjaan/pekerjaanid/'	+ id,
+																					url : '/pekerjaan/pekerjaanid/'
+																							+ id,
 																					success : function(
 																							data) {
 																						//console.log(JSON.stringify(data));
@@ -155,16 +160,21 @@
 																					dataType : 'json'
 																				});
 
-																		$('#updateModal')
+																		$(
+																				'#updateModal')
 																				.modal();
 																	});
 
 													function _setFieldUpdateModal(
 															data) {
-														$('#textNama').val(data.deskripsi);
+														$('#textNama').val(
+																data.deskripsi);
 													}
 
-													$('.delete-btn').on('click',function() {
+													$('.delete-btn')
+															.on(
+																	'click',
+																	function() {
 
 																		//ambil data dari server => ajax
 																		id = $(
@@ -195,7 +205,7 @@
 																			deskripsi : $(
 																					'#textNama')
 																					.val()
-																			
+
 																		};
 
 																		//ajax update
@@ -211,6 +221,7 @@
 																						window.location = "/pekerjaan";
 																					}
 																				});
+
 																	});
 
 												});
@@ -247,13 +258,13 @@
 							<label for="textNama">Nama Pekerjaan</label> <input type="text"
 								class="form-control" id="textNama" name="deskripsi">
 						</div>
-					
+
 					</form>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary" id="submit-update" >Update</button>
+					<button type="button" class="btn btn-primary" id="submit-update">Update</button>
 				</div>
 			</div>
 		</div>
