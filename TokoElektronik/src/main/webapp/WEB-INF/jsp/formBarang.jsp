@@ -110,11 +110,11 @@
 								</div>
 								<div class="form-group">
 									<label class="control-label col-md-3 col-sm-3 col-xs-12"
-										for="textHarga">Harga Satuan <span class="required">*</span>
+										for="textHarga">Harga Satuan 
 									</label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
-										<input type="text" id="textHarga" name="harga"
-											required="required" class="form-control col-md-7 col-xs-12">
+										<input type="text" id="textHarga" name="harga" data-parsley-trigger="change" required=""
+											 class="form-control col-md-7 col-xs-12">
 									</div>
 								</div>
 								<div class="form-group">
@@ -160,6 +160,13 @@
 	<script type="text/javascript">
 		$(document).ready(
 				function() {
+					function getValid(validate){
+						validate.validate();	
+						return validate.isValid();
+					}
+					
+					
+					
 					var date = new Date();
 					$('#textTanggal').val(
 							date.getDate() + '-' + date.getMonth() + '-'
@@ -169,6 +176,26 @@
 							.on(
 									'click',
 									function() {
+										
+										oCode = $('#textHarga').parsley({
+											required : true,
+											requiredMessage : ' Code cannot be empty !!',
+											minlengthMessage: ' must more than 5 character',
+											typeMessage: ' must be email character',
+											minlength: 5,
+											type:"email"
+										});
+										/* 
+										
+										
+										var valid = getValid(oCode);
+										
+										
+										if(!valid)
+											return false;
+										else
+											alert("success"); 
+											
 										var barang = {
 											namaBarang : $('#textNama').val(),
 											deskripsi : $(

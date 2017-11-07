@@ -152,8 +152,9 @@
 																<td class="textStock">${barang.stock}</td>
 																<td class="textTanggalMasuk">${barang.tanggalMasuk }</td>
 																<td class="a-right a-right textDiskon ">$7.45</td>
-																<td><div class="form-group jumlahPembelianBarang col-md-1 col-sm-1 col-xs-1">
-																			<input type="text" class="form-control textJumlah">
+																<td><div
+																		class="form-group jumlahPembelianBarang col-md-1 col-sm-1 col-xs-1">
+																		<input type="text" class="form-control textJumlah">
 																	</div></td>
 																<td><button type="button" id="tambah-btn"
 																		class="pull-right btn btn-primary btn-addItem">
@@ -351,12 +352,13 @@
 
 												}
 												jumlah = $('.textJumlah').val();
-												hargaJumlahBarang = parseInt(jumlah * harga);
+												hargaJumlahBarang = parseInt(jumlah
+														* harga);
 												hargaBarangSatuan += hargaJumlahBarang;
 												/* console.log(barang); */
 												var table = $('#datatable')
 														.DataTable();
-												
+
 												//$(this).parents("tr").remove();
 												table
 														.row(
@@ -364,25 +366,21 @@
 																		.parents(
 																				'tr'))
 														.remove().draw();
-											
+
 												appendTablePembelian(barang);
-												
-												
+
 												hargaBarangText.innerHTML = 'Rp.'
 														+ hargaBarangSatuan
 														+ ',-';
 												$('#textTotalHarga').val(
 														hargaBarangSatuan);
 												$('#textIdBarang').val(id);
-												
-												
 
 												var barang = {
-													id : id,
-													
+													id : id
 
 												}
-												
+
 												var detailPenjualan = {
 													jumlah : jumlah,
 													barang : barang,
@@ -467,7 +465,6 @@
 								raw += "</tr>";
 
 								$('#datatable2 tbody').append(raw);
-								
 
 							}
 

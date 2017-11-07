@@ -2,6 +2,7 @@ package com.xsis.training125.dao;
 
 import java.util.List;
 import com.xsis.training125.model.Barang;
+import com.xsis.training125.model.DetailPenjualan;
 import com.xsis.training125.model.Employee;
 
 public interface BarangDao {

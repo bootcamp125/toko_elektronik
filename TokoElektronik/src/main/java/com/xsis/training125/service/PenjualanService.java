@@ -59,16 +59,11 @@ public class PenjualanService {
 			detailPenjualan.setPenjualan(penjualan);
 			detailPenjualanDao.save(detailPenjualan);
 			
-		}
-		/*for (DetailPenjualan detailPenjualan : penjualan.getDetailPenjualan()) {
-			Barang barang = detailPenjualan.getBarang();
-			int jmlBarang = barang.getStock();
-			int penguranganStock = jmlBarang - detailPenjualan.getJumlah();
-			
-			barang.setStock(penguranganStock);
+			Barang barang = barangDao.getBarangById(detailPenjualan.getBarang().getId());
+			barang.setStock(barang.getStock()-detailPenjualan.getJumlah());
 			barangDao.update(barang);
-			
-		}*/
+		}
+		
 	}
 
 }
