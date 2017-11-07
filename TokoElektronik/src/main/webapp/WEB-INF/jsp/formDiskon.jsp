@@ -78,26 +78,26 @@
 						</div>
 						<div class="x_content">
 							<br />
-							<div id="demo-form2" data-parsley-validate
-								class="form-horizontal form-label-left">
+							<form id="demo-form2" class="form-horizontal form-label-left"
+								novalidate>
 
 								<div class="form-group">
-									<label class="control-label col-md-3 col-sm-3 col-xs-12"
-										for="textNama">Nama Barang <span class="required">*</span>
-									</label>
+									<label class="control-label col-md-3 col-sm-3 col-xs-12">Nama
+										Barang </label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
-										${barang.namaBarang} <br> ${barang.deskripsi}
+										</div>
+								</div>
+								<div class="item form-group">
+									<label for="textDiskon"
+										class="control-label col-md-3 col-sm-3 col-xs-12">Diskon</label>
+									<div class="col-md-6 col-sm-6 col-xs-12">
+										<input id="textDiskon" class="form-control col-md-7 col-xs-12"
+											min="0" max="99" step="100"
+											data-parsley-validation-threshold="1"
+											data-parsley-trigger="keyup" data-parsley-type="number"
+											type="text" required="required" placeholder="ex : 10">
 									</div>
 								</div>
-								<div class="form-group">
-									<label class="control-label col-md-3 col-sm-3 col-xs-12"
-										for="textDiskon">Diskon <span class="required">*</span></label>
-									<div class="col-md-6 col-sm-6 col-xs-12">
-										<input type="text" id="textDiskon" required="required"
-											class="form-control col-md-7 col-xs-12">
-									</div>
-								</div>
-
 								<div class="form-group">
 									<label for="textTanggal"
 										class="control-label col-md-3 col-sm-3 col-xs-12">Tanggal
@@ -106,21 +106,19 @@
 									<div class="col-md-6 col-sm-6 col-xs-12">
 										<input id="datepicker"
 											class="date-picker form-control col-md-7 col-xs-12 "
-											required="required" type="text" >
+											required="required" type="text">
 									</div>
 								</div>
 								<div class="ln_solid"></div>
 								<div class="form-group">
 									<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-										<button class="btn btn-primary" type="button">Cancel</button>
 										<button class="btn btn-primary" type="reset">Reset</button>
-										<button type="submit" name="submit" class="btn btn-success"
-											id="submit-btn" data-id="${barang.id}"
-											harga="${barang.harga}">Submit</button>
+										<button type="submit" class="btn btn-success" id="submit-btn"
+											data-id="${barang.id}" harga="${barang.harga}">Submit</button>
 									</div>
 								</div>
 
-							</div>
+							</form>
 						</div>
 					</div>
 				</div>
@@ -128,41 +126,54 @@
 		</div>
 	</div>
 	<!-- /page content -->
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script type="text/javascript" src="/assets/js/jquery-3.2.1.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	<script>
+
+	<script type="text/javascript">
 		$('#datepicker').datepicker({
 			changeMonth : true,
 			changeYear : true
 		});
 
-		$('#submit-btn').on('click', function() {
-			//ambil data dari server => ajax
-			id = $(this).attr('data-id');
-			harga = $(this).attr('harga');
+		$(document).ready(function() {
 
-			var barang = {
-				id : id
-			}
+			$("#demo-form2").on('submit', function(e) {
+				e.preventDefault();
+				var form = $(this);
 
-			var diskon = {
-				diskon : $('#textDiskon').val(),
-				hargaDiskon : harga,
-				tanggalBerakhir : $('#datepicker').val(),
-				barang : barang
+				form.parsley().validate();
 
-			};
+				if (form.parsley().isValid()) {
+					id = $(this).attr('data-id');
+					harga = $(this).attr('harga');
+					diskon = $('#textDiskon').val();
 
-			$.ajax({
-				type : 'POST',
-				url : '/diskon/save',
-				contentType : "application/json",
-				data : JSON.stringify(diskon),
+					var barang = {
+						id : id
+					}
+					var hargaSetelahDiskon = parseInt(harga * (diskon / 100));
+					var diskon = {
+						diskon : diskon,
+						hargaDiskon : hargaSetelahDiskon,
+						tanggalBerakhir : Date.now(),
+						barang : barang
 
-				success : function(data) {
+					};
 
-					window.location = "/barang";
+					$.ajax({
+						type : 'POST',
+						url : '/diskon/save',
+						contentType : "application/json",
+						data : JSON.stringify(diskon),
+
+						success : function(data) {
+
+							window.location = "/barang";
+						}
+					});
+
 				}
+
 			});
 
 		});

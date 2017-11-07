@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.xsis.training125.model.Barang;
+import com.xsis.training125.model.DetailPenjualan;
 import com.xsis.training125.model.Employee;
 import com.xsis.training125.model.Karyawan;
+import com.xsis.training125.model.Penjualan;
 import com.xsis.training125.service.BarangService;
 import com.xsis.training125.service.KaryawanService;
 
@@ -41,6 +43,14 @@ public class BarangController {
 		List<Barang> barang = barangService.getAllBarang();
 		model.addAttribute("barang", barang);
 		return "formBarang";
+	}
+	
+	@RequestMapping(value = "/detailbarang/{id}")
+	public String getInvoice(@PathVariable int id, Model model) {
+		Barang barang = barangService.getBarangById(id);
+		model.addAttribute("barang", barang);
+		
+		return "detailBarang";
 	}
 	
 	@RequestMapping(value="/save", method=RequestMethod.POST)

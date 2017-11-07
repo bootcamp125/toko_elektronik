@@ -97,7 +97,7 @@
 												id="textTanggalPenjualan" name="tanggalPenjualan" value="">
 
 										</div>
-										<div class="form-group">
+										<div class="item form-group">
 											<label for="textPelanggan">Nama Pelanggan</label> <select
 												class="select2_single form-control" tabindex="-1"
 												id="TextPelanggan" required="required" name="pelanggan.id">
@@ -152,10 +152,21 @@
 																<td class="textStock">${barang.stock}</td>
 																<td class="textTanggalMasuk">${barang.tanggalMasuk }</td>
 																<td class="a-right a-right textDiskon ">$7.45</td>
-																<td><div
-																		class="form-group jumlahPembelianBarang col-md-1 col-sm-1 col-xs-1">
-																		<input type="text" class="form-control textJumlah">
-																	</div></td>
+																<td>
+
+																	<div class="item form-group">
+																		<div class="col-md-6 col-sm-6 col-xs-12">
+																			<input
+																				class="form-control col-md-7 col-xs-12 textJumlah"
+																				min="0" max="${barang.stock}" step="100"
+																				data-parsley-validation-threshold="1"
+																				data-parsley-trigger="keyup"
+																				data-parsley-type="number" type="text"
+																				required="required" placeholder="ex : 1">
+																		</div>
+																	</div>
+
+																</td>
 																<td><button type="button" id="tambah-btn"
 																		class="pull-right btn btn-primary btn-addItem">
 																		<i class="fa fa-shopping-cart"></i> Beli
@@ -265,9 +276,7 @@
 																<td><button type="button"
 																		class="btn btn-info detail-history-btn"
 																		id="${penjualan.noNota }">Detail Transaksi</button>
-																	<button type="button"
-																		class="btn btn-warning delete-penjualan-btn"
-																		id="${penjualan.noNota }">Hapus Transaksi</button>
+																	
 															</tr>
 														</c:forEach>
 													</tbody>
@@ -297,11 +306,11 @@
 				.ready(
 						function() {
 							var hargaBarangSatuan = 0;
-							var hargaBarangSatuans = 0;
 							var hargaBarangText = document
 									.getElementById('harga');
 							var jumlah = 1;
 							var dp = [];
+
 							var date = new Date();
 
 							var day = date.getDate();
@@ -566,21 +575,6 @@
 														});
 											});
 
-							$('.delete-penjualan-btn').on('click', function() {
-
-								//ambil data dari server => ajax
-								id = $(this).attr('id');
-
-								$.ajax({
-									type : 'DELETE',
-									url : '/penjualan/delete/' + id,
-									success : function() {
-										window.location = "/penjualan";
-									}
-								});
-
-							});
-
 						});
 	</script>
 	<!-- /page content -->
@@ -708,8 +702,41 @@
 		src="/assets/gentelella-master/vendors/pdfmake/build/pdfmake.min.js"></script>
 	<script
 		src="/assets/gentelella-master/vendors/pdfmake/build/vfs_fonts.js"></script>
-
+	<script
+		src="/assets/gentelella-master/vendors/moment/min/moment.min.js"></script>
+	<script
+		src="/assets/gentelella-master/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+	<!-- bootstrap-wysiwyg -->
+	<script
+		src="/assets/gentelella-master/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
+	<script
+		src="/assets/gentelella-master/vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
+	<script
+		src="/assets/gentelella-master/vendors/google-code-prettify/src/prettify.js"></script>
+	<!-- jQuery Tags Input -->
+	<script
+		src="/assets/gentelella-master/vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
+	<!-- Switchery -->
+	<script
+		src="/assets/gentelella-master/vendors/switchery/dist/switchery.min.js"></script>
+	<!-- Select2 -->
+	<script
+		src="/assets/gentelella-master/vendors/select2/dist/js/select2.full.min.js"></script>
+	<!-- Parsley -->
+	<script
+		src="/assets/gentelella-master/vendors/parsleyjs/dist/parsley.min.js"></script>
+	<!-- Autosize -->
+	<script
+		src="/assets/gentelella-master/vendors/autosize/dist/autosize.min.js"></script>
+	<!-- jQuery autocomplete -->
+	<script
+		src="/assets/gentelella-master/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
+	<!-- starrr -->
+	<script src="/assets/gentelella-master/vendors/starrr/dist/starrr.js"></script>
 	<!-- Custom Theme Scripts -->
 	<script src="/assets/gentelella-master/build/js/custom.min.js"></script>
+
+	<!-- validator -->
+	<script src="/assets/gentelella-master/vendors/validator/validator.js"></script>
 </body>
 </html>

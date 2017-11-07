@@ -30,7 +30,6 @@ public class BarangDaoImpl implements BarangDao  {
 		if(barang.isEmpty()){
 			return null;
 		}
-		
 		return barang;
 	}
 
@@ -77,6 +76,7 @@ public class BarangDaoImpl implements BarangDao  {
 		if (barang.isEmpty()) {
 			return null;
 		}
+
 		return barang;
 	}
 	
